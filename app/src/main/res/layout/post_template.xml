@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tvPostName"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:gravity="center"
+        android:text="댕타임"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imgPost"
+        app:layout_constraintStart_toEndOf="@+id/imgPost"
+        app:layout_constraintTop_toTopOf="@+id/imgPost" />
+
+    <ImageView
+        android:id="@+id/imgPost"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/tvPostContent"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="댕타임 멋져요~"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/imgPost"
+        app:layout_constraintTop_toBottomOf="@+id/imgPost" />
+
+    <TextView
+        android:id="@+id/tvPostLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="충장로"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/tvPostContent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPostContent" />
+
+    <TextView
+        android:id="@+id/tvPostTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:gravity="center"
+        android:text="1시간 전"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvPostLocation"
+        app:layout_constraintStart_toEndOf="@+id/tvPostLocation"
+        app:layout_constraintTop_toTopOf="@+id/tvPostLocation" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvPostLike"
+        app:layout_constraintEnd_toStartOf="@+id/tvPostLike"
+        app:layout_constraintTop_toTopOf="@+id/tvPostLike"
+        app:srcCompat="@drawable/favorite" />
+
+    <TextView
+        android:id="@+id/tvPostLike"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:text="0"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageView4"
+        app:layout_constraintTop_toTopOf="@+id/imageView4" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvPostComment"
+        app:layout_constraintEnd_toStartOf="@+id/tvPostComment"
+        app:layout_constraintTop_toTopOf="@+id/tvPostComment"
+        app:srcCompat="@drawable/chat_bubble" />
+
+    <TextView
+        android:id="@+id/tvPostComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="0"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/tvPostContent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPostContent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
