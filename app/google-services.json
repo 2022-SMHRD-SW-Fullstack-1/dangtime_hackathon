@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "50583221965",
+    "project_id": "dangtimehackathon",
+    "storage_bucket": "dangtimehackathon.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:50583221965:android:7cb0ebc8eaca7249ec5b84",
+        "android_client_info": {
+          "package_name": "com.example.dangtime"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "50583221965-kdqu4h8ek568821bjcobo19c6ini5a3v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNc-IiZ3hqWLHc6xFzIp1VSWbcexQc5_I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "50583221965-kdqu4h8ek568821bjcobo19c6ini5a3v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
