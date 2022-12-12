@@ -6,4 +6,99 @@
     android:layout_height="match_parent"
     tools:context=".auth.DogInfoActivity">
 
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="반려견을 한 단어로 표현한다면?"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/etRegisterDogName"
+        app:layout_constraintTop_toBottomOf="@+id/etRegisterDogName" />
+
+    <EditText
+        android:id="@+id/etRegisterDogNick"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="세젤귀"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/textView25"
+        app:layout_constraintTop_toBottomOf="@+id/textView25" />
+
+    <TextView
+        android:id="@+id/textView24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="반려견 이름"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/textView23"
+        app:layout_constraintTop_toBottomOf="@+id/textView23" />
+
+    <EditText
+        android:id="@+id/etRegisterDogName"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="초코"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/textView24"
+        app:layout_constraintTop_toBottomOf="@+id/textView24" />
+
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:text="내 댕댕이 정보 입력 (2/2)"
+        android:textColor="@color/black"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline11" />
+
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="광주 동구 동명동"
+        android:textColor="#FF9800"
+        app:layout_constraintStart_toStartOf="@+id/textView22"
+        app:layout_constraintTop_toBottomOf="@+id/textView22" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="66dp" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline11"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/back" />
+
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/button"
+        android:text="회원가입 완료"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline12" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="66dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

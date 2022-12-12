@@ -32,7 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.1" />
+        app:layout_constraintGuide_begin="66dp" />
 
     <TextView
         android:id="@+id/textView12"
@@ -50,12 +50,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.9" />
+        app:layout_constraintGuide_end="66dp" />
 
     <Button
-        android:id="@+id/btnLocationSearch"
+        android:id="@+id/btnLocationAuto"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@drawable/button"
         android:insetTop="0dp"
         android:insetBottom="0dp"
         android:text="간편한 자동 검색"
@@ -69,20 +70,20 @@
         android:id="@+id/imageView4"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintBottom_toTopOf="@+id/btnLocationSearch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView12"
         app:srcCompat="@drawable/location" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btnLocationSearch"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
 
         android:background="@drawable/shape_rectangle_button"
         android:drawableRight="@drawable/layerlist_right"
-        android:drawableTint="#F4F1F1"
+        android:drawableTint="#000000"
         android:text="내 위치 직접 입력하기 "
         app:layout_constraintBottom_toTopOf="@+id/guideline6"
         app:layout_constraintEnd_toEndOf="parent"
