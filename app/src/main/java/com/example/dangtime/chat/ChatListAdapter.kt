@@ -1,10 +1,14 @@
 package com.example.dangtime.chat
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dangtime.R
 import de.hdodenhof.circleimageview.CircleImageView
@@ -23,6 +27,30 @@ class ChatListAdapter(val context: Context, val chatList: ArrayList<ChatListVO>)
             tvChatlistName = itemView.findViewById(R.id.tvChatlistName)
             tvChatlistContent = itemView.findViewById(R.id.tvChatlistContent)
             tvChatlistTime = itemView.findViewById(R.id.tvChatlistTime)
+
+            itemView.setOnClickListener {
+                val intent = Intent(context, ChatViewActivity::class.java)
+                context.startActivity(intent)
+            }
+
+            itemView.setOnLongClickListener {
+
+                val builder = AlertDialog.Builder(it.context)
+
+                builder.setTitle(tvChatlistName.text)
+                    .setMessage("채팅방을 나가시겠습니까?")
+                    .setPositiveButton("확인",
+                        DialogInterface.OnClickListener { dialog, id ->
+                            Toast.makeText(it.context, tvChatlistName.text, Toast.LENGTH_SHORT).show()
+                        })
+                    .setNegativeButton("취소",
+                        DialogInterface.OnClickListener { dialog, id ->
+                            null
+                        }).create()
+                builder.show()
+
+                true
+            }
         }
     }
 

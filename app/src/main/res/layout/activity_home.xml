@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.post.HomeActivity">
+    tools:context=".post.HomeActivity">
 
     <TextView
         android:id="@+id/textView6"
@@ -73,6 +73,7 @@
         app:menu="@menu/menu_item" />
 
     <FrameLayout
+        android:id="@+id/flHome"
         android:layout_width="409dp"
         android:layout_height="525dp"
         app:layout_constraintBottom_toTopOf="@+id/bnv"
