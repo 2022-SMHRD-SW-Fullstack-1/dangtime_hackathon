@@ -17,8 +17,9 @@ class DeleteProfileActivity : AppCompatActivity() {
 
 
         imgPfDltBack.setOnClickListener {
-            val intent = Intent(this@DeleteProfileActivity, EditProfileActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(this@DeleteProfileActivity, EditProfileActivity::class.java)
+//            startActivity(intent)
+            finish()
         }
 
 

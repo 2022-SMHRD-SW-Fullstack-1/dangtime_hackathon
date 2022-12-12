@@ -15,8 +15,9 @@ class EditProfileActivity : AppCompatActivity() {
         val imgPfEditBack = findViewById<ImageView>(R.id.imgPfEditBack)
 
         imgPfEditBack.setOnClickListener {
-            val intent = Intent(this@EditProfileActivity, ProfileActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(this@EditProfileActivity, ProfileActivity::class.java)
+//            startActivity(intent)
+            finish()
         }
 
     }
