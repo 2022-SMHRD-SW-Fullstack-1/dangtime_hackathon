@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.MyPostFragment">
+    tools:context=".fragment.mypost.MyPostFragment">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline6"
@@ -24,23 +24,27 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.tabs.TabItem
+            android:id="@+id/myPostTab1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="내 게시물" />
 
         <com.google.android.material.tabs.TabItem
+            android:id="@+id/myPostTab2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="내 댓글" />
 
     </com.google.android.material.tabs.TabLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+    <FrameLayout
+        android:layout_width="409dp"
+        android:layout_height="618dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline6" />
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout2">
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

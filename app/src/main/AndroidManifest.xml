@@ -13,31 +13,53 @@
         android:theme="@style/Theme.Dangtime"
         tools:targetApi="31">
         <activity
-            android:name=".fragment.post.EditPostActivity"
-            android:exported="false">
+            android:name=".post.EditPostActivity"
+            android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".fragment.home.PostDetailActivity"
-            android:exported="false">
+            android:exported="true">
 
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".fragment.post.ViewPostActivity"
-            android:exported="false">
+            android:name=".post.ViewPostActivity"
+            android:exported="true">
+
 
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".fragment.post.HomeActivity"
+            android:name=".post.HomeActivity"
             android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".board.BoardChoice"
+            android:exported="true">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".board.BoardWriteMateActivity"
+            android:exported="true">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".board.BoardWriteStoryActivity"
+            android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

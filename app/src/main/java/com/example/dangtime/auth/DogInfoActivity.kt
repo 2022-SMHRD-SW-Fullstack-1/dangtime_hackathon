@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import com.example.dangtime.R
-import com.example.dangtime.fragment.post.HomeActivity
+import com.example.dangtime.post.HomeActivity
 
 
 class DogInfoActivity : AppCompatActivity() {
