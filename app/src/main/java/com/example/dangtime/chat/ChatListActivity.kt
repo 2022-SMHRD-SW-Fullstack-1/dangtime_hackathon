@@ -3,6 +3,7 @@ package com.example.dangtime.chat
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,6 +16,7 @@ class ChatListActivity : AppCompatActivity() {
 
         val rvChatList = findViewById<RecyclerView>(R.id.rvChatList)
         val etChatSearch = findViewById<EditText>(R.id.etChatSearch)
+        val imgChatListBack = findViewById<ImageView>(R.id.imgChatListBack)
 
 //        container = rvchatlist
 //        template = chat_list.xml
@@ -38,8 +40,9 @@ class ChatListActivity : AppCompatActivity() {
         rvChatList.layoutManager = LinearLayoutManager(this@ChatListActivity)
 
 //        Event
-
-        rvChatList
+        imgChatListBack.setOnClickListener {
+            finish()
+        }
 
 
     }
