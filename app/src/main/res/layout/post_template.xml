@@ -17,12 +17,17 @@
         app:layout_constraintStart_toEndOf="@+id/imgPost"
         app:layout_constraintTop_toTopOf="@+id/imgPost" />
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imgPost"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:src="@drawable/dogprofile"
+        app:civ_border_color="@color/mainColor"
+        app:civ_border_overlay="true"
+        app:civ_border_width="2dp"
+        app:civ_circle_background_color="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />

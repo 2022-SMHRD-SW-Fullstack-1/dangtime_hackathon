@@ -25,10 +25,10 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginEnd="20dp"
-        android:src="@tools:sample/avatars"
-        app:civ_border_color="#FFA502"
+        android:src="@drawable/dogprofile"
+        app:civ_border_color="@color/mainColor"
         app:civ_border_overlay="true"
-        app:civ_border_width="3dp"
+        app:civ_border_width="2dp"
         app:civ_circle_background_color="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/guideline4"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,14 +48,6 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.9" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline5" />
-
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="wrap_content"
@@ -65,5 +57,26 @@
         app:layout_constraintEnd_toStartOf="@+id/imgBookProfile2"
         app:layout_constraintTop_toTopOf="@+id/imgBookProfile2"
         app:srcCompat="@drawable/chat" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bnv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline5"
+        app:menu="@menu/menu_item" />
+
+    <FrameLayout
+        android:layout_width="409dp"
+        android:layout_height="525dp"
+        app:layout_constraintBottom_toTopOf="@+id/bnv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline4">
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
