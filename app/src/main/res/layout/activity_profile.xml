@@ -115,7 +115,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/imageView6" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/btnProfileEdit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -130,7 +130,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/btnProfileLogout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
@@ -145,10 +145,10 @@
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button2" />
+                app:layout_constraintTop_toBottomOf="@+id/btnProfileEdit" />
 
             <Button
-                android:id="@+id/button5"
+                android:id="@+id/btnProfileDelete"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape_rectangle_button"
@@ -163,7 +163,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button3" />
+                app:layout_constraintTop_toBottomOf="@+id/btnProfileLogout" />
 
             <ImageView
                 android:id="@+id/imageView6"
