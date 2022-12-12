@@ -1,4 +1,4 @@
-package com.example.dangtime.fragment.post
+package com.example.dangtime.post
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
