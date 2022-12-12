@@ -29,7 +29,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline7" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/imgSearchBack"
         android:layout_width="40dp"
         android:layout_height="40dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline7"
@@ -48,7 +48,7 @@
         android:id="@+id/etSearchLocation"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="40dp"
         android:ems="10"
         android:hint="내 동네 검색 (동,읍,면)"
         android:inputType="textPersonName"

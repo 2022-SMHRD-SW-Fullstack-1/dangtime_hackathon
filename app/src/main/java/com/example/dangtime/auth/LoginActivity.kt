@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
+import com.example.dangtime.MainActivity
 import com.example.dangtime.R
 
 class LoginActivity : AppCompatActivity() {
@@ -15,7 +16,14 @@ class LoginActivity : AppCompatActivity() {
         val imgLoginRegister = findViewById<ImageView>(R.id.imgLoginRegister)
 
         imgLoginRegister.setOnClickListener {
-            val intent = Intent(this, LocationActivity::class.java)
+            val intent = Intent(this@LoginActivity, LocationActivity::class.java)
+            startActivity(intent)
+        }
+
+        val imgLoginBack = findViewById<ImageView>(R.id.imgLoginBack)
+
+        imgLoginBack.setOnClickListener {
+            val intent = Intent(this@LoginActivity, MainActivity::class.java)
             startActivity(intent)
         }
 

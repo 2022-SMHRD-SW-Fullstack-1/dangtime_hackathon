@@ -33,8 +33,8 @@
         android:layout_marginTop="40dp"
         android:text="반려견 이름"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/textView23"
-        app:layout_constraintTop_toBottomOf="@+id/textView23" />
+        app:layout_constraintStart_toStartOf="@+id/tvRegisterAdd"
+        app:layout_constraintTop_toBottomOf="@+id/tvRegisterAdd" />
 
     <EditText
         android:id="@+id/etRegisterDogName"
@@ -59,7 +59,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline11" />
 
     <TextView
-        android:id="@+id/textView23"
+        android:id="@+id/tvRegisterAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="광주 동구 동명동"
@@ -75,7 +75,7 @@
         app:layout_constraintGuide_begin="66dp" />
 
     <ImageView
-        android:id="@+id/imageView7"
+        android:id="@+id/imgDogBack"
         android:layout_width="40dp"
         android:layout_height="40dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline11"

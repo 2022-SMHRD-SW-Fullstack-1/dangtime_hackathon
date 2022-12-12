@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import com.example.dangtime.R
 
 class LocationActivity : AppCompatActivity() {
@@ -13,7 +14,13 @@ class LocationActivity : AppCompatActivity() {
 
         val btnLocationSearch = findViewById<Button>(R.id.btnLocationSearch)
         btnLocationSearch.setOnClickListener {
-            val intent = Intent(this, SearchLocationActivity::class.java)
+            val intent = Intent(this@LocationActivity, SearchLocationActivity::class.java)
+            startActivity(intent)
+        }
+
+        val imgLocationBack = findViewById<ImageView>(R.id.imgLocationBack)
+        imgLocationBack.setOnClickListener {
+            val intent = Intent(this@LocationActivity, LoginActivity::class.java)
             startActivity(intent)
         }
     }

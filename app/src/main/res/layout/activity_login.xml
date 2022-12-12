@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="40dp"
         android:text="이메일"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,7 +21,6 @@
         android:id="@+id/etLoginEmail"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="올바른 이메일 형식을 입력해주세요"
         android:inputType="textPersonName"
@@ -57,7 +56,6 @@
         android:id="@+id/etLoginPw"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="6~20자리 입력해 주세요"
         android:inputType="textPersonName"
@@ -75,7 +73,7 @@
         app:layout_constraintTop_toBottomOf="@+id/etLoginEmail" />
 
     <ImageView
-        android:id="@+id/imgBack"
+        android:id="@+id/imgLoginBack"
         android:layout_width="40dp"
         android:layout_height="40dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline3"

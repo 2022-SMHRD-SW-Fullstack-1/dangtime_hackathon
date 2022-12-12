@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import com.example.dangtime.R
 import com.example.dangtime.post.HomeActivity
 
@@ -14,7 +15,13 @@ class DogInfoActivity : AppCompatActivity() {
 
         val btnRegister = findViewById<Button>(R.id.btnRegister)
         btnRegister.setOnClickListener {
-            val intent = Intent(this, HomeActivity::class.java)
+            val intent = Intent(this@DogInfoActivity, HomeActivity::class.java)
+            startActivity(intent)
+        }
+
+        val imgDogBack = findViewById<ImageView>(R.id.imgDogBack)
+        imgDogBack.setOnClickListener {
+            val intent = Intent(this@DogInfoActivity, RegisterActivity::class.java)
             startActivity(intent)
         }
 
