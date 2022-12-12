@@ -41,7 +41,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tvProfileName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -58,9 +58,9 @@
         android:layout_width="wrap_content"
         android:layout_height="400dp"
         app:layout_constraintBottom_toTopOf="@+id/btnGuest"
-        app:layout_constraintEnd_toEndOf="@+id/textView2"
-        app:layout_constraintStart_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="@+id/tvProfileName"
+        app:layout_constraintStart_toStartOf="@+id/tvProfileName"
+        app:layout_constraintTop_toBottomOf="@+id/tvProfileName"
         app:srcCompat="@drawable/main" />
 
     <Button
