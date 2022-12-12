@@ -7,7 +7,7 @@
     tools:context=".auth.LoginActivity">
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/tvDetailContent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -15,7 +15,7 @@
         android:text="이메일"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/tvDetailName" />
 
     <EditText
         android:id="@+id/etLoginEmail"
@@ -24,8 +24,8 @@
         android:ems="10"
         android:hint="올바른 이메일 형식을 입력해주세요"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="@+id/textView8"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        app:layout_constraintStart_toStartOf="@+id/tvDetailContent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDetailContent" />
 
     <TextView
         android:id="@+id/textView4"
@@ -41,7 +41,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline3" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/tvDetailName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -59,11 +59,11 @@
         android:ems="10"
         android:hint="6~20자리 입력해 주세요"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="@+id/textView7"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintStart_toStartOf="@+id/tvDetailView"
+        app:layout_constraintTop_toBottomOf="@+id/tvDetailView" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/tvDetailView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -112,7 +112,7 @@
         app:layout_constraintGuide_end="66dp" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/tvDetailTown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -128,7 +128,7 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView9"
+        app:layout_constraintBottom_toTopOf="@+id/tvDetailTown"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/orangeheart2" />

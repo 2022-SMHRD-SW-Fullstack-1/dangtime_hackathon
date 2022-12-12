@@ -23,7 +23,7 @@ class HomeFragment : Fragment() {
 
        val view = inflater.inflate(R.layout.fragment_home, container, false)
 
-//        val btnWrite = view.findViewById<Button>(R.id.btnWrite)
+        //val btnWrite = view.findViewById<Button>(R.id.btnWrite)
 
         val intent = Intent(requireContext(),BoardChoice::class.java)
 
