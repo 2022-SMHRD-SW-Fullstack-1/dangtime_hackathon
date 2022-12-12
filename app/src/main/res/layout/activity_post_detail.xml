@@ -26,7 +26,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:text="8명이 보고갔어요."
-        android:textSize="12sp"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -38,6 +38,7 @@
         android:layout_marginTop="24dp"
         android:text="저는 효지에요 댕댕이 친구 구합니다 ㅎㅎ"
         android:textColor="#000000"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/textView7"
         app:layout_constraintStart_toStartOf="@+id/textView7"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
@@ -48,18 +49,24 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
         android:text="동명동"
-        android:textSize="12sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@+id/textView8"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
-    <ImageView
+
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imageView"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_gravity="center"
         android:layout_marginStart="8dp"
-        app:layout_constraintStart_toStartOf="@+id/imageView9"
-        app:layout_constraintTop_toTopOf="@+id/guideline13"
-        app:srcCompat="@drawable/dogprofile" />
+        android:background="@android:color/transparent"
+        android:src="@drawable/dogprofile"
+        app:civ_border_color="#000000"
+        app:civ_border_overlay="true"
+        app:civ_border_width="1dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline13" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -96,8 +103,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="1마리 댕댕이들 대화중"
-        app:layout_constraintTop_toBottomOf="@+id/imageView7"
-        tools:layout_editor_absoluteX="140dp" />
+        app:layout_constraintEnd_toEndOf="@+id/imageView7"
+        app:layout_constraintStart_toStartOf="@+id/imageView7"
+        app:layout_constraintTop_toBottomOf="@+id/imageView7" />
 
     <View
         android:id="@+id/view"
@@ -106,7 +114,6 @@
         android:layout_marginTop="64dp"
         android:background="#B8B8B8"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toTopOf="@+id/textView13"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
@@ -131,16 +138,17 @@
     <EditText
         android:id="@+id/editTextTextPersonName"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="8dp"
+        android:background="@color/white"
         android:ems="10"
         android:hint="댓글을 작성해 주세요."
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/imageView14"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView2" />
+        app:layout_constraintTop_toTopOf="@+id/guideline14" />
 
     <TextView
         android:id="@+id/textView13"
@@ -148,7 +156,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="5시간전"
-        android:textSize="12sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView9"
         app:layout_constraintStart_toEndOf="@+id/textView9"
         app:layout_constraintTop_toTopOf="@+id/textView9" />
@@ -208,4 +216,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName"
         app:srcCompat="@drawable/up" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.9" />
 </androidx.constraintlayout.widget.ConstraintLayout>

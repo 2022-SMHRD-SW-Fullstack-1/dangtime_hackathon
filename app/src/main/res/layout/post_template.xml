@@ -97,7 +97,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/tvPostComment"
         app:layout_constraintEnd_toStartOf="@+id/tvPostComment"
         app:layout_constraintTop_toTopOf="@+id/tvPostComment"
-        app:srcCompat="@drawable/chat_bubble" />
+        app:srcCompat="@drawable/reply" />
 
     <TextView
         android:id="@+id/tvPostComment"

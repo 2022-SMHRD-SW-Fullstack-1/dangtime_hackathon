@@ -17,13 +17,13 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline4"
-        app:layout_constraintEnd_toStartOf="@+id/imageView5"
+        app:layout_constraintEnd_toStartOf="@+id/imgHomeChat"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imgBookProfile2"
+        android:id="@+id/imgHomeProfile"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginEnd="20dp"
@@ -54,6 +54,7 @@
         android:id="@+id/bnv"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@color/white"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -72,13 +73,13 @@
     </FrameLayout>
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/imgHomeChat"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginEnd="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imgBookProfile2"
-        app:layout_constraintEnd_toStartOf="@+id/imgBookProfile2"
-        app:layout_constraintTop_toTopOf="@+id/imgBookProfile2"
+        app:layout_constraintBottom_toBottomOf="@+id/imgHomeProfile"
+        app:layout_constraintEnd_toStartOf="@+id/imgHomeProfile"
+        app:layout_constraintTop_toTopOf="@+id/imgHomeProfile"
         app:srcCompat="@drawable/chaticon" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
