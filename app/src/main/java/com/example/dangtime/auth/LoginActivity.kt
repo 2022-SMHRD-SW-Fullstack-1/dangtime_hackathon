@@ -23,8 +23,9 @@ class LoginActivity : AppCompatActivity() {
         val imgLoginBack = findViewById<ImageView>(R.id.imgLoginBack)
 
         imgLoginBack.setOnClickListener {
-            val intent = Intent(this@LoginActivity, MainActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+//            startActivity(intent)
+            finish()
         }
 
 

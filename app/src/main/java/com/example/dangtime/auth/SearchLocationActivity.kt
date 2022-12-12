@@ -16,12 +16,15 @@ class SearchLocationActivity : AppCompatActivity() {
         btnSearchSearch.setOnClickListener {
             val intent = Intent(this@SearchLocationActivity, RegisterActivity::class.java)
             startActivity(intent)
+
         }
 
         val imgSearchBack = findViewById<ImageView>(R.id.imgSearchBack)
         imgSearchBack.setOnClickListener {
-            val intent = Intent(this@SearchLocationActivity, LocationActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(this@SearchLocationActivity, LocationActivity::class.java)
+//            startActivity(intent)
+            finish()
         }
+
     }
 }

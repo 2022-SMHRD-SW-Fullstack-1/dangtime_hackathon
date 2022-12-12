@@ -20,8 +20,9 @@ class LocationActivity : AppCompatActivity() {
 
         val imgLocationBack = findViewById<ImageView>(R.id.imgLocationBack)
         imgLocationBack.setOnClickListener {
-            val intent = Intent(this@LocationActivity, LoginActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(this@LocationActivity, LoginActivity::class.java)
+//            startActivity(intent)
+            finish()
         }
     }
 }

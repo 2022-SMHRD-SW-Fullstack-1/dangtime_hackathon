@@ -21,8 +21,9 @@ class DogInfoActivity : AppCompatActivity() {
 
         val imgDogBack = findViewById<ImageView>(R.id.imgDogBack)
         imgDogBack.setOnClickListener {
-            val intent = Intent(this@DogInfoActivity, RegisterActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(this@DogInfoActivity, RegisterActivity::class.java)
+//            startActivity(intent)
+            finish()
         }
 
     }

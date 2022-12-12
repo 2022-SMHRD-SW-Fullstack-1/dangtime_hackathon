@@ -89,7 +89,9 @@
         android:insetTop="0dp"
         android:insetBottom="0dp"
         android:text="로그인"
-        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -116,6 +118,7 @@
         android:layout_marginBottom="8dp"
         android:text="아직 계정이 없으신가요?"
         android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

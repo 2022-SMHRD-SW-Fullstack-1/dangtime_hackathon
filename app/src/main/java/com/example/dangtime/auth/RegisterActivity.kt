@@ -20,8 +20,9 @@ class RegisterActivity : AppCompatActivity() {
 
         val imgRegisterBack = findViewById<ImageView>(R.id.imgRegisterBack)
         imgRegisterBack.setOnClickListener {
-            val intent = Intent(this@RegisterActivity, SearchLocationActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(this@RegisterActivity, SearchLocationActivity::class.java)
+//            startActivity(intent)
+            finish()
         }
 
     }
