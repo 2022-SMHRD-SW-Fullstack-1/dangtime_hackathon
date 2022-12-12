@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import com.example.dangtime.auth.LoginActivity
-import com.example.dangtime.fragment.post.HomeActivity
+import com.example.dangtime.post.HomeActivity
 
 
 class MainActivity : AppCompatActivity() {
