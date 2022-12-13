@@ -1,8 +1,6 @@
 package com.example.dangtime.util
 
-import android.icu.text.SimpleDateFormat
 import com.google.firebase.auth.FirebaseAuth
-import java.util.*
 
 class FBAuth {
     companion object {

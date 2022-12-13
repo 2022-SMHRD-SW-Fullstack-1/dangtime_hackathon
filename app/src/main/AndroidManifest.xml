@@ -20,9 +20,8 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".fragment.post.PostDetailActivity"
-            android:exported="true">
-
+            android:name=".fragment.home.PostDetailActivity"
+            android:exported="false">
 
             <meta-data
                 android:name="android.app.lib_name"
@@ -30,8 +29,7 @@
         </activity>
         <activity
             android:name=".post.ViewPostActivity"
-            android:exported="true">
-
+            android:exported="false">
 
             <meta-data
                 android:name="android.app.lib_name"
@@ -40,27 +38,6 @@
         <activity
             android:name=".post.HomeActivity"
             android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".board.BoardChoice"
-            android:exported="true">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".board.BoardWriteMateActivity"
-            android:exported="true">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".board.BoardWriteStoryActivity"
-            android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -145,8 +122,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

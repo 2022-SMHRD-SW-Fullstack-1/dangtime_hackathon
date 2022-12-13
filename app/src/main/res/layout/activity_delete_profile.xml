@@ -7,7 +7,7 @@
     tools:context=".profile.DeleteProfileActivity">
 
     <TextView
-        android:id="@+id/tvDetailContent"
+        android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -65,12 +65,12 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
 
     <TextView
-        android:id="@+id/tvDetailTown"
+        android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="비밀번호를 입력해주세요"
-        app:layout_constraintStart_toStartOf="@+id/tvDetailContent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDetailContent" />
+        android:text="비밀번호 확인이 필요합니다"
+        app:layout_constraintStart_toStartOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <Button
         android:id="@+id/btnPfDelete"
