@@ -36,7 +36,7 @@ init {
      tvName = itemView.findViewById<TextView>(R.id.tvDetailName)
      tvHr = itemView.findViewById<TextView>(R.id.tvDetailHr)
      tvView = itemView.findViewById<TextView>(R.id.tvDetailView)
-     tvContent = itemView.findViewById<TextView>(R.id.tvPfDltEmail)
+     tvContent = itemView.findViewById<TextView>(R.id.tv)
      tvTown = itemView.findViewById<TextView>(R.id.tvDetailTown)
      tvCc =itemView.findViewById<TextView>(R.id.tvDetailComentCount)
      tvHeartCount = itemView.findViewById<TextView>(R.id.tvDetailHeartCount)
