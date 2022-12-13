@@ -66,7 +66,6 @@ class ChatViewActivity : AppCompatActivity() {
                         null
                     }).create()
             builder.show()
-            true
         }
     }
 }

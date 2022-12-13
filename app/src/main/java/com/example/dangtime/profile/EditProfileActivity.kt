@@ -10,6 +10,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -17,7 +18,9 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import com.example.dangtime.R
+import com.example.dangtime.auth.MemberVO
 import com.example.dangtime.util.FBAuth
+import com.example.dangtime.util.FBdatabase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -46,6 +49,9 @@ class EditProfileActivity : AppCompatActivity() {
         etPfEditNick.hint = intent.getStringExtra("dogNick")
 
 
+
+
+
         imgPfEditBack.setOnClickListener {
             finish()
         }
@@ -61,8 +67,13 @@ class EditProfileActivity : AppCompatActivity() {
         btnPfEdit.setOnClickListener {
             val dogName = etPfEditName.text.toString()
             val dogNick = etPfEditNick.text.toString()
+            val address = intent.getStringExtra("address")
+            FBdatabase.getMemberRef().child(uid).setValue(MemberVO(uid, address!! , dogName!!, dogNick!!))
 
             imgUpload()
+            val intent = Intent(this, ProfileActivity::class.java)
+            startActivity(intent)
+
         }
 
 
