@@ -7,7 +7,7 @@
     tools:context=".auth.SearchLocationActivity">
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/tvDetailComentCount"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -53,8 +53,8 @@
         android:ems="10"
         android:hint="내 동네 검색 (동,읍,면)"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="@+id/textView10"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+        app:layout_constraintStart_toStartOf="@+id/tvDetailComentCount"
+        app:layout_constraintTop_toBottomOf="@+id/tvDetailComentCount" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline8"
@@ -78,4 +78,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline8" />
+
+    <ImageView
+        android:id="@+id/imgSearchLocation"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/etSearchLocation"
+        app:layout_constraintStart_toEndOf="@+id/etSearchLocation"
+        app:layout_constraintTop_toTopOf="@+id/etSearchLocation"
+        app:srcCompat="@drawable/loupe" />
 </androidx.constraintlayout.widget.ConstraintLayout>
