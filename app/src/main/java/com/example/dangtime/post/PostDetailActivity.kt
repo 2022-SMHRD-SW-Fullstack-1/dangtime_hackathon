@@ -27,9 +27,11 @@ class PostDetailActivity : AppCompatActivity() {
         val etText = findViewById<EditText>(R.id.etDetailText)
         val tvCc2 = findViewById<TextView>(R.id.tvDetailComentCount2)
 
-        var postList = ArrayList<>()
+       // var postList = ArrayList<>()
 
-        val adapter = PostDetailAdapter(this, )
+       // val adapter = PostDetailAdapter(this, )
+
+
 
 
 
