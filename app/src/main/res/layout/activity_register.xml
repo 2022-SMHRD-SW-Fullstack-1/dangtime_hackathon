@@ -67,7 +67,7 @@
         app:layout_constraintTop_toBottomOf="@+id/etRegisterPw" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/tvDetailHr"
         android:layout_width="260dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
@@ -108,8 +108,8 @@
         android:layout_height="wrap_content"
         android:text="광주 동구 동명동"
         android:textColor="#FF9800"
-        app:layout_constraintStart_toStartOf="@+id/textView13"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+        app:layout_constraintStart_toStartOf="@+id/tvDetailHr"
+        app:layout_constraintTop_toBottomOf="@+id/tvDetailHr" />
 
     <Button
         android:id="@+id/btnRegisterNext"

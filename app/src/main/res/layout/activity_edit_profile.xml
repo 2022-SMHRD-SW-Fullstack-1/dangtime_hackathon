@@ -38,7 +38,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline3" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/tvDetailName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
@@ -61,12 +61,12 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
-        android:id="@+id/imgPfEdit"
+        android:id="@+id/imageView3"
         android:layout_width="95dp"
         android:layout_height="60dp"
         android:layout_marginTop="36dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        app:layout_constraintTop_toBottomOf="@+id/tvDetailName"
         app:srcCompat="@drawable/dogprofile" />
 
     <TextView
@@ -78,7 +78,7 @@
         android:text="반려견 이름"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgPfEdit" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     <TextView
         android:id="@+id/textView7"
@@ -107,8 +107,8 @@
         android:ems="10"
         android:hint="세젤귀"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="@+id/textView7"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintStart_toStartOf="@+id/tvDetailView"
+        app:layout_constraintTop_toBottomOf="@+id/tvDetailView" />
 
     <Button
         android:id="@+id/btnPfEdit"
