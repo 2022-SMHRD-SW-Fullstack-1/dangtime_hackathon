@@ -17,13 +17,13 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline4"
-        app:layout_constraintEnd_toStartOf="@+id/imageView2"
+        app:layout_constraintEnd_toStartOf="@+id/imgHomeChat"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imgBookProfile2"
+        android:id="@+id/imgHomeProfile"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginEnd="20dp"
@@ -51,13 +51,13 @@
         app:layout_constraintGuide_end="66dp" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imgHomeChat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="15dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imgBookProfile2"
-        app:layout_constraintEnd_toStartOf="@+id/imgBookProfile2"
-        app:layout_constraintTop_toTopOf="@+id/imgBookProfile2"
+        app:layout_constraintBottom_toBottomOf="@+id/imgHomeProfile"
+        app:layout_constraintEnd_toStartOf="@+id/imgHomeProfile"
+        app:layout_constraintTop_toTopOf="@+id/imgHomeProfile"
         app:srcCompat="@drawable/chat" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
