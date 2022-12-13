@@ -23,6 +23,10 @@ import com.google.firebase.ktx.Firebase
 class ProfileActivity : AppCompatActivity() {
 
     lateinit var auth: FirebaseAuth
+    lateinit var dogNick: String
+    lateinit var dogName: String
+    lateinit var address: String
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,18 +48,20 @@ class ProfileActivity : AppCompatActivity() {
         val tvPfReplyCnt = findViewById<TextView>(R.id.tvPfReplyCnt)
         val tvPfLocation = findViewById<TextView>(R.id.tvPfLocation)
 
+
+
         val email = user?.email.toString()
         tvProfileEmail.text = email
 
         val pfListener = object : ValueEventListener{
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                val dogName = snapshot.child("$uid").child("dogName").value.toString()
-                val dogNick = snapshot.child("$uid").child("dogNick").value.toString()
+                dogName = snapshot.child("$uid").child("dogName").value.toString()
+                dogNick = snapshot.child("$uid").child("dogNick").value.toString()
                 val pfName = "$dogNick $dogName"
                 tvProfileName.text = pfName
 
-                val address = snapshot.child("$uid").child("address").value.toString()
+                address = snapshot.child("$uid").child("address").value.toString()
                 tvPfLocation.text = "$address 댕댕이"
 
             }
@@ -75,6 +81,9 @@ class ProfileActivity : AppCompatActivity() {
 
         btnProfileEdit.setOnClickListener {
             val intent = Intent(this@ProfileActivity, EditProfileActivity::class.java)
+            intent.putExtra("dogName",dogName)
+            intent.putExtra("dogNick",dogNick)
+            intent.putExtra("address",address)
             startActivity(intent)
         }
 
