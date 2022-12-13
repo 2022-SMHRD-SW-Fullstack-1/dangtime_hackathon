@@ -5,35 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayout3"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline16"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tabIndicatorColor="@color/mainColor">
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/homeTab1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="모두 보기" />
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/homeTab2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="산책 메이트" />
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/homeTab3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="댕댕톡" />
-    </com.google.android.material.tabs.TabLayout>
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline16"
         android:layout_width="wrap_content"
@@ -42,12 +13,26 @@
         app:layout_constraintGuide_begin="50dp" />
 
     <FrameLayout
+        android:id="@+id/flHomeFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tabLayout3">
+        app:layout_constraintTop_toTopOf="@+id/guideline16">
 
     </FrameLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bnvHome"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/white"
+        app:itemPaddingBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/homemenu_item" />
 </androidx.constraintlayout.widget.ConstraintLayout>
