@@ -23,8 +23,6 @@ import com.google.firebase.ktx.Firebase
 class ProfileActivity : AppCompatActivity() {
 
     lateinit var auth: FirebaseAuth
-    var keyData = ArrayList<String>()
-    var infoList = ArrayList<MemberVO>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,18 +47,13 @@ class ProfileActivity : AppCompatActivity() {
         val email = user?.email.toString()
         tvProfileEmail.text = email
 
-
         val pfListener = object : ValueEventListener{
 
             override fun onDataChange(snapshot: DataSnapshot) {
-
-//                keyData.add(snapshot.value.toString())
-                Log.d("멤", snapshot.child("$uid").child("dogName").toString())
                 val dogName = snapshot.child("$uid").child("dogName").value.toString()
                 val dogNick = snapshot.child("$uid").child("dogNick").value.toString()
                 val pfName = "$dogNick $dogName"
                 tvProfileName.text = pfName
-
 
                 val address = snapshot.child("$uid").child("address").value.toString()
                 tvPfLocation.text = "$address 댕댕이"
