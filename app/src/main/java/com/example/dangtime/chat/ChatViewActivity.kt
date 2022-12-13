@@ -37,11 +37,13 @@ class ChatViewActivity : AppCompatActivity() {
 
 //        adapter
         val adapter = ChatViewAdapter(
-
+            this,
+            loginId,
+            chatViewList
         )
 
-//        rvChatView.adapter = adapter
-//        rvChatView.layoutManager = LinearLayoutManager(this@ChatViewActivity)
+        rvChatView.adapter = adapter
+        rvChatView.layoutManager = LinearLayoutManager(this@ChatViewActivity)
 
 //        event
         imgChatVIewBack.setOnClickListener {
@@ -56,7 +58,7 @@ class ChatViewActivity : AppCompatActivity() {
         imgChatout.setOnClickListener {
             val builder = AlertDialog.Builder(it.context)
             builder.setTitle(tvChatViewName.text)
-                .setMessage("채팅방을 나가시겠습니까?")
+                .setMessage("채팅방 삭제")
                 .setPositiveButton("확인",
                     DialogInterface.OnClickListener { dialog, id ->
                         Toast.makeText(it.context, "나가기", Toast.LENGTH_SHORT).show()
@@ -66,7 +68,6 @@ class ChatViewActivity : AppCompatActivity() {
                         null
                     }).create()
             builder.show()
-            true
         }
     }
 }

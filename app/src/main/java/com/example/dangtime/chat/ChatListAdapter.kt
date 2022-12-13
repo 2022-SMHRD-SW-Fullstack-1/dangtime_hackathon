@@ -38,7 +38,7 @@ class ChatListAdapter(val context: Context, val chatList: ArrayList<ChatListVO>)
                 val builder = AlertDialog.Builder(it.context)
 
                 builder.setTitle(tvChatlistName.text)
-                    .setMessage("채팅방을 나가시겠습니까?")
+                    .setMessage("채팅방 삭제")
                     .setPositiveButton("확인",
                         DialogInterface.OnClickListener { dialog, id ->
                             Toast.makeText(it.context, tvChatlistName.text, Toast.LENGTH_SHORT).show()
