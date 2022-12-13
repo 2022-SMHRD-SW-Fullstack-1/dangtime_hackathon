@@ -28,8 +28,8 @@ class ChatListAdapter(val context: Context, val chatList: ArrayList<ChatModel>) 
     RecyclerView.Adapter<ChatListAdapter.ViewHolder>() {
 
     val chatModel = ArrayList<ChatModel>()
-    private var uid : String? = null
-    private val destinationUsers : ArrayList<String> = arrayListOf()
+    private var uid: String? = null
+    private val destinationUsers: ArrayList<String> = arrayListOf()
     private val fireDatabase = FirebaseDatabase.getInstance().reference
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -47,18 +47,20 @@ class ChatListAdapter(val context: Context, val chatList: ArrayList<ChatModel>) 
             uid = Firebase.auth.currentUser?.uid.toString()
             println(uid)
 
-            fireDatabase.child("chatrooms").orderByChild("users/$uid").equalTo(true).addListenerForSingleValueEvent(object : ValueEventListener{
-                override fun onCancelled(error: DatabaseError) {
-                }
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    chatModel.clear()
-                    for(data in snapshot.children){
-                        chatModel.add(data.getValue<ChatModel>()!!)
-                        println(data)
+            fireDatabase.child("chatrooms").orderByChild("userInfo/$uid").equalTo(true)
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onCancelled(error: DatabaseError) {
                     }
-                    notifyDataSetChanged()
-                }
-            })
+
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        chatModel.clear()
+                        for (data in snapshot.children) {
+                            chatModel.add(data.getValue<ChatModel>()!!)
+                            println(data)
+                        }
+                        notifyDataSetChanged()
+                    }
+                })
 
             itemView.setOnClickListener {
                 val intent = Intent(context, ChatViewActivity::class.java)
@@ -74,7 +76,8 @@ class ChatListAdapter(val context: Context, val chatList: ArrayList<ChatModel>) 
                     .setMessage("채팅방 삭제")
                     .setPositiveButton("확인",
                         DialogInterface.OnClickListener { dialog, id ->
-                            Toast.makeText(it.context, tvChatlistName.text, Toast.LENGTH_SHORT).show()
+                            Toast.makeText(it.context, tvChatlistName.text, Toast.LENGTH_SHORT)
+                                .show()
                         })
                     .setNegativeButton("취소",
                         DialogInterface.OnClickListener { dialog, id ->
@@ -102,17 +105,19 @@ class ChatListAdapter(val context: Context, val chatList: ArrayList<ChatModel>) 
                 destinationUsers.add(destinationUid)
             }
         }
-        fireDatabase.child("users").child("$destinationUid").addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onCancelled(error: DatabaseError) {
-            }
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val friend = snapshot.getValue<FriendVO>()
-                Glide.with(holder.itemView.context).load(friend?.profileImageUrl)
-                    .apply(RequestOptions().circleCrop())
-                    .into(holder.civChatList)
-                holder.tvChatlistName.text = friend?.name
-            }
-        })
+        fireDatabase.child("userInfo").child("$destinationUid")
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val friend = snapshot.getValue<FriendVO>()
+                    Glide.with(holder.itemView.context).load(friend?.profileImageUrl)
+                        .apply(RequestOptions().circleCrop())
+                        .into(holder.civChatList)
+                    holder.tvChatlistName.text = friend?.name
+                }
+            })
         //메세지 내림차순 정렬 후 마지막 메세지의 키값을 가져옴
         val commentMap = TreeMap<String, ChatModel.Comment>(Collections.reverseOrder())
         commentMap.putAll(chatModel[position].comments)
@@ -127,6 +132,7 @@ class ChatListAdapter(val context: Context, val chatList: ArrayList<ChatModel>) 
             context?.startActivity(intent)
         }
     }
+
     override fun getItemCount(): Int {
         return chatList.size
     }

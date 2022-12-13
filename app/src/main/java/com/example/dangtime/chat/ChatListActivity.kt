@@ -16,7 +16,6 @@ class ChatListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_chat_list)
 
         val rvChatList = findViewById<RecyclerView>(R.id.rvChatList)
-        val etChatSearch = findViewById<EditText>(R.id.etChatSearch)
         val imgChatListBack = findViewById<ImageView>(R.id.imgChatListBack)
 
 //        container = rvchatlist

@@ -110,7 +110,7 @@ class ChatViewActivity : AppCompatActivity() {
     }
 
     private fun checkChatRoom() {
-        fireDatabase.child("chatrooms").orderByChild("users/$uid").equalTo(true)
+        fireDatabase.child("chatrooms").orderByChild("userInfo/$uid").equalTo(true)
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
                 }
@@ -137,7 +137,7 @@ class ChatViewActivity : AppCompatActivity() {
         private var friend: FriendVO? = null
 
         init {
-            fireDatabase.child("users").child(destinationUid.toString())
+            fireDatabase.child("userInfo").child(destinationUid.toString())
                 .addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onCancelled(error: DatabaseError) {
                     }

@@ -49,9 +49,6 @@
             android:name=".post.ViewPostActivity"
             android:exported="true">
 
-            android:name=".auth.MapActivity"
-            android:exported="false">
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
