@@ -4,6 +4,7 @@ import android.content.Intent
 import android.opengl.ETC1
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -24,8 +25,8 @@ class RegisterActivity : AppCompatActivity() {
 
         val btnRegisterNext = findViewById<Button>(R.id.btnRegisterNext)
         val etRegisterEmail = findViewById<EditText>(R.id.etRegisterEmail)
-        val etRegisterPw = findViewById<EditText>(R.id.etRegisterEmail)
-        val etRegisterCheck = findViewById<EditText>(R.id.etRegisterEmail)
+        val etRegisterPw = findViewById<EditText>(R.id.etRegisterPw)
+        val etRegisterCheck = findViewById<EditText>(R.id.etRegisterCheck)
         val imgRegisterBack = findViewById<ImageView>(R.id.imgRegisterBack)
 
 
@@ -70,9 +71,11 @@ class RegisterActivity : AppCompatActivity() {
                 auth.createUserWithEmailAndPassword(email, pw)
                     .addOnCompleteListener(this) { task ->
                         // task--> 보낸 후 결과 (성공했는지 실패했는지)
+                        Log.d("Join", email)
+                        Log.d("Join", pw)
                         if (task.isSuccessful) {
                             // 성공했을 때 실행시킬 코드
-                            Toast.makeText(this, "회원가입 성공", Toast.LENGTH_SHORT).show()
+//                            Toast.makeText(this, "회원가입 성공", Toast.LENGTH_SHORT).show()
                             val intent = Intent(this@RegisterActivity, DogInfoActivity::class.java)
                             startActivity(intent)
                             finish()
@@ -88,7 +91,7 @@ class RegisterActivity : AppCompatActivity() {
 
 
             imgRegisterBack.setOnClickListener {
-//            val intent = Intent(this@RegisterActivity, SearchLocationActivity::class.java)
+//            val intent = Intent(this@RegisterActivity, SearchLocationActivity::class.jav0a)
 //            startActivity(intent)
             finish()
         }

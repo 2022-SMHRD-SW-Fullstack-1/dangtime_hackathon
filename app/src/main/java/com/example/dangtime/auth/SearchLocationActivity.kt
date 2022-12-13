@@ -21,6 +21,7 @@ class SearchLocationActivity : AppCompatActivity() {
             val intent = Intent(this@SearchLocationActivity, RegisterActivity::class.java)
             intent.putExtra("member", etSearchLocation.text.toString())
             startActivity(intent)
+            finish()
 
         }
 
