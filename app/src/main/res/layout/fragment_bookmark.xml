@@ -14,50 +14,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.06" />
+        app:layout_constraintGuide_begin="50dp" />
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayout"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bnvBook"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="#FFFFFF"
+        android:clipToPadding="false"
+        app:itemPaddingBottom="20dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tabIndicatorColor="@color/mainColor">
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/bookTab1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:scrollbarSize="4dp"
-            android:text="모두 보기" />
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/bookTab2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:scrollbarSize="4dp"
-            android:text="산책 메이트"
-            tools:layout_editor_absoluteX="146dp"
-            tools:layout_editor_absoluteY="169dp" />
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/bookTab3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:scrollbarSize="4dp"
-            android:text="댕댕톡" />
-    </com.google.android.material.tabs.TabLayout>
+        app:menu="@menu/bookmenu_item" />
 
     <FrameLayout
-        android:layout_width="409dp"
-        android:layout_height="617dp"
+        android:id="@+id/flBookFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tabLayout">
+        app:layout_constraintTop_toBottomOf="@+id/bnvBook">
 
     </FrameLayout>
 
