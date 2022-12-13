@@ -1,6 +1,7 @@
 package com.example.dangtime.chat
 
 import android.app.AlertDialog
+import android.content.Context
 import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,6 +15,13 @@ import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dangtime.R
+import com.example.dangtime.util.FBAuth
+import com.example.dangtime.util.FBdatabase
+import com.example.dangtime.util.Util
+import com.google.firebase.database.ChildEventListener
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ktx.getValue
 
 class ChatViewActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,6 +33,9 @@ class ChatViewActivity : AppCompatActivity() {
         val imgChatVIewBack = findViewById<ImageView>(R.id.imgChatVIewBack)
         val imgChatSend = findViewById<ImageView>(R.id.imgChatSend)
         val imgChatout = findViewById<ImageView>(R.id.imgChatout)
+
+        val sp = this.getSharedPreferences("loginInfo", Context.MODE_PRIVATE)
+        val loginId = sp?.getString("loginId", "null") as String
 
 //        container
         val rvChatView = findViewById<RecyclerView>(R.id.rvChatView)
@@ -52,8 +63,39 @@ class ChatViewActivity : AppCompatActivity() {
 
         imgChatSend.setOnClickListener {
             val message = etChatContent.text.toString()
+            val time = Util.getTime()
+            val to = FBAuth.getUid()
+
+            val chat = ChatViewVO(loginId, message, time, to, to)
+
+            FBdatabase.getChatRef().push().setValue(chat)
+
             etChatContent.text = null
         }
+        FBdatabase.getChatRef().addChildEventListener(object : ChildEventListener {
+            override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
+                val chatItem = snapshot.getValue<ChatViewVO>() as ChatViewVO
+                chatViewList.add(chatItem)
+//                추가가 완료된 이후 어댑터 새로고침
+                adapter.notifyDataSetChanged()
+            }
+
+            override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onChildRemoved(snapshot: DataSnapshot) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
 
         imgChatout.setOnClickListener {
             val builder = AlertDialog.Builder(it.context)

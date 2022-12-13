@@ -1,6 +1,12 @@
 package com.example.dangtime.chat
 
-data class ChatViewVO(val name: String, val img: Int, val content: String, val time: String) {
+data class ChatViewVO(
+    val name: String,
+    val content: String,
+    val time: String,
+    val to: String,
+    val from: String
+) {
 
-    constructor() : this("", 0, "", "")
+    constructor() : this("", "", "", "", "")
 }

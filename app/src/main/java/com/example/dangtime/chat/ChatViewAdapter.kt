@@ -1,12 +1,14 @@
 package com.example.dangtime.chat
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dangtime.R
+import com.example.dangtime.util.Util
 import de.hdodenhof.circleimageview.CircleImageView
 
 class ChatViewAdapter(
@@ -47,29 +49,59 @@ class ChatViewAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val name = chatContentList[position].name
+        var time = chatContentList[position].time
+        val timeY = time.substring(0, 4)
+        val timeM = time.substring(5, 7)
+        val timeD = time.substring(8, 10)
+        val timeH = time.substring(11, 13)
+        val timem = time.substring(14, 16)
 
-        if (loginId != name) {
-            holder.civChatList.visibility = View.INVISIBLE
-            holder.tvChatViewRvName.visibility = View.INVISIBLE
-            holder.tvFrndContent.visibility = View.INVISIBLE
-            holder.tvFrndTime.visibility = View.INVISIBLE
+        val now = Util.getTime()
+        val nowY = now.substring(0, 4)
+        val nowM = now.substring(5, 7)
+        val nowD = now.substring(8, 10)
+        val nowH = now.substring(11, 13)
+        val nowm = now.substring(14, 16)
 
-            holder.tvMyTime.text = chatContentList[position].time
+        if (nowY.equals(timeY)) {
+            if (nowM.equals(timeM)) {
+                if (nowD.equals(timeD)) {
+                    time = "${timeH}:${timem}"
+                } else {
+                    time = (nowD.toInt() - timeD.toInt()).toString()
+                    time = "${time}일 전"
+                }
+            } else {
+                time = (nowM.toInt() - timeM.toInt()).toString()
+                time = "${time}달 전"
+            }
+        } else {
+            time = (nowY.toInt() - timeY.toInt()).toString()
+            time = "${time}년 전"
+        }
+
+        if (loginId == name) {
+            holder.civChatList.visibility = View.GONE
+            holder.tvChatViewRvName.visibility = View.GONE
+            holder.tvFrndContent.visibility = View.GONE
+            holder.tvFrndTime.visibility = View.GONE
+
+            holder.tvMyTime.text = time
             holder.tvMyTime.visibility = View.VISIBLE
             holder.tvMyContent.text = chatContentList[position].content
             holder.tvMyContent.visibility = View.VISIBLE
         } else {
-            holder.civChatList.setImageResource(chatContentList[position].img)
+//            holder.civChatList.setImageResource(chatContentList[position].img)
             holder.civChatList.visibility = View.VISIBLE
             holder.tvChatViewRvName.text = chatContentList[position].name
             holder.tvChatViewRvName.visibility = View.VISIBLE
             holder.tvFrndContent.text = chatContentList[position].content
             holder.tvFrndContent.visibility = View.VISIBLE
-            holder.tvFrndTime.text = chatContentList[position].time
+            holder.tvFrndTime.text = time
             holder.tvFrndTime.visibility = View.VISIBLE
 
-            holder.tvMyTime.visibility = View.INVISIBLE
-            holder.tvMyContent.visibility = View.INVISIBLE
+            holder.tvMyTime.visibility = View.GONE
+            holder.tvMyContent.visibility = View.GONE
         }
     }
 
