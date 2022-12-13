@@ -2,7 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- 인터넷 권한 설정 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 인터넷 연결 확인 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -40,6 +43,21 @@
                 android:value="" />
         </activity>
 
+
+
+        <activity
+            android:name=".auth.MapActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="${MAPS_API_KEY}" />
+
+
         <activity
             android:name=".post.EditPostActivity"
             android:exported="true">
@@ -48,8 +66,8 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".fragment.post.PostDetailActivity"
-            android:exported="false">
+            android:name=".fragment.home.PostDetailActivity"
+            android:exported="true">
 
             <meta-data
                 android:name="android.app.lib_name"
@@ -57,7 +75,8 @@
         </activity>
         <activity
             android:name=".post.ViewPostActivity"
-            android:exported="false">
+            android:exported="true">
+
 
             <meta-data
                 android:name="android.app.lib_name"
@@ -65,8 +84,28 @@
         </activity>
         <activity
             android:name=".post.HomeActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".board.BoardChoice"
             android:exported="true">
-
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".board.BoardWriteMateActivity"
+            android:exported="true">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".board.BoardWriteStoryActivity"
+            android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -151,7 +190,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
 
             <meta-data
                 android:name="android.app.lib_name"

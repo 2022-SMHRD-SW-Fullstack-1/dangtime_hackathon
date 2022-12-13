@@ -78,4 +78,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline8" />
+
+    <ImageView
+        android:id="@+id/imgSearchLocation"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/etSearchLocation"
+        app:layout_constraintStart_toEndOf="@+id/etSearchLocation"
+        app:layout_constraintTop_toTopOf="@+id/etSearchLocation"
+        app:srcCompat="@drawable/loupe" />
 </androidx.constraintlayout.widget.ConstraintLayout>
