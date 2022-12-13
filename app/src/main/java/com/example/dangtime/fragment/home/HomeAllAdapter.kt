@@ -83,6 +83,8 @@ class HomeAllAdapter(var context: Context, var keyData : ArrayList<HomePostVO>, 
                 holder.tvHeratCount.text = "0"
                 clickHeart -= 1
             }
+        }
+        holder.imgComment.setOnClickListener {
 
         }
 

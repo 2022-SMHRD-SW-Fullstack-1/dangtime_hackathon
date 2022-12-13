@@ -21,8 +21,6 @@
         <activity
             android:name=".board.BoardChoice"
             android:exported="true">
-
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -42,9 +40,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
-
-
         <activity
             android:name=".auth.MapActivity"
             android:exported="false">
@@ -52,12 +47,9 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="${MAPS_API_KEY}" />
-
-
         <activity
             android:name=".post.EditPostActivity"
             android:exported="true">
@@ -66,7 +58,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".fragment.home.PostDetailActivity"
+            android:name=".fragment.post.PostDetailActivity"
             android:exported="true">
 
             <meta-data
@@ -76,8 +68,6 @@
         <activity
             android:name=".post.ViewPostActivity"
             android:exported="true">
-
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -89,27 +79,7 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity
-            android:name=".board.BoardChoice"
-            android:exported="true">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".board.BoardWriteMateActivity"
-            android:exported="true">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".board.BoardWriteStoryActivity"
-            android:exported="true">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+
         <activity
             android:name=".profile.DeleteProfileActivity"
             android:exported="false">
