@@ -69,7 +69,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline13" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imgHomeChat"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginEnd="8dp"
@@ -84,9 +84,9 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:text="2"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-        app:layout_constraintEnd_toStartOf="@+id/imageView2"
-        app:layout_constraintTop_toTopOf="@+id/imageView2" />
+        app:layout_constraintBottom_toBottomOf="@+id/imgHomeChat"
+        app:layout_constraintEnd_toStartOf="@+id/imgHomeChat"
+        app:layout_constraintTop_toTopOf="@+id/imgHomeChat" />
 
     <TextView
         android:id="@+id/textView11"

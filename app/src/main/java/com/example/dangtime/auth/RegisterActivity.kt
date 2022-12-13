@@ -93,9 +93,9 @@ class RegisterActivity : AppCompatActivity() {
             imgRegisterBack.setOnClickListener {
 //            val intent = Intent(this@RegisterActivity, SearchLocationActivity::class.jav0a)
 //            startActivity(intent)
-                finish()
-            }
-
+            finish()
         }
+
+    }
     }
 }

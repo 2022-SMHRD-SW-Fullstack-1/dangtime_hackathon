@@ -10,5 +10,7 @@ class FBAuth {
             auth = FirebaseAuth.getInstance()
             return auth.currentUser!!.uid
         }
+
+
     }
 }

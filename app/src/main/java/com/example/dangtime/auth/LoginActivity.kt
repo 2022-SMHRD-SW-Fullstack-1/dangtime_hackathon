@@ -40,8 +40,11 @@ class LoginActivity : AppCompatActivity() {
         btnLogin.setOnClickListener {
             val email = etLoginEmail.text.toString()
             val pw = etLoginPw.text.toString()
+            Log.d("login",email)
+            Log.d("login",pw)
 
             auth.signInWithEmailAndPassword(email, pw).addOnCompleteListener(this){task ->
+
                 if(task.isSuccessful){
                     Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
 
@@ -57,8 +60,6 @@ class LoginActivity : AppCompatActivity() {
                 } else{
                     Toast.makeText(this, "로그인 실패", Toast.LENGTH_SHORT).show()
                 }
-//                Log.d("왜",task.exception?.message.toString())
-
             }
         }
 
