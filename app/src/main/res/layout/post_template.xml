@@ -68,7 +68,7 @@
         app:layout_constraintTop_toTopOf="@+id/tvPostLocation" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/imgPfEdit"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginEnd="8dp"
