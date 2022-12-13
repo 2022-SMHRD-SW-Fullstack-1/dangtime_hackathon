@@ -71,7 +71,7 @@ class HomeAllAdapter(var context: Context, var keyData : ArrayList<HomePostVO>, 
 
 
 
-            holder.tvHomeAllName.text=data[position].dogNick
+//            holder.tvHomeAllName.text = data[position].dogNick
             holder.tvContent.text =  keyData[position].content
             holder.tvTime.text=keyData[position].time
             holder.imgComment.setImageResource(R.drawable.message)
