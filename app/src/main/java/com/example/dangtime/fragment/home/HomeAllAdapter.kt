@@ -1,6 +1,7 @@
 package com.example.dangtime.fragment.home
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,8 +10,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dangtime.R
 import com.example.dangtime.post.PostDetailAdapter
+import com.example.dangtime.util.FBAuth
 
-class HomeAllAdapter(var context: Context, var homeAllList : ArrayList<HomePostVO>) : RecyclerView.Adapter<HomeAllAdapter.ViewHolder>(){
+class HomeAllAdapter(var context: Context, var keyData : ArrayList<HomePostVO>, var data : ArrayList<ListVO>, var postUid : ArrayList<String>) : RecyclerView.Adapter<HomeAllAdapter.ViewHolder>(){
 
 
 
@@ -25,6 +27,7 @@ class HomeAllAdapter(var context: Context, var homeAllList : ArrayList<HomePostV
         val tvContent : TextView
         val tvHeratCount : TextView
         val tvCommentCount : TextView
+
 
 
 
@@ -56,10 +59,49 @@ class HomeAllAdapter(var context: Context, var homeAllList : ArrayList<HomePostV
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
+        var clickHeart : Int =0
+
+
+
+            holder.tvHomeAllName.text=data[position].dogNick
+            holder.tvContent.text =  keyData[position].content
+            holder.tvTime.text=keyData[position].time
+            holder.imgComment.setImageResource(R.drawable.message)
+            holder.tvCommentCount.text = "0"
+            holder.imgHeart.setImageResource(R.drawable.emptyheart)
+            holder.tvHeratCount.text = "0"
+
+
+
+        holder.imgHeart.setOnClickListener{
+            if(clickHeart === 0){
+                clickHeart += 1
+                holder.tvHeratCount.text = "1"
+                holder.imgHeart.setImageResource(R.drawable.fullheart)
+            }else{
+                holder.imgHeart.setImageResource(R.drawable.emptyheart)
+                holder.tvHeratCount.text = "0"
+                clickHeart -= 1
+            }
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
     override fun getItemCount(): Int {
-        return homeAllList.size
+        return keyData.size
     }
 
 

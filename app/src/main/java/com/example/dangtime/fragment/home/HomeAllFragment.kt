@@ -1,6 +1,7 @@
 package com.example.dangtime.fragment.home
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,8 @@ import android.view.ViewGroup
 import android.widget.Adapter
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dangtime.R
 import com.example.dangtime.util.FBAuth.Companion.auth
@@ -18,8 +21,10 @@ import com.google.firebase.database.ValueEventListener
 
 
 class HomeAllFragment : Fragment() {
-    var homeAllList = ArrayList<HomePostVO>()
+    var keyData = ArrayList<HomePostVO>()
     lateinit var adapter : HomeAllAdapter
+    var data = ArrayList<ListVO>()
+    var postKeyUid = ArrayList<String>()
 
 
     override fun onCreateView(
@@ -40,8 +45,14 @@ class HomeAllFragment : Fragment() {
         val commentCount = view.findViewById<TextView>(R.id.tvHomeAllCommentCount)
 
 
-        var adapter = HomeAllAdapter(requireContext(),homeAllList)
+
+        getPostData()
+
+
+        adapter = HomeAllAdapter(requireContext(),keyData, data, postKeyUid)
         rvHollAll.adapter=adapter
+
+        rvHollAll.layoutManager = GridLayoutManager(requireContext(),1)
 
 
 
@@ -57,6 +68,7 @@ class HomeAllFragment : Fragment() {
 
 
 
+    //post에 있는 uid값 keyData에 저장
     fun getPostData(){
         // bookmarklist경로에 있는 데이터를 다 가지고 오자
         // 게시물의 uid값 ---> bookmarkList
@@ -64,28 +76,34 @@ class HomeAllFragment : Fragment() {
         val postlistener2 = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
 
-                homeAllList.clear()
+
+
+                keyData.clear()
                 for (model in snapshot.children){
-                    homeAllList.add(model.key.toString())
+                    val postData = model.getValue(HomePostVO::class.java)
+                    if (postData != null) {
+                        keyData.add(postData)
+                    }
                 }
                 //adapter 새로고침 하기
                 adapter.notifyDataSetChanged()
 
+                Log.d("ㅎㅎㅎ222", keyData[0].toString())
                 //bookmarkList에 있는 데이터만 가지고와서 data(ArrayList<VO>에 담고 있다.
                 getMemberData()
             }
 
             override fun onCancelled(error: DatabaseError) {
-
             }
-
         }
-        FBdatabase.getPostRef().child(auth.currentUser!!.uid).addValueEventListener(postlistener2)
+        FBdatabase.getPostRef().addValueEventListener(postlistener2)
+        getMemberData()
     }
 
 
 
 
+    // Member에 있는 정보 data에 저장
     fun getMemberData(){
         //content경로에 있는 데이터를 다 가지고 오자
         // uid  ---> keyData
@@ -93,30 +111,28 @@ class HomeAllFragment : Fragment() {
         val posterListener = object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
 
+//                Log.d("snapshot2",snapshot.child("member").toString())
+//                Log.d("snapshot21",snapshot.value.toString())
                 for (model in snapshot.children){
-                    val item = model.getValue(MemberVO::class.java)
-                    // bookmarkList에 값이 채워져있어야함
-                    if(bookmarkList.contains(model.key.toString())){
+                   var item = model.getValue(ListVO::class.java)
+
+
                         if (item != null) {
                             data.add(item)
-                            // data 내가 북마크 찍은 애들만
                         }
-                        keyData.add(model.key.toString())
-                    }
-
+                    postKeyUid.add(model.key.toString())
                 }
                 // adapter 새로고침 하기
                 adapter.notifyDataSetChanged()
-
+                Log.d("ㅎㅎㅎ", data[0].toString())
             }
-
             override fun onCancelled(error: DatabaseError) {
-
             }
-
         }
-        contentRef.addValueEventListener(posterListener)
-        // snapshot : content경로에 있는 데이터 전부
+        FBdatabase.getMemberRef().addValueEventListener(posterListener)
+
+
+
 
     }
 
