@@ -8,7 +8,6 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.dangtime.R
 
 class PostDetailAdapter(val context: Context , val postDetailList : ArrayList<PostDetailVO>) : RecyclerView.Adapter<PostDetailAdapter.ViewHolder>() {
@@ -37,7 +36,7 @@ init {
      tvName = itemView.findViewById<TextView>(R.id.tvDetailName)
      tvHr = itemView.findViewById<TextView>(R.id.tvDetailHr)
      tvView = itemView.findViewById<TextView>(R.id.tvDetailView)
-     tvContent = itemView.findViewById<TextView>(R.id.tvDetailContent)
+     tvContent = itemView.findViewById<TextView>(R.id.tvPfDltEmail)
      tvTown = itemView.findViewById<TextView>(R.id.tvDetailTown)
      tvCc =itemView.findViewById<TextView>(R.id.tvDetailComentCount)
      tvHeartCount = itemView.findViewById<TextView>(R.id.tvDetailHeartCount)
@@ -46,7 +45,7 @@ init {
      imgEdit = itemView.findViewById<ImageView>(R.id.imgDetailEdit)
      imgHeart = itemView.findViewById<ImageView>(R.id.imgDetailHeart)
      imgSend = itemView.findViewById<ImageView>(R.id.imgDetailSend)
-     etText = itemView.findViewById<EditText>(R.id.etDetailText)
+     etText = itemView.findViewById<EditText>(R.id.etPfEditName)
      tvCc2 = itemView.findViewById<TextView>(R.id.tvDetailComentCount2)
 
 }

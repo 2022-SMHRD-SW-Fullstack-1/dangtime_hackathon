@@ -27,18 +27,19 @@ class BoardChoice : AppCompatActivity() {
 
 
             // FireBase에서 데이터를 받아오는 Listner
-            val postListener = object : ValueEventListener {
-                // 데이터 받아오기가 성공하면 snapshot에 저장시키는 기능
-                override fun onDataChange(snapshot: DataSnapshot) {
-                     userNick = snapshot.value.toString()
-                }
-                override fun onCancelled(error: DatabaseError) {
-                }
-            }
+//            val postListener = object : ValueEventListener {
+//                // 데이터 받아오기가 성공하면 snapshot에 저장시키는 기능
+//                override fun onDataChange(snapshot: DataSnapshot) {
+//                     userNick = snapshot.value.toString()
+//
+//                }
+//                override fun onCancelled(error: DatabaseError) {
+//                }
+//            }
             //userInfoRef.child(auth.currentUser!!.uid).child(userNick).addValueEventListener(postListener)
 
             val intent = Intent(this,BoardWriteMateActivity::class.java)
-            intent.putExtra("userNick",userNick)
+      //      intent.putExtra("userNick",userNick)
             startActivity(intent)
         }
 

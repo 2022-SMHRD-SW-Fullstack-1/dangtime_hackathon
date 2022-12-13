@@ -14,6 +14,31 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Dangtime"
         tools:targetApi="31">
+
+        <activity
+            android:name=".board.BoardChoice"
+            android:exported="true">
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".board.BoardWriteMateActivity"
+            android:exported="true">
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".board.BoardWriteStoryActivity"
+            android:exported="true">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
         <activity
             android:name=".post.EditPostActivity"
             android:exported="true">
@@ -22,7 +47,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".fragment.home.PostDetailActivity"
+            android:name=".fragment.post.PostDetailActivity"
             android:exported="false">
 
             <meta-data
@@ -124,6 +149,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

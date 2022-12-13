@@ -7,7 +7,7 @@
     tools:context=".profile.DeleteProfileActivity">
 
     <TextView
-        android:id="@+id/tvDetailContent"
+        android:id="@+id/tvPfDltEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -38,7 +38,7 @@
         app:layout_constraintGuide_begin="66dp" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName3"
+        android:id="@+id/etPfDltPw"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -53,24 +53,23 @@
         app:layout_constraintTop_toTopOf="@+id/guideline6" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName4"
+        android:id="@+id/etPfDltCheck"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="비밀번호 확인"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName3"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName3"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
+        app:layout_constraintEnd_toEndOf="@+id/etPfDltPw"
+        app:layout_constraintStart_toStartOf="@+id/etPfDltPw"
+        app:layout_constraintTop_toBottomOf="@+id/etPfDltPw" />
 
     <TextView
-        android:id="@+id/tvDetailTown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="비밀번호 확인이 필요합니다"
-        app:layout_constraintStart_toStartOf="@+id/tvDetailContent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDetailContent" />
+        app:layout_constraintStart_toStartOf="@+id/tvPfDltEmail"
+        app:layout_constraintTop_toBottomOf="@+id/tvPfDltEmail" />
 
     <Button
         android:id="@+id/btnPfDelete"

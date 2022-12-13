@@ -12,6 +12,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.dangtime.R
+import com.example.dangtime.post.HomeActivity
 import com.example.dangtime.util.FBAuth
 import com.example.dangtime.util.FBdatabase
 import com.google.firebase.ktx.Firebase
@@ -57,7 +58,7 @@ class BoardWriteMateActivity : AppCompatActivity() {
             //FBdatabase.getBoardRef().push().setValue(BoardVO("1","1","1","1"))
 
             // auth
-            val userUid = FBAuth.getUid()
+            val uid = FBAuth.getUid()
             val time = FBAuth.getTime()
 
             // setValue가 되기전에 미리 BoardVO가 저장될 key값(uid_)을 만들자
@@ -66,9 +67,10 @@ class BoardWriteMateActivity : AppCompatActivity() {
             var key = FBdatabase.getPostRef().push().key.toString()
 
             // boardRef의 uid 밑에 data 저장
-            FBdatabase.getPostRef().child(key).setValue(BoardVO(content, userUid, time))
+            FBdatabase.getPostRef().child(key).setValue(BoardVO(content, uid, time))
             imgUpload(key)
-            finish()// 이전페이지로 돌아가기
+            val intent = Intent(this,HomeActivity::class.java)
+            startActivity(intent)
         }
 
     }

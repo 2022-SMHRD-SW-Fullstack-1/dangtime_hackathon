@@ -32,7 +32,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <TextView
-        android:id="@+id/tvDetailContent"
+        android:id="@+id/tvPfDltEmail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -50,8 +50,8 @@
         android:layout_marginTop="18dp"
         android:text="동명동"
         android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/tvDetailContent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDetailContent" />
+        app:layout_constraintStart_toStartOf="@+id/tvPfDltEmail"
+        app:layout_constraintTop_toBottomOf="@+id/tvPfDltEmail" />
 
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -94,8 +94,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="1"
-        app:layout_constraintEnd_toEndOf="@+id/tvDetailContent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDetailContent" />
+        app:layout_constraintEnd_toEndOf="@+id/tvPfDltEmail"
+        app:layout_constraintTop_toBottomOf="@+id/tvPfDltEmail" />
 
     <TextView
         android:id="@+id/tvDetailComentCount2"
@@ -116,7 +116,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDetailContent" />
+        app:layout_constraintTop_toBottomOf="@+id/tvPfDltEmail" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvDetail"
@@ -136,7 +136,7 @@
         app:layout_constraintGuide_begin="593dp" />
 
     <EditText
-        android:id="@+id/etDetailText"
+        android:id="@+id/etPfEditName"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
@@ -212,9 +212,9 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/etDetailText"
+        app:layout_constraintBottom_toBottomOf="@+id/etPfEditName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/etDetailText"
+        app:layout_constraintTop_toTopOf="@+id/etPfEditName"
         app:srcCompat="@drawable/up" />
 
     <androidx.constraintlayout.widget.Guideline

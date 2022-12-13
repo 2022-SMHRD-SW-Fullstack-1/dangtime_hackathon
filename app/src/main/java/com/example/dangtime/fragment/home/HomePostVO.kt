@@ -1,4 +1,4 @@
 package com.example.dangtime.fragment.home
 
-class HomePostVO {
+data class HomePostVO(var content :String = "", var uid : String = "", var) {
 }
