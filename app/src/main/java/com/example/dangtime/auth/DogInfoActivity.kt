@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import com.example.dangtime.R
 import com.example.dangtime.post.HomeActivity
 import com.example.dangtime.util.FBAuth
@@ -26,9 +27,11 @@ class DogInfoActivity : AppCompatActivity() {
         val etRegisterDogName = findViewById<EditText>(R.id.etRegisterDogName)
         val etRegisterDogNick = findViewById<EditText>(R.id.etRegisterDogNick)
         val btnRegister = findViewById<Button>(R.id.btnRegister)
+        val tvRegisterAdd = findViewById<TextView>(R.id.tvRegisterAdd)
 
 
         val address = intent.getStringExtra("address")
+        tvRegisterAdd.setText(address)
 
         Log.d("member", address!!)
 
