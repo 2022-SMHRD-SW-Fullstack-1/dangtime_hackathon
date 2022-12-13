@@ -3,6 +3,7 @@ package com.example.dangtime.profile
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.*
 import com.example.dangtime.R
 import com.example.dangtime.auth.LoginActivity
@@ -26,7 +27,9 @@ class DeleteProfileActivity : AppCompatActivity() {
         val etPfDltCheck = findViewById<EditText>(R.id.etPfDltCheck)
         val btnPfDelete = findViewById<Button>(R.id.btnPfDelete)
 
-        tvPfDltEmail.text = user?.email.toString()
+        val email = user?.email.toString()
+        tvPfDltEmail.text = email
+        Log.d("email", email)
 
         imgPfDltBack.setOnClickListener {
             finish()
