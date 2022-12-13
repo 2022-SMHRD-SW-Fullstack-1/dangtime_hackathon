@@ -27,8 +27,8 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bnvMyPost"
-        android:layout_width="409dp"
-        android:layout_height="48dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="@color/white"
         android:clipToPadding="false"
         app:itemPaddingBottom="20dp"
