@@ -8,6 +8,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import com.example.dangtime.R
 import com.google.firebase.auth.FirebaseAuth
@@ -27,10 +28,12 @@ class RegisterActivity : AppCompatActivity() {
         val etRegisterEmail = findViewById<EditText>(R.id.etRegisterEmail)
         val etRegisterPw = findViewById<EditText>(R.id.etRegisterPw)
         val etRegisterCheck = findViewById<EditText>(R.id.etRegisterCheck)
+        val tvRegisterAd = findViewById<TextView>(R.id.tvRegisterAd)
         val imgRegisterBack = findViewById<ImageView>(R.id.imgRegisterBack)
 
         val address = intent.getStringExtra("address")
         Log.d("address", address!!)
+        tvRegisterAd.setText(address)
 
         // auth 를 초기화
         auth = Firebase.auth
@@ -85,7 +88,6 @@ class RegisterActivity : AppCompatActivity() {
                         } else {
                             // 실패했을 때 실행시킬 코드
                             Toast.makeText(this, "회원가입 실패", Toast.LENGTH_SHORT).show()
-                            finish()
 
                         }
                     }
