@@ -11,7 +11,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dangtime.R
+import com.example.dangtime.auth.MemberVO
 import com.example.dangtime.post.EditPostActivity
+import com.example.dangtime.util.FBAuth
+import com.example.dangtime.util.FBdatabase
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 
 class HomeAllAdapter(
     var context: Context,
@@ -67,33 +73,56 @@ class HomeAllAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        var clickHeart: Int = 0
-        Log.d("포지션", position.toString())
-        if (data.size < keyData.size)
 
-        //holder.tvHomeAllName.text = data[position].dogNick
+        var uid = keyData[position].uid
+        var clickHeart: Int = 0
+        Log.d("라이크", keyData[position].like.toString())
+
+
+        val pfListener = object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                Log.d("이거다1", uid)
+                Log.d("이거다2", snapshot.child("$uid").child("dogNick").value.toString())
+                holder.tvHomeAllName.text = snapshot.child("$uid").child("dogNick").value.toString()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+        }
+        FBdatabase.getMemberRef().addValueEventListener(pfListener)
+
+
         holder.tvContent.text = keyData[position].content
         holder.tvTime.text = keyData[position].time
         holder.imgComment.setImageResource(R.drawable.message)
         holder.tvCommentCount.text = "0"
         holder.imgHeart.setImageResource(R.drawable.emptyheart)
-        holder.tvHeratCount.text = "0"
+        holder.tvHeratCount.text = keyData[position].like.toString()
         holder.imgEdit.setImageResource(R.drawable.menu)
 
 
+//        holder.imgHeart.setOnClickListener {
+//
+//            var like = keyData[position].like.toInt()
+//            if (clickHeart === 0) {
+//
+//                var setLike = like.toString()
+//                FBdatabase.getPostRef().child(uid).child("like").setValue(setLike)
+//                clickHeart += 1
+//                holder.imgHeart.setImageResource(R.drawable.fullheart)
+//                holder.tvHeratCount.text = keyData[position].like.toString()
+//            } else {
+//                like -=1
+//                var setLike = like.toString()
+//                FBdatabase.getPostRef().child(uid).child("like").setValue(setLike)
+//                holder.imgHeart.setImageResource(R.drawable.emptyheart)
+//                holder.tvHeratCount.text = keyData[position].like.toString()
+//                clickHeart -= 1
+//            }
+//        }
 
 
-        holder.imgHeart.setOnClickListener {
-            if (clickHeart === 0) {
-                clickHeart += 1
-                holder.tvHeratCount.text = "1"
-                holder.imgHeart.setImageResource(R.drawable.fullheart)
-            } else {
-                holder.imgHeart.setImageResource(R.drawable.emptyheart)
-                holder.tvHeratCount.text = "0"
-                clickHeart -= 1
-            }
-        }
+
         holder.imgEdit.setOnClickListener {
             holder.btnEdit.setText("게시글 수정")
             holder.btnEdit.setOnClickListener {

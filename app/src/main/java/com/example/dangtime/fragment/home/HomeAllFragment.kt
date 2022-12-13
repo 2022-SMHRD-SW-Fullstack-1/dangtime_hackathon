@@ -58,13 +58,18 @@ class HomeAllFragment : Fragment() {
             override fun onDataChange(snapshot: DataSnapshot) {
 
                 Log.d("데이터1", data.toString())
+
+
                 keyData.clear()
                 for (model in snapshot.children) {
                     val postData = model.getValue(HomePostVO::class.java)
                     if (postData != null) {
 
                         keyData.add(postData)
+
                     }
+                    postKeyUid.add(model.key.toString())
+                    Log.d("포스트키",postKeyUid.toString())
                 }
                 //adapter 새로고침 하기
                 Log.d("데이터4", data.toString())
