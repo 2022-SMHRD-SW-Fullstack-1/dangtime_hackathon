@@ -7,7 +7,7 @@
     tools:context=".auth.LocationActivity">
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/tvDetailHeartCount"
         android:layout_width="260dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
@@ -36,15 +36,15 @@
         app:layout_constraintGuide_begin="66dp" />
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/tvDetailComentCount2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="수집된 정보는 게시물 정보를 불러오는 용도 이외의 목적으로 사용하지 않아요."
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView11"
-        app:layout_constraintStart_toStartOf="@+id/textView11"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+        app:layout_constraintEnd_toEndOf="@+id/tvDetailHeartCount"
+        app:layout_constraintStart_toStartOf="@+id/tvDetailHeartCount"
+        app:layout_constraintTop_toBottomOf="@+id/tvDetailHeartCount" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline6"
@@ -76,7 +76,7 @@
         app:layout_constraintBottom_toTopOf="@+id/btnLocationSearch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12"
+        app:layout_constraintTop_toBottomOf="@+id/tvDetailComentCount2"
         app:srcCompat="@drawable/location" />
 
     <Button

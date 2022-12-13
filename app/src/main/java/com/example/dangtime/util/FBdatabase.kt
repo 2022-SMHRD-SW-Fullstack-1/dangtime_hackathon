@@ -11,13 +11,16 @@ class FBdatabase {
         val database = Firebase.database
 
         fun getMemberRef():DatabaseReference{
-            return database.getReference("member")
+            return database.getReference("users")
         }
 
 
         fun getPostRef(): DatabaseReference {
             return database.getReference("post")
         }
+
+
+
 
         fun getChatRef(): DatabaseReference {
             return database.getReference("chat")
