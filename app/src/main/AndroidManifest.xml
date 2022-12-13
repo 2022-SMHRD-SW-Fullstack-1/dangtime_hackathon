@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
     <!-- 인터넷 권한 설정 -->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <!-- 인터넷 연결 확인 -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 인터넷 연결 확인 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
 
     <application
         android:allowBackup="true"
@@ -25,6 +24,11 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="${MAPS_API_KEY}" />
+
         <activity
             android:name=".board.BoardWriteMateActivity"
             android:exported="true">
@@ -41,8 +45,13 @@
                 android:value="" />
         </activity>
         <activity
+
+            android:name=".post.ViewPostActivity"
+            android:exported="true">
+
             android:name=".auth.MapActivity"
             android:exported="false">
+
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -90,7 +99,6 @@
         <activity
             android:name=".profile.EditProfileActivity"
             android:exported="false">
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -98,7 +106,6 @@
         <activity
             android:name=".profile.ProfileActivity"
             android:exported="false">
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
