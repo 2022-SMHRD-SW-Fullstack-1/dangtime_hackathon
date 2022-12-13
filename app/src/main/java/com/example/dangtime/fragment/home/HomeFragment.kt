@@ -23,7 +23,7 @@ class HomeFragment : Fragment() {
         val fragmentHomeActivity = activity as HomeActivity
         val bnvHome = view.findViewById<BottomNavigationView>(R.id.bnvHome)
 
-//        val btnWrite = view.findViewById<Button>(R.id.btnWrite)
+        //val btnWrite = view.findViewById<Button>(R.id.btnWrite)
 
 //        val intent = Intent(requireContext(), BoardChoice::class.java)
 //

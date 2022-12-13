@@ -54,7 +54,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imgDetail"
         android:layout_width="wrap_content"
         android:layout_height="400dp"
         app:layout_constraintBottom_toTopOf="@+id/btnGuest"

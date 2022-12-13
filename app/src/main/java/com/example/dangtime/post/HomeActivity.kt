@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
 import com.example.dangtime.R
+import com.example.dangtime.board.BoardChoice
 import com.example.dangtime.chat.ChatListActivity
 import com.example.dangtime.fragment.bookmark.BookmarkAllFragment
 import com.example.dangtime.fragment.bookmark.BookmarkFragment
@@ -33,6 +34,14 @@ class HomeActivity : AppCompatActivity() {
         val imgHomeProfile = findViewById<CircleImageView>(R.id.imgHomeProfile)
         val imgHomeChat = findViewById<ImageView>(R.id.imgHomeChat)
         val bnv = findViewById<BottomNavigationView>(R.id.bnv)
+
+        val imgHomeWrite = findViewById<ImageView>(R.id.imgHomeWrite)
+
+        imgHomeWrite.setOnClickListener{
+
+            val intent = Intent(this , BoardChoice::class.java)
+            startActivity(intent)
+        }
 
         imgHomeProfile.setOnClickListener {
             val intent = Intent(this, ProfileActivity::class.java)
@@ -75,6 +84,8 @@ class HomeActivity : AppCompatActivity() {
             }
             true
         }
+
+
     }
 
     //    Home Fragment 관리
