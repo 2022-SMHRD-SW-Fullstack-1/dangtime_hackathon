@@ -14,6 +14,7 @@ class FBdatabase {
             return database.getReference("member")
         }
 
+
         fun getPostRef(): DatabaseReference {
             return database.getReference("post")
         }

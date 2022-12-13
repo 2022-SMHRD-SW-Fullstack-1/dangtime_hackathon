@@ -29,6 +29,8 @@ class RegisterActivity : AppCompatActivity() {
         val etRegisterCheck = findViewById<EditText>(R.id.etRegisterCheck)
         val imgRegisterBack = findViewById<ImageView>(R.id.imgRegisterBack)
 
+        val address = intent.getStringExtra("address")
+        Log.d("address", address!!)
 
         // auth 를 초기화
         auth = Firebase.auth
@@ -77,6 +79,7 @@ class RegisterActivity : AppCompatActivity() {
                             // 성공했을 때 실행시킬 코드
 //                            Toast.makeText(this, "회원가입 성공", Toast.LENGTH_SHORT).show()
                             val intent = Intent(this@RegisterActivity, DogInfoActivity::class.java)
+                            intent.putExtra("address", address)
                             startActivity(intent)
                             finish()
                         } else {

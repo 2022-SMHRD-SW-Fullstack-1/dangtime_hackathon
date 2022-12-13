@@ -15,11 +15,12 @@ class SearchLocationActivity : AppCompatActivity() {
 
         val etSearchLocation = findViewById<EditText>(R.id.etSearchLocation)
         val btnSearchSearch = findViewById<Button>(R.id.btnSearchSearch)
+        val imgSearchLocation = findViewById<ImageView>(R.id.imgSearchLocation)
 
 
         btnSearchSearch.setOnClickListener {
             val intent = Intent(this@SearchLocationActivity, RegisterActivity::class.java)
-            intent.putExtra("member", etSearchLocation.text.toString())
+            intent.putExtra("address", etSearchLocation.text.toString())
             startActivity(intent)
             finish()
 

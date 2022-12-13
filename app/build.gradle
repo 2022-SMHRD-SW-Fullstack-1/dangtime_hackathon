@@ -3,6 +3,9 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     // firebase
     id 'com.google.gms.google-services'
+
+    // google Map
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
 android {
@@ -49,6 +52,10 @@ dependencies {
 
     //Circle ImageView
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    //지도
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
+
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
