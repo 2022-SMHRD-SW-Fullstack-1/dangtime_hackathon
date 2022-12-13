@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.dangtime.R
 
 class ChatListActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat_list)
@@ -21,17 +22,7 @@ class ChatListActivity : AppCompatActivity() {
 //        container = rvchatlist
 //        template = chat_list.xml
 //        item
-        val chatList = ArrayList<ChatListVO>()
-        chatList.add(ChatListVO(R.drawable.dogprofile, "우식이", "안녕하세요", "12월 11일"))
-        chatList.add(ChatListVO(R.drawable.dogprofile, "우식이", "안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요", "1시간전"))
-        chatList.add(ChatListVO(R.drawable.dogprofile, "우식이", "안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요", "1시간전"))
-        chatList.add(ChatListVO(R.drawable.dogprofile, "우식이", "안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요", "1시간전"))
-        chatList.add(ChatListVO(R.drawable.dogprofile, "우식이", "안녕하세요", "1시간전"))
-        chatList.add(ChatListVO(R.drawable.dogprofile, "우식이", "안녕하세요", "1시간전"))
-        chatList.add(ChatListVO(R.drawable.dogprofile, "우식이", "안녕하세요", "1시간전"))
-        chatList.add(ChatListVO(R.drawable.dogprofile, "우식이", "안녕하세요", "1시간전"))
-        chatList.add(ChatListVO(R.drawable.dogprofile, "우식이", "안녕하세요", "1시간전"))
-        chatList.add(ChatListVO(R.drawable.dogprofile, "우식이", "안녕하세요", "1시간전"))
+        val chatList = ArrayList<ChatModel>()
 
 //        Adapter
         val adapter = ChatListAdapter(
@@ -45,7 +36,5 @@ class ChatListActivity : AppCompatActivity() {
         imgChatListBack.setOnClickListener {
             finish()
         }
-
-
     }
 }

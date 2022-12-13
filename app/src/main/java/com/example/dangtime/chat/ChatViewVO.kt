@@ -1,12 +1,6 @@
 package com.example.dangtime.chat
 
-data class ChatViewVO(
-    val name: String,
-    val content: String,
-    val time: String,
-    val to: String,
-    val from: String
-) {
-
-    constructor() : this("", "", "", "", "")
+class ChatModel (val users: HashMap<String, Boolean> = HashMap(),
+                 val comments : HashMap<String, Comment> = HashMap()){
+    class Comment(val uid: String? = null, val message: String? = null, val time: String? = null)
 }
