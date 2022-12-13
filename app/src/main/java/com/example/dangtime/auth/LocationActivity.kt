@@ -15,6 +15,7 @@ class LocationActivity : AppCompatActivity() {
         val btnLocationSearch = findViewById<Button>(R.id.btnLocationSearch)
         val btnLocationAuto = findViewById<Button>(R.id.btnLocationAuto)
 
+
         btnLocationAuto.setOnClickListener {
             val intent = Intent(this, MapActivity::class.java)
             startActivity(intent)

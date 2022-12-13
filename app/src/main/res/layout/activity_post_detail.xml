@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.post.PostDetailActivity">
+    tools:context=".fragment.home.PostDetailActivity">
 
     <TextView
         android:id="@+id/textView5"
@@ -32,7 +32,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <TextView
-        android:id="@+id/tvPfDltEmail"
+        android:id="@+id/textView8"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -44,14 +44,14 @@
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <TextView
-        android:id="@+id/tvDetailTown"
+        android:id="@+id/tvLoginRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
         android:text="동명동"
         android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/tvPfDltEmail"
-        app:layout_constraintTop_toBottomOf="@+id/tvPfDltEmail" />
+        app:layout_constraintStart_toStartOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -69,7 +69,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline13" />
 
     <ImageView
-        android:id="@+id/imgDetailHeart"
+        android:id="@+id/imgHomeChat"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginEnd="8dp"
@@ -79,14 +79,14 @@
         app:srcCompat="@drawable/emptyheart" />
 
     <TextView
-        android:id="@+id/tvDetailComentCount"
+        android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:text="2"
-        app:layout_constraintBottom_toBottomOf="@+id/imgDetailHeart"
-        app:layout_constraintEnd_toStartOf="@+id/imgDetailHeart"
-        app:layout_constraintTop_toTopOf="@+id/imgDetailHeart" />
+        app:layout_constraintBottom_toBottomOf="@+id/imgHomeChat"
+        app:layout_constraintEnd_toStartOf="@+id/imgHomeChat"
+        app:layout_constraintTop_toTopOf="@+id/imgHomeChat" />
 
     <TextView
         android:id="@+id/textView11"
@@ -94,11 +94,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="1"
-        app:layout_constraintEnd_toEndOf="@+id/tvPfDltEmail"
-        app:layout_constraintTop_toBottomOf="@+id/tvPfDltEmail" />
+        app:layout_constraintEnd_toEndOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <TextView
-        android:id="@+id/tvDetailComentCount2"
+        android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -116,17 +116,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPfDltEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvDetail"
+        android:id="@+id/recyclerView2"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="50dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDetailComentCount2" />
+        app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline7"
@@ -146,23 +146,23 @@
         android:hint="댓글을 작성해 주세요."
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imgDetailSend"
+        app:layout_constraintEnd_toStartOf="@+id/imageView14"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline14" />
 
     <TextView
-        android:id="@+id/tvDetailHr"
+        android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="5시간전"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tvDetailTown"
-        app:layout_constraintStart_toEndOf="@+id/tvDetailTown"
-        app:layout_constraintTop_toTopOf="@+id/tvDetailTown" />
+        app:layout_constraintBottom_toBottomOf="@+id/tvLoginRegister"
+        app:layout_constraintStart_toEndOf="@+id/tvLoginRegister"
+        app:layout_constraintTop_toTopOf="@+id/tvLoginRegister" />
 
     <ImageView
-        android:id="@+id/imgDetailEdit"
+        android:id="@+id/imageView8"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginEnd="16dp"
@@ -182,7 +182,7 @@
         app:srcCompat="@drawable/orangeheart2" />
 
     <ImageView
-        android:id="@+id/imgDetailBack"
+        android:id="@+id/imageView9"
         android:layout_width="40dp"
         android:layout_height="40dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline13"
@@ -198,17 +198,17 @@
         app:layout_constraintGuide_begin="66dp" />
 
     <ImageView
-        android:id="@+id/imgComent"
+        android:id="@+id/imageView13"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginEnd="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/tvDetailComentCount"
-        app:layout_constraintEnd_toStartOf="@+id/tvDetailComentCount"
-        app:layout_constraintTop_toTopOf="@+id/tvDetailComentCount"
+        app:layout_constraintBottom_toBottomOf="@+id/textView10"
+        app:layout_constraintEnd_toStartOf="@+id/textView10"
+        app:layout_constraintTop_toTopOf="@+id/textView10"
         app:srcCompat="@drawable/reply" />
 
     <ImageView
-        android:id="@+id/imgDetailSend"
+        android:id="@+id/imageView14"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginEnd="16dp"

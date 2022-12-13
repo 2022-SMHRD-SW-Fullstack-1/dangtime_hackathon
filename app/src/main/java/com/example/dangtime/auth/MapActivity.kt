@@ -35,6 +35,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         btnAutoLocation.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
 

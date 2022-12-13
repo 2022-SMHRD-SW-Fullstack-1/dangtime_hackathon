@@ -8,6 +8,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import com.example.dangtime.MainActivity
 import com.example.dangtime.R
@@ -32,10 +33,19 @@ class LoginActivity : AppCompatActivity() {
         val loginId = sharedPreferences.getString("loginId", "")
         val loginPw = sharedPreferences.getString("loginPw", "")
 
+        val sp = getSharedPreferences("autoLogin", Context.MODE_PRIVATE)
+        val autoLoginId = sp.getString("loginId","")
+        val autoLoginPw = sp.getString("loginPw","")
+
         val etLoginEmail = findViewById<EditText>(R.id.etLoginEmail)
         val etLoginPw = findViewById<EditText>(R.id.etLoginPw)
         val btnLogin = findViewById<Button>(R.id.btnLoginLogin)
         val imgLoginRegister = findViewById<ImageView>(R.id.imgLoginRegister)
+        val tvLoginRegister = findViewById<TextView>(R.id.tvLoginRegister)
+        etLoginEmail.setText(loginId)
+        etLoginPw.setText(loginPw)
+
+
 
         btnLogin.setOnClickListener {
             val email = etLoginEmail.text.toString()
@@ -53,6 +63,11 @@ class LoginActivity : AppCompatActivity() {
                     editor.putString("loginPw", pw)
                     editor.commit()
 
+                    val editorSp = sp.edit()
+                    editorSp.putString("loginId",email)
+                    editorSp.putString("loginPw",pw)
+                    editorSp.commit()
+
                     val intent = Intent(this, HomeActivity::class.java)
                     startActivity(intent)
                     finish()
@@ -64,6 +79,10 @@ class LoginActivity : AppCompatActivity() {
         }
 
         imgLoginRegister.setOnClickListener {
+            val intent = Intent(this@LoginActivity, LocationActivity::class.java)
+            startActivity(intent)
+        }
+        tvLoginRegister.setOnClickListener {
             val intent = Intent(this@LoginActivity, LocationActivity::class.java)
             startActivity(intent)
         }
