@@ -3,11 +3,10 @@ package com.example.dangtime.post
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.ImageView
 import com.example.dangtime.R
 import com.example.dangtime.board.BoardChoice
-import com.example.dangtime.chat.ChatListActivity
+import com.example.dangtime.chat.ChatActivity
 import com.example.dangtime.fragment.bookmark.BookmarkAllFragment
 import com.example.dangtime.fragment.bookmark.BookmarkFragment
 import com.example.dangtime.fragment.bookmark.BookmarkMateFragment
@@ -21,8 +20,6 @@ import com.example.dangtime.fragment.mypost.MyPostFragment
 import com.example.dangtime.fragment.mypost.MyPostPostFragment
 import com.example.dangtime.profile.ProfileActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
 import de.hdodenhof.circleimageview.CircleImageView
 
 class HomeActivity : AppCompatActivity() {
@@ -49,7 +46,7 @@ class HomeActivity : AppCompatActivity() {
         }
 
         imgHomeChat.setOnClickListener {
-            val intent = Intent(this, ChatListActivity::class.java)
+            val intent = Intent(this, ChatActivity::class.java)
             startActivity(intent)
         }
 
