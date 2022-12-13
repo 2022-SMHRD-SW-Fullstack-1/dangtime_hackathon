@@ -7,44 +7,50 @@
     android:layout_height="match_parent"
     tools:context=".fragment.mypost.MyPostFragment">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_end="620dp" />
-
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline6"
+        app:layout_constraintBottom_toTopOf="@+id/guideline15"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:tabIndicatorColor="@color/mainColor">
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/myPostTab1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="내 게시물" />
+            android:text="내 게시물"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="45dp" />
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/myPostTab2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="내 댓글" />
+            android:text="내 댓글"
+            tools:layout_editor_absoluteX="206dp"
+            tools:layout_editor_absoluteY="5dp" />
 
     </com.google.android.material.tabs.TabLayout>
 
     <FrameLayout
-        android:layout_width="409dp"
-        android:layout_height="618dp"
+        android:id="@+id/frameLayout3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tabLayout2">
+        app:layout_constraintTop_toTopOf="@+id/guideline15">
 
     </FrameLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="50dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
