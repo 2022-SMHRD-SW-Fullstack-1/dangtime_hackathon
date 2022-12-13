@@ -13,7 +13,7 @@
         android:gravity="center_vertical"
         android:paddingLeft="8dp"
         android:text="관심 목록"
-        android:textColor="#000000"
+        android:textColor="@color/black"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline4"
@@ -41,20 +41,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.1" />
+        app:layout_constraintGuide_begin="66dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.9" />
+        app:layout_constraintGuide_end="66dp" />
+
+    <ImageView
+        android:id="@+id/imgHomeChat"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imgHomeProfile"
+        app:layout_constraintEnd_toStartOf="@+id/imgHomeProfile"
+        app:layout_constraintTop_toTopOf="@+id/imgHomeProfile"
+        app:srcCompat="@drawable/chaticon" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bnv"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/white"
+        android:background="@android:color/white"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -72,15 +82,5 @@
         app:layout_constraintTop_toTopOf="@+id/guideline4">
 
     </FrameLayout>
-
-    <ImageView
-        android:id="@+id/imgHomeChat"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imgHomeProfile"
-        app:layout_constraintEnd_toStartOf="@+id/imgHomeProfile"
-        app:layout_constraintTop_toTopOf="@+id/imgHomeProfile"
-        app:srcCompat="@drawable/chaticon" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
