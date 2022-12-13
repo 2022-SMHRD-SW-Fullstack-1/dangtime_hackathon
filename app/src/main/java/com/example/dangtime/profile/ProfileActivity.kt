@@ -44,6 +44,7 @@ class ProfileActivity : AppCompatActivity() {
         val btnProfileDelete = findViewById<Button>(R.id.btnProfileDelete)
         val tvPfPostCnt = findViewById<TextView>(R.id.tvPfPostCnt)
         val tvPfReplyCnt = findViewById<TextView>(R.id.tvPfReplyCnt)
+        val tvPfLocation = findViewById<TextView>(R.id.tvPfLocation)
 
         val email = user?.email.toString()
         tvProfileEmail.text = email
@@ -54,11 +55,17 @@ class ProfileActivity : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
 
 //                keyData.add(snapshot.value.toString())
-                Log.d("멤", snapshot.value.toString())
+                Log.d("멤", snapshot.child("$uid").child("dogName").toString())
+                val dogName = snapshot.child("$uid").child("dogName").value.toString()
+                val dogNick = snapshot.child("$uid").child("dogNick").value.toString()
+                val pfName = "$dogNick $dogName"
+                tvProfileName.text = pfName
 
+
+                val address = snapshot.child("$uid").child("address").value.toString()
+                tvPfLocation.text = "$address 댕댕이"
 
             }
-
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
