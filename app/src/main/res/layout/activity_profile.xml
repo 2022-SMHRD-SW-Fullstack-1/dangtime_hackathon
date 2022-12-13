@@ -50,7 +50,7 @@
             android:layout_height="800dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/circle_iv"
+                android:id="@+id/civProfile"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center"
@@ -65,7 +65,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/tvProfileName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
@@ -76,32 +76,32 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/circle_iv"
+                app:layout_constraintTop_toBottomOf="@+id/civProfile"
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/tvProfileEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="aaa@aaa.com"
                 android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="@+id/textView2"
-                app:layout_constraintStart_toStartOf="@+id/textView2"
-                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+                app:layout_constraintEnd_toEndOf="@+id/tvProfileName"
+                app:layout_constraintStart_toStartOf="@+id/tvProfileName"
+                app:layout_constraintTop_toBottomOf="@+id/tvProfileName" />
 
             <TextView
-                android:id="@+id/textView19"
+                android:id="@+id/tvPfPetCnt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="n마리 댕댕이가 살고 있어요!"
-                app:layout_constraintEnd_toEndOf="@+id/textView16"
-                app:layout_constraintStart_toStartOf="@+id/textView16"
-                app:layout_constraintTop_toBottomOf="@+id/textView16" />
+                app:layout_constraintEnd_toEndOf="@+id/tvPfLocation"
+                app:layout_constraintStart_toStartOf="@+id/tvPfLocation"
+                app:layout_constraintTop_toBottomOf="@+id/tvPfLocation" />
 
             <TextView
-                android:id="@+id/textView16"
+                android:id="@+id/tvPfLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -127,7 +127,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView19" />
+                app:layout_constraintTop_toBottomOf="@+id/tvPfPetCnt" />
 
             <Button
                 android:id="@+id/btnProfileLogout"
@@ -186,7 +186,7 @@
                 android:padding="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView4">
+                app:layout_constraintTop_toBottomOf="@+id/tvProfileEmail">
 
                 <TableRow
                     android:layout_width="match_parent"
@@ -220,7 +220,7 @@
                     android:gravity="center">
 
                     <TextView
-                        android:id="@+id/textView23"
+                        android:id="@+id/tvPfPostCnt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -230,7 +230,7 @@
                         android:textSize="24sp" />
 
                     <TextView
-                        android:id="@+id/textView24"
+                        android:id="@+id/tvPfReplyCnt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"

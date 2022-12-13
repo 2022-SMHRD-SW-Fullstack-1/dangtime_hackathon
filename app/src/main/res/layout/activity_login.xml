@@ -28,7 +28,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/tvProfileEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -49,16 +49,16 @@
         android:textColor="@color/black"
         android:textSize="28sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintStart_toStartOf="@+id/tvProfileEmail"
+        app:layout_constraintTop_toBottomOf="@+id/tvProfileEmail" />
 
     <EditText
         android:id="@+id/etLoginPw"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="6~20자리 입력해 주세요"
-        android:inputType="textPersonName"
+        android:hint="8~20자리 입력해 주세요"
+        android:inputType="textPersonName|textPassword"
         app:layout_constraintStart_toStartOf="@+id/textView7"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
@@ -82,7 +82,7 @@
         app:srcCompat="@drawable/back" />
 
     <Button
-        android:id="@+id/btnLoginLogin"
+        android:id="@+id/btnLogin"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/button"
