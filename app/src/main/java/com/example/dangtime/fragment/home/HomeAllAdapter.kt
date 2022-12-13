@@ -2,7 +2,6 @@ package com.example.dangtime.fragment.home
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,8 +10,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dangtime.R
-import com.example.dangtime.post.PostDetailAdapter
-import com.example.dangtime.util.FBAuth
 
 class HomeAllAdapter(var context: Context, var keyData : ArrayList<HomePostVO>, var data : ArrayList<ListVO>, var postUid : ArrayList<String>) : RecyclerView.Adapter<HomeAllAdapter.ViewHolder>(){
 
@@ -38,7 +35,7 @@ class HomeAllAdapter(var context: Context, var keyData : ArrayList<HomePostVO>, 
 
         init {
 
-             imgHomeAllProfile = itemView.findViewById(R.id.imgHomeAllProfile)
+             imgHomeAllProfile = itemView.findViewById(R.id.imgHomeAllProfilePic)
              imgHeart = itemView.findViewById(R.id.imgHomeAllHeart)
              imgComment = itemView.findViewById(R.id.imgHomeAllComment)
              tvHomeAllName = itemView.findViewById(R.id.tvHomeAllName)
@@ -71,9 +68,9 @@ class HomeAllAdapter(var context: Context, var keyData : ArrayList<HomePostVO>, 
 
 
 
-            holder.tvHomeAllName.text=data[position].dogNick
+           holder.tvHomeAllName.text = data[position].dogNick
             holder.tvContent.text =  keyData[position].content
-            holder.tvTime.text=keyData[position].time
+            holder.tvTime.text = keyData[position].time
             holder.imgComment.setImageResource(R.drawable.message)
             holder.tvCommentCount.text = "0"
             holder.imgHeart.setImageResource(R.drawable.emptyheart)
@@ -94,8 +91,8 @@ class HomeAllAdapter(var context: Context, var keyData : ArrayList<HomePostVO>, 
                 clickHeart -= 1
             }
         }
-        holder.imgEdit.setOnClickListener {
-            holder.btnEdit.setText("게시글 수정")
+             holder.imgEdit.setOnClickListener {
+             holder.btnEdit.setText("게시글 수정")
              holder.btnEdit.setOnClickListener {
                  var intent = Intent(context,PostEditActivity::class.java)
 

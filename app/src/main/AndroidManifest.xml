@@ -49,11 +49,8 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
         <activity
-
-            android:name=".post.ViewPostActivity"
-            android:exported="true">
-
             android:name=".auth.MapActivity"
             android:exported="false">
 
@@ -62,9 +59,7 @@
                 android:value="" />
         </activity>
 
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="${MAPS_API_KEY}" />
+
 
         <activity
             android:name=".post.EditPostActivity"

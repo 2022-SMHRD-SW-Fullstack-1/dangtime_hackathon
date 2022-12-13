@@ -30,21 +30,14 @@ class HomeAllFragment : Fragment() {
     ): View? {
 
         val view = inflater.inflate(R.layout.fragment_home_all, container, false)
+
+
         val rvHollAll = view.findViewById<RecyclerView>(R.id.rvHollAll)
-        val imgHomeAllProfile = view.findViewById<ImageView>(R.id.imgHomeAllProfile)
-        val imgHeart = view.findViewById<ImageView>(R.id.imgHomeAllHeart)
-        val imgComment = view.findViewById<ImageView>(R.id.imgHomeAllComment)
-        val tvHomeAllName = view.findViewById<TextView>(R.id.tvHomeAllName)
-        val tvTime = view.findViewById<TextView>(R.id.tvHomeAllHr)
-        val tvTown = view.findViewById<TextView>(R.id.tvHomeAllTown)
-        val tvContent = view.findViewById<TextView>(R.id.tvHomeAllContent)
-        val tvHeartCount = view.findViewById<TextView>(R.id.tvHomeAllHeartCount)
-        val commentCount = view.findViewById<TextView>(R.id.tvHomeAllCommentCount)
-        val imgEdit = view.findViewById<ImageView>(R.id.imgHomeAllEdit)
 
 
 
-        getPostData()
+
+        getMemberData()
 
 
         adapter = HomeAllAdapter(requireContext(),keyData, data, postKeyUid)
@@ -95,7 +88,7 @@ class HomeAllFragment : Fragment() {
             }
         }
         FBdatabase.getPostRef().addValueEventListener(postlistener2)
-        getMemberData()
+
     }
 
 
@@ -126,9 +119,10 @@ class HomeAllFragment : Fragment() {
             }
             override fun onCancelled(error: DatabaseError) {
             }
+
         }
         FBdatabase.getMemberRef().addValueEventListener(posterListener)
-
+        getPostData()
 
 
 
