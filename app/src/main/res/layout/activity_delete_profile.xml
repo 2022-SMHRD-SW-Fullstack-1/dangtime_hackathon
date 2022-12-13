@@ -7,7 +7,7 @@
     tools:context=".profile.DeleteProfileActivity">
 
     <TextView
-        android:id="@+id/tvPfDltEmail"
+        android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -42,15 +42,15 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="32dp"
         android:ems="10"
         android:hint="비밀번호"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline6" />
+        app:layout_constraintTop_toBottomOf="@+id/tvPfDltEmail" />
 
     <EditText
         android:id="@+id/etPfDltCheck"
@@ -59,17 +59,18 @@
         android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="비밀번호 확인"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="@+id/etPfDltPw"
         app:layout_constraintStart_toStartOf="@+id/etPfDltPw"
         app:layout_constraintTop_toBottomOf="@+id/etPfDltPw" />
 
     <TextView
+        android:id="@+id/tvLoginRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="비밀번호 확인이 필요합니다"
-        app:layout_constraintStart_toStartOf="@+id/tvPfDltEmail"
-        app:layout_constraintTop_toBottomOf="@+id/tvPfDltEmail" />
+        app:layout_constraintStart_toStartOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <Button
         android:id="@+id/btnPfDelete"
@@ -91,5 +92,16 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_end="66dp" />
+
+    <TextView
+        android:id="@+id/tvPfDltEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="110dp"
+        android:text="aaa@aaa.com"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline6" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
