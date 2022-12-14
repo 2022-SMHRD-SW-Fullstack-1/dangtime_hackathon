@@ -7,9 +7,9 @@ import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.example.dangtime.R
 import com.example.dangtime.auth.LoginActivity
-import com.example.dangtime.auth.MemberVO
 import com.example.dangtime.post.HomeActivity
 import com.example.dangtime.util.FBAuth
 import com.example.dangtime.util.FBdatabase
@@ -19,6 +19,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 class ProfileActivity : AppCompatActivity() {
 
@@ -26,6 +27,7 @@ class ProfileActivity : AppCompatActivity() {
     lateinit var dogNick: String
     lateinit var dogName: String
     lateinit var address: String
+    lateinit var imgPf : ImageView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,11 +49,14 @@ class ProfileActivity : AppCompatActivity() {
         val tvPfPostCnt = findViewById<TextView>(R.id.tvPfPostCnt)
         val tvPfReplyCnt = findViewById<TextView>(R.id.tvPfReplyCnt)
         val tvPfLocation = findViewById<TextView>(R.id.tvPfLocation)
+        imgPf = findViewById(R.id.imgPf)
 
 
 
         val email = user?.email.toString()
         tvProfileEmail.text = email
+
+        getImageData(uid)
 
         val pfListener = object : ValueEventListener{
 
@@ -71,8 +76,6 @@ class ProfileActivity : AppCompatActivity() {
 
         }
         memRef.addValueEventListener(pfListener)
-
-
 
 
         imgProfileBack.setOnClickListener {
@@ -110,6 +113,19 @@ class ProfileActivity : AppCompatActivity() {
         }
 
 
-
+    }
+    fun getImageData(uid: String) {
+        val storageReference = Firebase.storage.reference.child("/userImages/$uid/photo.png")
+        storageReference.downloadUrl.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                Glide.with(this)
+                    .load(task.result)
+                    .circleCrop()
+                    .into(imgPf)
+                Log.d("사진","성공")
+            }else {
+                Log.d("사진","실패")
+            }
+        }
     }
 }
