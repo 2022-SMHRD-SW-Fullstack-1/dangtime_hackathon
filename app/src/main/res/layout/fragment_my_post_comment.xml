@@ -3,5 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F1E78C"
-    tools:context=".fragment.mypost.MyPostCommentFragment" />
+    tools:context=".fragment.mypost.MyPostCommentFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMyPostComment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</FrameLayout>
