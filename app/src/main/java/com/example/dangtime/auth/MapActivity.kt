@@ -6,6 +6,7 @@ import android.content.Intent
 import android.location.LocationRequest
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import com.example.dangtime.R
 
@@ -37,32 +38,25 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             startActivity(intent)
             finish()
         }
-
-
     }
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
+        val lat = intent.getStringExtra("lat").toString()
+        val long = intent.getStringExtra("long").toString()
+        val addr = intent.getStringExtra("addr").toString()
+
         // Add a marker in Sydney and move the camera
-        val smhrd = LatLng(35.1498595, 126.9198297)
-        mMap.addMarker(MarkerOptions()
-            .position(smhrd)
-            .title("스마트인재개발원"))
+        val smhrd = LatLng(lat.toDouble(), long.toDouble())
+        mMap.addMarker(
+            MarkerOptions()
+                .position(smhrd)
+                .title(addr)
+        )
         mMap.moveCamera(CameraUpdateFactory.newLatLng(smhrd))
         mMap.setMinZoomPreference(15.0f)
     }
-
-
 
 
 //    @SuppressLint("MissingPermission")
