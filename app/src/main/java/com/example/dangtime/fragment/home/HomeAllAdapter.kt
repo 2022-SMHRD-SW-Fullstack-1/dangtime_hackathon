@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.dangtime.R
 import com.example.dangtime.auth.MemberVO
 import com.example.dangtime.fragment.post.PostDetailActivity
@@ -21,6 +22,8 @@ import com.example.dangtime.util.FBdatabase
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 class HomeAllAdapter(
     var context: Context,
@@ -74,7 +77,7 @@ class HomeAllAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-
+      var imgUid = postUid[position].toString()
         var uid = keyData[position].uid
 
 //
@@ -87,6 +90,23 @@ class HomeAllAdapter(
 //                Log.d("이거다2", snapshot.child("$uid").child("dogNick").value.toString())
                 holder.tvHomeAllName.text = snapshot.child("$uid").child("dogNick").value.toString()
                 holder.tvTown.text = snapshot.child("$uid").child("address").value.toString()
+
+
+                //이미지 업로두
+                    val storageReference = Firebase.storage.reference.child("/userImages/$uid/photo")
+                    storageReference.downloadUrl.addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            Glide.with(context)
+                                .load(task.result)
+                                .circleCrop()
+                                .into(holder.imgHomeAllProfile)
+                            Log.d("사진","성공")
+                        }else {
+                            Log.d("사진","실패")
+                        }
+                    }
+
+
 
             }
 
@@ -158,9 +178,12 @@ class HomeAllAdapter(
 
 
     }
+
     override fun getItemCount(): Int {
         return keyData.size
     }
+
+
 
 
 }
