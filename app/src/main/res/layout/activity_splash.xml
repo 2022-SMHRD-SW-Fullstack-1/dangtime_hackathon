@@ -54,4 +54,12 @@
         app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="@+id/textView6" />
 
+    <ImageView
+        android:id="@+id/imageView16"
+        android:layout_width="115dp"
+        android:layout_height="129dp"
+        app:srcCompat="@drawable/giftbubb"
+        tools:layout_editor_absoluteX="204dp"
+        tools:layout_editor_absoluteY="330dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
