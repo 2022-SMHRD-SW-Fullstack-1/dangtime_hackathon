@@ -1,42 +1,51 @@
 package com.example.dangtime.profile
 
 import android.content.Intent
+import android.net.wifi.hotspot2.pps.Credential
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.*
 import com.example.dangtime.R
 import com.example.dangtime.auth.LoginActivity
+import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
 class DeleteProfileActivity : AppCompatActivity() {
 
-    lateinit var auth: FirebaseAuth
+    var auth: FirebaseAuth = Firebase.auth
+    lateinit var etPfDltPw : EditText
+    lateinit var etPfDltCheck : EditText
+    lateinit var email : String
+    var isDelete : Boolean = false
+    val user = auth.currentUser
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_delete_profile)
 
-        auth = Firebase.auth
-        val user = auth.currentUser
-
         val imgPfDltBack = findViewById<ImageView>(R.id.imgPfDltBack)
         val tvPfDltEmail = findViewById<TextView>(R.id.tvPfDltEmail)
-        val etPfDltPw = findViewById<EditText>(R.id.etPfDltPw)
-        val etPfDltCheck = findViewById<EditText>(R.id.etPfDltCheck)
+        etPfDltPw = findViewById<EditText>(R.id.etPfDltPw)
+        etPfDltCheck = findViewById<EditText>(R.id.etPfDltCheck)
         val btnPfDelete = findViewById<Button>(R.id.btnPfDelete)
 
-        tvPfDltEmail.text = user?.email.toString()
+        email = user?.email.toString()
+        tvPfDltEmail.text = email
+
+        Log.d("pw", "")
 
         imgPfDltBack.setOnClickListener {
             finish()
         }
 
         btnPfDelete.setOnClickListener {
-            var isDelete = true
-
             val pw = etPfDltPw.text.toString()
             val check = etPfDltCheck.text.toString()
+
+            reauthenticate(email,pw)
 
             if (pw.isEmpty()) {
                 isDelete = false
@@ -66,8 +75,23 @@ class DeleteProfileActivity : AppCompatActivity() {
 
             }
 
+
         }
 
 
+    }
+    private fun reauthenticate(email: String,password: String){
+        val credential = EmailAuthProvider
+            .getCredential(email,password)
+
+        auth?.currentUser?.reauthenticate(credential)
+            ?.addOnCompleteListener(this){
+                if(it.isSuccessful){
+                    //재인증에 성공했을 때 발생하는 이벤트
+                    isDelete = true
+                }else {
+                    Toast.makeText(this,"비밀번호가 맞지 않습니다", Toast.LENGTH_SHORT).show()
+                }
+            }
     }
 }

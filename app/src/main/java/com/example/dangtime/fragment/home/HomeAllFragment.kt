@@ -80,18 +80,20 @@ class HomeAllFragment : Fragment() {
                 for (model in snapshot.children){
                     val postData = model.getValue(HomePostVO::class.java)
                     if (postData != null) {
+                        Log.d("keyData", keyData.toString())
                         keyData.add(postData)
                     }
                 }
                 //adapter 새로고침 하기
                 adapter.notifyDataSetChanged()
 
-                Log.d("ㅎㅎㅎ222", keyData[0].toString())
+//                Log.d("ㅎㅎㅎ222", keyData[0].toString())
                 //bookmarkList에 있는 데이터만 가지고와서 data(ArrayList<VO>에 담고 있다.
                 getMemberData()
             }
 
             override fun onCancelled(error: DatabaseError) {
+
             }
         }
         FBdatabase.getPostRef().addValueEventListener(postlistener2)
@@ -122,7 +124,7 @@ class HomeAllFragment : Fragment() {
                 }
                 // adapter 새로고침 하기
                 adapter.notifyDataSetChanged()
-                Log.d("ㅎㅎㅎ", data[0].toString())
+//                Log.d("ㅎㅎㅎ", data[0].toString())
             }
             override fun onCancelled(error: DatabaseError) {
             }

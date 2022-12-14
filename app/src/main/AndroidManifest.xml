@@ -5,7 +5,6 @@
     <uses-permission android:name="android.permission.INTERNET" /> <!-- 인터넷 연결 확인 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -16,6 +15,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Dangtime"
         tools:targetApi="31">
+
+        <activity
+            android:name=".chat.ChatActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
         <activity
             android:name=".auth.MapActivity"
             android:exported="false">
@@ -36,7 +44,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".fragment.post.PostDetailActivity"
+            android:name=".fragment.home.PostDetailActivity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
@@ -49,6 +57,13 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="${MAPS_API_KEY}" />
+
+
         <activity
             android:name=".post.HomeActivity"
             android:exported="false">

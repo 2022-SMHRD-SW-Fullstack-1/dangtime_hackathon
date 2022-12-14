@@ -1,12 +1,10 @@
 package com.example.dangtime.fragment.home
 
 import android.content.Context
-import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -29,27 +27,21 @@ class HomeAllAdapter(var context: Context, var keyData : ArrayList<HomePostVO>, 
         val tvContent : TextView
         val tvHeratCount : TextView
         val tvCommentCount : TextView
-        val imgEdit : ImageView
-        val btnEdit : Button
-        val btnDel : Button
 
 
 
 
         init {
 
-            imgHomeAllProfile = itemView.findViewById(R.id.imgHomeAllProfile)
-            imgHeart = itemView.findViewById(R.id.imgHomeAllHeart)
-            imgComment = itemView.findViewById(R.id.imgHomeAllComment)
-            tvHomeAllName = itemView.findViewById(R.id.tvHomeAllName)
-            tvTime = itemView.findViewById(R.id.tvHomeAllHr)
-            tvTown = itemView.findViewById(R.id.tvHomeAllTown)
-            tvContent = itemView.findViewById(R.id.tvHomeAllContent)
-            tvHeratCount = itemView.findViewById(R.id.tvHomeAllHeartCount)
-            tvCommentCount = itemView.findViewById(R.id.tvHomeAllCommentCount)
-//            imgEdit = itemView.findViewById(R.id.imgHomeAllEdit)
-//            btnEdit = itemView.findViewById(R.id.btnHomeAllEdit)
-//            btnDel = itemView.findViewById(R.id.btnHomeAllDel)
+             imgHomeAllProfile = itemView.findViewById(R.id.imgHomeAllProfile)
+             imgHeart = itemView.findViewById(R.id.imgHomeAllHeart)
+             imgComment = itemView.findViewById(R.id.imgHomeAllComment)
+             tvHomeAllName = itemView.findViewById(R.id.tvHomeAllName)
+             tvTime = itemView.findViewById(R.id.tvHomeAllHr)
+             tvTown = itemView.findViewById(R.id.tvHomeAllTown)
+             tvContent = itemView.findViewById(R.id.tvHomeAllContent)
+             tvHeratCount = itemView.findViewById(R.id.tvHomeAllHeartCount)
+             tvCommentCount = itemView.findViewById(R.id.tvHomeAllCommentCount)
 
         }
 
@@ -71,15 +63,13 @@ class HomeAllAdapter(var context: Context, var keyData : ArrayList<HomePostVO>, 
 
 
 
-        holder.tvHomeAllName.text=data[position].dogNick
-        holder.tvContent.text =  keyData[position].content
-        holder.tvTime.text=keyData[position].time
-        holder.imgComment.setImageResource(R.drawable.message)
-        holder.tvCommentCount.text = "0"
-        holder.imgHeart.setImageResource(R.drawable.emptyheart)
-        holder.tvHeratCount.text = "0"
-        holder.imgEdit.setImageResource(R.drawable.menu)
-
+//            holder.tvHomeAllName.text = data[position].dogNick
+            holder.tvContent.text =  keyData[position].content
+            holder.tvTime.text=keyData[position].time
+            holder.imgComment.setImageResource(R.drawable.message)
+            holder.tvCommentCount.text = "0"
+            holder.imgHeart.setImageResource(R.drawable.emptyheart)
+            holder.tvHeratCount.text = "0"
 
 
 
@@ -93,17 +83,6 @@ class HomeAllAdapter(var context: Context, var keyData : ArrayList<HomePostVO>, 
                 holder.tvHeratCount.text = "0"
                 clickHeart -= 1
             }
-        }
-        holder.imgEdit.setOnClickListener {
-            holder.btnEdit.setText("게시글 수정")
-            holder.btnEdit.setOnClickListener {
-                var intent = Intent(context,PostEditActivity::class.java)
-
-                intent.putExtra("board",keyData[position].toString())
-                intent.putExtra("member",data[position].toString())
-                context.startActivity(intent)
-            }
-            holder.btnDel.setText("게시글 삭제")
         }
         holder.imgComment.setOnClickListener {
 

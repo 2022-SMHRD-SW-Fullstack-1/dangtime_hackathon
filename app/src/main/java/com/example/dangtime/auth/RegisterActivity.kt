@@ -83,6 +83,7 @@ class RegisterActivity : AppCompatActivity() {
 //                            Toast.makeText(this, "회원가입 성공", Toast.LENGTH_SHORT).show()
                             val intent = Intent(this@RegisterActivity, DogInfoActivity::class.java)
                             intent.putExtra("address", address)
+                            intent.putExtra("email", email)
                             startActivity(intent)
                             finish()
                         } else {
