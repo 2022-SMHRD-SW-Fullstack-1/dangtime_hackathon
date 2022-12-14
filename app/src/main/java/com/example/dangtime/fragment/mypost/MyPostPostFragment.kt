@@ -9,7 +9,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dangtime.R
+import com.example.dangtime.auth.MemberVO
 import com.example.dangtime.fragment.home.HomePostVO
+import com.example.dangtime.fragment.home.ListVO
 import com.example.dangtime.util.FBAuth
 import com.example.dangtime.util.FBdatabase
 import com.google.firebase.auth.FirebaseAuth
@@ -20,16 +22,16 @@ import com.google.firebase.database.ValueEventListener
 
 class MyPostPostFragment : Fragment() {
 
-    val postList= ArrayList<HomePostVO>()
-    lateinit var adapter: MyPostCommentAdapter
+    val postList = ArrayList<HomePostVO>()
+    lateinit var adapter: MyPostPostAdapter
     val postRef = FBdatabase.getPostRef()
-    val memberRef = FBdatabase.getMemberRef()
     val loginId = FBAuth.getUid()
+    val memberList = ArrayList<MemberVO>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        getMyPostCommentData()
+        getMyPostPostData()
 
         val view = inflater.inflate(R.layout.fragment_my_post_post, container, false)
         val rvMyPostPost = view.findViewById<RecyclerView>(R.id.rvMyPostPost)
@@ -41,9 +43,18 @@ class MyPostPostFragment : Fragment() {
 //            Log.d("포스트 key", it.key.toString())
 //        }
 
+        FBdatabase.getMemberRef().get().addOnSuccessListener {
+            val memberData = it.child(FBAuth.getUid()).getValue(MemberVO::class.java)
+            Log.d("포스트 멤버", memberData.toString())
+            if (memberData != null) {
+                memberList.add(memberData)
+            }
+        }
 
 
-        adapter = MyPostCommentAdapter(requireContext(), postList, loginId)
+
+
+        adapter = MyPostPostAdapter(requireContext(), postList, memberList)
 
         rvMyPostPost.adapter = adapter
         rvMyPostPost.layoutManager = GridLayoutManager(requireContext(), 1)
@@ -51,7 +62,7 @@ class MyPostPostFragment : Fragment() {
         return view
     }
 
-    fun getMyPostCommentData() {
+    fun getMyPostPostData() {
         val postListener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (model in snapshot.children) {
@@ -69,6 +80,9 @@ class MyPostPostFragment : Fragment() {
 
         }
 
-            postRef.addValueEventListener(postListener)
+        postRef.addValueEventListener(postListener)
     }
 }
+
+
+

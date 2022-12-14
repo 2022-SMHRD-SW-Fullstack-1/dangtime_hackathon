@@ -9,18 +9,25 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dangtime.R
+import com.example.dangtime.auth.MemberVO
 import com.example.dangtime.fragment.home.HomePostVO
+import com.example.dangtime.fragment.mypost.MyPostCommentAdapter
 import com.example.dangtime.util.FBAuth
 import com.example.dangtime.util.FBdatabase
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.ktx.Firebase
 
 class BookmarkAllFragment : Fragment() {
 
     val postList = ArrayList<HomePostVO>()
-
-    lateinit var adapter: BookmarkAllAdapter
+    lateinit var adapter: MyPostCommentAdapter
+    val likeRef = FBdatabase.getLikeRef()
+    val postRef = FBdatabase.getPostRef()
+    val auth = Firebase.auth
+    val memberList = ArrayList<MemberVO>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,7 +39,7 @@ class BookmarkAllFragment : Fragment() {
 
         val loginId = FBAuth.getUid()
 
-        getPostData()
+        getLikePostData()
 
         val adapter = BookmarkAllAdapter(requireContext(), postList, loginId)
 
@@ -42,13 +49,16 @@ class BookmarkAllFragment : Fragment() {
         return view
     }
 
-    fun getPostData() {
-        val postListener = object : ValueEventListener {
+    fun getLikePostData() {
+        postRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
 
                 for (model in snapshot.children) {
+                    Log.d("댓글", model.toString())
+                    Log.d("댓글 key", model.key.toString())
+                    Log.d("댓글 value", model.value.toString())
                     val item = model.getValue(HomePostVO::class.java)
-                    if(item != null) {
+                    if (item != null) {
                         postList.add(item)
                     }
                 }
@@ -59,7 +69,7 @@ class BookmarkAllFragment : Fragment() {
                 TODO("Not yet implemented")
             }
 
-        }
+        })
     }
 
 }

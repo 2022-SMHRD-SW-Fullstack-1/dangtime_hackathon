@@ -20,9 +20,9 @@
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imgPost"
         android:layout_width="48dp"
-        android:layout_height   ="48dp"
+        android:layout_height="48dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="36dp"
         android:src="@drawable/dogprofile"
         app:civ_border_color="@color/mainColor"
         app:civ_border_overlay="true"
@@ -35,7 +35,7 @@
     <TextView
         android:id="@+id/tvPostContent"
         android:layout_width="0dp"
-        android:layout_height="150dp"
+        android:layout_height="100dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -89,11 +89,11 @@
         android:text="0"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageView4"
-        app:layout_constraintTop_toTopOf="@+id/imageView4" />
+        app:layout_constraintEnd_toStartOf="@+id/imgPostComment"
+        app:layout_constraintTop_toTopOf="@+id/imgPostComment" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/imgPostComment"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginEnd="8dp"
