@@ -14,24 +14,27 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 
-class PostDetailAdapter(val context: Context , val commentList : ArrayList<PostCommentVO>) : RecyclerView.Adapter<PostDetailAdapter.ViewHolder>() {
+class PostDetailAdapter(
+    val context: Context,
+    val commentList: ArrayList<PostCommentVO>,
+    val commentUid: ArrayList<String>,
+    val postUid: String
+) :
+    RecyclerView.Adapter<PostDetailAdapter.ViewHolder>() {
 
 
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
 
+        var tvRvPostDetailTime: TextView
+        var tvRvPostDetailContent: TextView
+        var imgRvPostDetail: ImageView
 
-inner class ViewHolder(itemView: View) :RecyclerView.ViewHolder(itemView){
-
-
-    var tvRvPostDetailTime : TextView
-    var tvRvPostDetailContent : TextView
-    var imgRvPostDetail : ImageView
-
-init {
-    tvRvPostDetailTime = itemView.findViewById(R.id.tvRvPostDetailTime)
-    tvRvPostDetailContent = itemView.findViewById(R.id.tvRvPostDetailContent)
-    imgRvPostDetail = itemView.findViewById(R.id.imgRvPostDetail)
-}
+        init {
+            tvRvPostDetailTime = itemView.findViewById(R.id.tvRvPostDetailTime)
+            tvRvPostDetailContent = itemView.findViewById(R.id.tvRvPostDetailContent)
+            imgRvPostDetail = itemView.findViewById(R.id.imgRvPostDetail)
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -44,13 +47,16 @@ init {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        var uid = commentList[position].uid
+
+        var comUid = commentUid[position].toString()
 
         val pfListener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
 
-                holder.tvRvPostDetailContent.text = snapshot.child("$uid").child("dogNick").value.toString()
-                holder.tvRvPostDetailTime.text = snapshot.child("$uid").child("address").value.toString()
+                holder.tvRvPostDetailContent.text =
+                    snapshot.child("$postUid").child(comUid).child("conmment").value.toString()
+                holder.tvRvPostDetailTime.text =
+                    snapshot.child("$postUid").child(comUid).child("time").value.toString()
 
             }
 

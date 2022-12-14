@@ -64,7 +64,8 @@ class PostDetailActivity : AppCompatActivity() {
 
 
         //어댑터 생성
-        adapter = PostDetailAdapter(this, commentList)
+
+        adapter = PostDetailAdapter(this, commentList, commentUid, postUid)
         rvPostDetail.adapter =adapter
         rvPostDetail.layoutManager = GridLayoutManager(this, 1)
 
