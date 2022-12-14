@@ -1,5 +1,6 @@
 package com.example.dangtime.post
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -51,11 +52,31 @@ class HomeActivity : AppCompatActivity() {
         }
 
 //        첫 연결시 fragment 보이게 설정
-        supportFragmentManager.beginTransaction().replace(
-            R.id.flHome,
-            HomeFragment()
-        ).commit()
-        bnv.selectedItemId = R.id.bnvMainTab2
+
+
+        val request1 = intent.getStringExtra("request1")
+
+        if (request1 == "100") {
+            bnv.selectedItemId = R.id.bnvMainTab3
+                supportFragmentManager.beginTransaction().replace(
+                    R.id.flHome,
+                    MyPostFragment()
+                ).commit()
+            changeMyPostFragment(1)
+        }else if(request1 == "200"){
+            bnv.selectedItemId = R.id.bnvMainTab3
+            supportFragmentManager.beginTransaction().replace(
+                R.id.flHome,
+                MyPostFragment()
+            ).commit()
+            changeMyPostFragment(2)
+        } else {
+            supportFragmentManager.beginTransaction().replace(
+                R.id.flHome,
+                HomeFragment()
+            ).commit()
+            bnv.selectedItemId = R.id.bnvMainTab2
+        }
 
         bnv.setOnItemSelectedListener { item ->
             when (item.itemId) {
