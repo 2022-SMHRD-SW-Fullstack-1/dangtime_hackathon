@@ -40,7 +40,7 @@
         android:id="@+id/tvMyPostContent"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         android:text="저는 효지에요 댕댕이 친구 구합니다 ㅎㅎ"
         android:textColor="#000000"
@@ -54,11 +54,11 @@
         android:id="@+id/tvMyPostLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="동명동"
-        android:textSize="14sp"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvMyPostTime"
         app:layout_constraintStart_toStartOf="@+id/tvMyPostContent"
-        app:layout_constraintTop_toBottomOf="@+id/tvMyPostContent" />
+        app:layout_constraintTop_toTopOf="@+id/tvMyPostTime" />
 
     <TextView
 
@@ -67,10 +67,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="5시간전"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tvMyPostLocation"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tvMyPostLocation"
-        app:layout_constraintTop_toTopOf="@+id/tvMyPostLocation" />
+        app:layout_constraintTop_toTopOf="@+id/imgMyPostHeart" />
 
     <ImageView
 
@@ -78,7 +78,7 @@
         android:layout_width="30dp"
 
         android:layout_height="30dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/tvMyPostHeartCount"
         app:layout_constraintEnd_toStartOf="@+id/tvMyPostHeartCount"
         app:layout_constraintTop_toTopOf="@+id/tvMyPostHeartCount"
@@ -89,30 +89,30 @@
         android:id="@+id/tvMyPostHeartCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:text="1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvMyPostContent" />
+        app:layout_constraintBottom_toBottomOf="@+id/imgMyPostComment"
+        app:layout_constraintEnd_toStartOf="@+id/imgMyPostComment"
+        app:layout_constraintTop_toTopOf="@+id/imgMyPostComment" />
 
     <TextView
 
         android:id="@+id/tvMyPostCommentCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:text="2"
-        app:layout_constraintBottom_toBottomOf="@+id/imgMyPostHeart"
-        app:layout_constraintEnd_toStartOf="@+id/imgMyPostHeart"
-        app:layout_constraintTop_toTopOf="@+id/imgMyPostHeart" />
+        android:layout_marginTop="24dp"
+        android:text="3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/tvMyPostContent"
+        app:layout_constraintTop_toBottomOf="@+id/tvMyPostContent" />
 
     <ImageView
 
         android:id="@+id/imgMyPostComment"
-        android:layout_width="30dp"
+        android:layout_width="25dp"
 
-        android:layout_height="30dp"
-        android:layout_marginEnd="16dp"
+        android:layout_height="25dp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/tvMyPostCommentCount"
         app:layout_constraintEnd_toStartOf="@+id/tvMyPostCommentCount"
         app:layout_constraintTop_toTopOf="@+id/tvMyPostCommentCount"
@@ -121,20 +121,38 @@
     <Button
         android:id="@+id/btnMyPostEdit"
         android:layout_width="60dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/button_border"
         android:text="수정"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/btnMyPostDel"
+        app:layout_constraintEnd_toStartOf="@+id/btnMyPostDel"
+        app:layout_constraintTop_toTopOf="@+id/btnMyPostDel" />
 
     <Button
         android:id="@+id/btnMyPostDel"
         android:layout_width="60dp"
-        android:layout_height="36dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/button_border"
+        android:backgroundTint="@color/mainColor"
         android:text="삭제"
-        app:layout_constraintEnd_toEndOf="@+id/btnMyPostEdit"
-        app:layout_constraintStart_toStartOf="@+id/btnMyPostEdit"
-        app:layout_constraintTop_toBottomOf="@+id/btnMyPostEdit" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="38dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="20dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

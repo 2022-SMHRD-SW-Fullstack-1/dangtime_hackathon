@@ -47,7 +47,7 @@
         android:id="@+id/tvDetailTown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="24dp"
         android:text="동명동"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@+id/tvPostDetailContent"
@@ -60,6 +60,7 @@
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:background="@android:color/transparent"
         android:src="@drawable/dogprofile"
         app:civ_border_color="#000000"
@@ -82,20 +83,20 @@
         android:id="@+id/tvDetailComentCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="24dp"
         android:text="2"
-        app:layout_constraintBottom_toBottomOf="@+id/imgPostDetailHeart"
-        app:layout_constraintEnd_toStartOf="@+id/imgPostDetailHeart"
-        app:layout_constraintTop_toTopOf="@+id/imgPostDetailHeart" />
+        app:layout_constraintEnd_toEndOf="@+id/tvPostDetailContent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPostDetailContent" />
 
     <TextView
         android:id="@+id/tvPostDetailHeartCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:text="1"
-        app:layout_constraintEnd_toEndOf="@+id/tvPostDetailContent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPostDetailContent" />
+        app:layout_constraintBottom_toBottomOf="@+id/imgComent"
+        app:layout_constraintEnd_toStartOf="@+id/imgComent"
+        app:layout_constraintTop_toTopOf="@+id/imgComent" />
 
     <TextView
         android:id="@+id/tvPostDetailComentCount2"
