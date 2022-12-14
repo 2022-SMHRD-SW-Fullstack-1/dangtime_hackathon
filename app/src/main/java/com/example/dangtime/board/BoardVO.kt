@@ -1,4 +1,4 @@
 package com.example.dangtime.board
 
-class BoardVO(var commentCount : String = "",var content : String = "",var like : String = "",var time : String = "", var uid : String = "") {
+class BoardVO(var commentCount : Int = 0,var content : String = "",var like : Int = 0,var time : String = "", var uid : String = "") {
 }

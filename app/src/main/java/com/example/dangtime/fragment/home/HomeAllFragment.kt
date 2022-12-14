@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dangtime.R
+import com.example.dangtime.util.FBAuth
 import com.example.dangtime.util.FBAuth.Companion.auth
 import com.example.dangtime.util.FBdatabase
 import com.google.firebase.database.DataSnapshot
@@ -150,7 +151,7 @@ class HomeAllFragment : Fragment() {
         // bookmarklist경로에 있는 데이터를 다 가지고 오자
         // 게시물의 uid값 ---> bookmarkList
 
-        val postlistener2 = object : ValueEventListener{
+        val postlistener3 = object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
 
                 likeList.clear()
@@ -169,7 +170,7 @@ class HomeAllFragment : Fragment() {
             }
 
         }
-        FBdatabase.getLikeRef().addValueEventListener(postlistener2)
+        FBdatabase.getLikeRef().child(FBAuth.getUid()).addValueEventListener(postlistener3)
     }
 
 

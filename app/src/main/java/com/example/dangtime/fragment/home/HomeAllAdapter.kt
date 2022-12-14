@@ -25,7 +25,7 @@ class HomeAllAdapter(
     var keyData: ArrayList<HomePostVO>,
     var data: ArrayList<ListVO>,
     var postUid: ArrayList<String>,
-    var likeList : ArrayList<String>
+    var likeList: ArrayList<String>
 ) : RecyclerView.Adapter<HomeAllAdapter.ViewHolder>() {
 
 
@@ -97,7 +97,6 @@ class HomeAllAdapter(
         FBdatabase.getMemberRef().addValueEventListener(pfListener)
 
 
-
         val pfListener2 = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 holder.tvContent.text = keyData[position].content
@@ -106,13 +105,15 @@ class HomeAllAdapter(
                 holder.tvCommentCount.text = "0"
                 holder.tvHeratCount.text = keyData[position].like.toString()
                 holder.imgEdit.setImageResource(R.drawable.menu)
-                var clickHeart = position
-                if (clickHeart === 0) {
-                    holder.imgHeart.setImageResource(R.drawable.emptyheart)
-                } else {
-                    holder.imgHeart.setImageResource(R.drawable.fullheart)
-                }
 
+
+                Log.d("라이크리스트",postUid[position])
+
+                if (likeList.contains(postUid[position])) {
+                    holder.imgHeart.setImageResource(R.drawable.fullheart)
+                } else {
+                    holder.imgHeart.setImageResource(R.drawable.emptyheart)
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -122,35 +123,38 @@ class HomeAllAdapter(
 
 
 
+        Log.d("keyData", keyData[position].like.toString())
+
+
+
+        holder.imgHeart.setOnClickListener {
+            var likeSet = keyData[position].like
 
 
 
 
-        holder.imgHeart.setOnClickListener{
 
             //Firebase에 있는 bookmarklist로 접근
-
-
+            // Log.d("라이크리스트", likeList.toString())
             // 누가 북마크를 눌렀는지 + 북마크 키값 Firebase에저장하기
-           FBdatabase.getLikeRef().child(FBAuth.getUid()).child(postUid[position]).setValue("good")
+            FBdatabase.getLikeRef().child(FBAuth.getUid()).child(postUid[position]).setValue("good")
 
             // 이미 저장이 되어있는 게시물인지 아닌지
             // bookmarkList에 해당 게시물이 포함되어있는지
-            if(likeList.contains(postUid[position])){
-                //북마크가 리스트에포함 되어있다면 취소
-                // database에서 해당 keyData를 삭제
-                //imgbookmark를 하얗게 만들자
+            if (likeList.contains(postUid[position])) {
+//                val set = (likeSet - 1).toString()
+//                Log.d("세팅1", set)
+                FBdatabase.getLikeRef().child(FBAuth.getUid()).child(postUid[position])
+                    .removeValue()
 
-                FBdatabase.getLikeRef().child(FBAuth.getUid()).child(postUid[position]).removeValue()
+                FBdatabase.getPostRef().child(postUid[position]).child("like").setValue(keyData[position].like-1)
 
-                // holder.imgBookMark.setImageResource(R.drawable.bookmark_white)
+            } else {
 
-            }else{
-                //북마크가 리스트에 포함 되어있지 않다면 추가
-                // database에 해당 keyData를 추가
-                // imgbookmark를 까맣게 만들자
-               FBdatabase.getLikeRef().child(FBAuth.getUid()).child(postUid[position]).setValue("good")
-                //holder.imgBookMark.setImageResource(R.drawable.bookmark_color)
+//                Log.d("세팅2", set)
+                FBdatabase.getLikeRef().child(FBAuth.getUid()).child(postUid[position])
+                    .setValue("good")
+                FBdatabase.getPostRef().child(postUid[position]).child("like").setValue(keyData[position].like+1)
             }
         }
 
