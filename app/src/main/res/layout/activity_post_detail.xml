@@ -44,7 +44,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvPostDetailViewCount" />
 
     <TextView
-        android:id="@+id/tvPostDetailTown"
+        android:id="@+id/tvDetailTown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
@@ -157,9 +157,9 @@
         android:layout_marginStart="16dp"
         android:text="5시간전"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tvPostDetailTown"
-        app:layout_constraintStart_toEndOf="@+id/tvPostDetailTown"
-        app:layout_constraintTop_toTopOf="@+id/tvPostDetailTown" />
+        app:layout_constraintBottom_toBottomOf="@+id/tvDetailTown"
+        app:layout_constraintStart_toEndOf="@+id/tvDetailTown"
+        app:layout_constraintTop_toTopOf="@+id/tvDetailTown" />
 
     <ImageView
         android:id="@+id/imgPostDetailEdit"

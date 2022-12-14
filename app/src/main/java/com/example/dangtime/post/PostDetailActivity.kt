@@ -4,20 +4,15 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dangtime.R
-import com.example.dangtime.board.BoardVO
-import com.example.dangtime.fragment.home.HomePostVO
-import com.example.dangtime.fragment.home.ListVO
 import com.example.dangtime.post.HomeActivity
 import com.example.dangtime.post.PostCommentVO
 import com.example.dangtime.post.PostDetailAdapter
-import com.example.dangtime.post.PostDetailVO
 import com.example.dangtime.util.FBAuth
 import com.example.dangtime.util.FBdatabase
 import com.google.firebase.database.DataSnapshot
@@ -40,7 +35,7 @@ class PostDetailActivity : AppCompatActivity() {
         val tvPostDetailContent = findViewById<TextView>(R.id.tvPostDetailContent)
         val tvPostDetailName = findViewById<TextView>(R.id.tvPostDetailName)
         val tvPostDetailTime = findViewById<TextView>(R.id.tvPostDetailTime)
-        val tvPostDetailTown = findViewById<TextView>(R.id.tvPostDetailTown)
+        val tvPostDetailTown = findViewById<TextView>(R.id.tvDetailTown)
         val tvPostDetailHeartCount = findViewById<TextView>(R.id.tvPostDetailHeartCount)
         val tvPostDetailComentCount2 = findViewById<TextView>(R.id.tvPostDetailComentCount2)
         val tvPostDetailViewCount = findViewById<TextView>(R.id.tvPostDetailViewCount)
