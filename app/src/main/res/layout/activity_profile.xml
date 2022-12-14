@@ -36,6 +36,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -50,20 +51,17 @@
             android:layout_width="match_parent"
             android:layout_height="800dp">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/civProfile"
+
+            <ImageView
+                android:id="@+id/imgPf"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="32dp"
-                android:background="@android:color/transparent"
-                android:src="@drawable/dogprofile"
-                app:civ_border_color="#000000"
-                app:civ_border_overlay="true"
-                app:civ_border_width="1dp"
+                android:layout_marginTop="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
                 android:id="@+id/tvProfileName"
@@ -74,17 +72,14 @@
                 android:textColor="#000000"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/civProfile"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintEnd_toEndOf="@+id/imgPf"
+                app:layout_constraintStart_toStartOf="@+id/imgPf"
+                app:layout_constraintTop_toBottomOf="@+id/imgPf" />
 
             <TextView
                 android:id="@+id/tvProfileEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:text="aaa@aaa.com"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="@+id/tvProfileName"

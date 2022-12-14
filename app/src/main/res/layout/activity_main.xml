@@ -41,7 +41,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvProfileName"
+        android:id="@+id/tvProfileName2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -57,9 +57,22 @@
         android:id="@+id/imgDetail"
         android:layout_width="wrap_content"
         android:layout_height="400dp"
-        app:layout_constraintEnd_toEndOf="@+id/tvProfileName"
-        app:layout_constraintStart_toStartOf="@+id/tvProfileName"
-        app:layout_constraintTop_toBottomOf="@+id/tvProfileName"
+        app:layout_constraintBottom_toTopOf="@+id/btnGuest"
+        app:layout_constraintEnd_toEndOf="@+id/tvProfileName2"
+        app:layout_constraintStart_toStartOf="@+id/tvProfileName2"
+        app:layout_constraintTop_toBottomOf="@+id/tvProfileName2"
         app:srcCompat="@drawable/main" />
+
+    <Button
+        android:id="@+id/btnGuest"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_rectangle_button"
+        android:text="일단 구경할게요!"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btnMain"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

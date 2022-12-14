@@ -45,8 +45,10 @@ class EditProfileActivity : AppCompatActivity() {
         val etPfEditNick = findViewById<EditText>(R.id.etPfEditNick)
         val btnPfEdit = findViewById<Button>(R.id.btnPfEdit)
 
+
         etPfEditName.hint = intent.getStringExtra("dogName")
         etPfEditNick.hint = intent.getStringExtra("dogNick")
+
 
 
 
@@ -65,12 +67,25 @@ class EditProfileActivity : AppCompatActivity() {
         }
 
         btnPfEdit.setOnClickListener {
-            val dogName = etPfEditName.text.toString()
-            val dogNick = etPfEditNick.text.toString()
+            var dogName: String
+            var dogNick: String
+            if (etPfEditName != null) {
+                dogName = etPfEditName.text.toString()
+            } else {
+                dogName = etPfEditName?.hint.toString()
+            }
+
+            if (etPfEditNick != null) {
+                dogNick = etPfEditNick.text.toString()
+            } else {
+                dogNick = etPfEditNick?.hint.toString()
+            }
             val address = intent.getStringExtra("address")
-            FBdatabase.getMemberRef().child(uid).setValue(MemberVO(uid, address!! , dogName!!, dogNick!!))
+            FBdatabase.getMemberRef().child(uid)
+                .setValue(MemberVO(uid, address!!, dogName!!, dogNick!!))
 
             imgUpload()
+
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
 
@@ -82,7 +97,7 @@ class EditProfileActivity : AppCompatActivity() {
     fun imgUpload() {
         val storage = Firebase.storage
         val storageRef = storage.reference
-        val mountainRef = storageRef.child("$uid.png")
+        val mountainRef = storageRef.child("/userImages/$uid/photo")
         imgPfEdit.isDrawingCacheEnabled = true
         imgPfEdit.buildDrawingCache()
         val bitmap = (imgPfEdit.drawable as BitmapDrawable).bitmap
