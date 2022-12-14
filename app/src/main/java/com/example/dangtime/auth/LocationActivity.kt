@@ -64,17 +64,13 @@ class LocationActivity : AppCompatActivity() {
                 .addOnSuccessListener { location: Location? ->
                     var geocoder = Geocoder(this, Locale.KOREA)
                     if (location != null) {
-                        Toast.makeText(
-                            this,
-                            "현재위치..." + location.latitude + " / " + location.longitude,
-                            Toast.LENGTH_SHORT
-                        ).show()
                         val addrList =
                             geocoder.getFromLocation(location.latitude, location.longitude, 1)
                         for (addr in addrList) {
                             val splitedAddr = addr.getAddressLine(0).split(" ")
                             address = splitedAddr as ArrayList<String>
                         }
+                        Toast.makeText(this, "$address", Toast.LENGTH_SHORT).show()
                         lat = location.latitude
                         long = location.longitude
 
