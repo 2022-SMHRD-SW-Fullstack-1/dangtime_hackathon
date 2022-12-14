@@ -1,6 +1,6 @@
 package com.example.dangtime.post
 
-import android.app.Activity
+
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -27,7 +27,7 @@ import com.example.dangtime.util.FBAuth
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
-import de.hdodenhof.circleimageview.CircleImageView
+
 
 class HomeActivity : AppCompatActivity() {
     lateinit var imgHomeProfile : ImageView
@@ -65,6 +65,7 @@ class HomeActivity : AppCompatActivity() {
 
 
         val request1 = intent.getStringExtra("request1")
+        val request2 = intent.getStringExtra("request2")
 
         if (request1 == "100") {
             bnv.selectedItemId = R.id.bnvMainTab3
@@ -73,13 +74,6 @@ class HomeActivity : AppCompatActivity() {
                     MyPostFragment()
                 ).commit()
             changeMyPostFragment(1)
-        }else if(request1 == "200"){
-            bnv.selectedItemId = R.id.bnvMainTab3
-            supportFragmentManager.beginTransaction().replace(
-                R.id.flHome,
-                MyPostFragment()
-            ).commit()
-            changeMyPostFragment(2)
         } else {
             supportFragmentManager.beginTransaction().replace(
                 R.id.flHome,
@@ -87,6 +81,9 @@ class HomeActivity : AppCompatActivity() {
             ).commit()
             bnv.selectedItemId = R.id.bnvMainTab2
         }
+
+
+
 
         bnv.setOnItemSelectedListener { item ->
             when (item.itemId) {

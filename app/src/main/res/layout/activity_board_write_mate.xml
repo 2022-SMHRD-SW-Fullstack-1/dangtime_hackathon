@@ -9,36 +9,32 @@
     <TextView
         android:id="@+id/tvWriteMateTitle"
         android:layout_width="0dp"
-        android:layout_height="60sp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="76dp"
-        android:layout_marginEnd="16dp"
-        android:text="산책 메이트를 선물해 주세요"
+        android:layout_height="wrap_content"
+        android:text="산책 메이트를 선물해주세요"
         android:textColor="#000000"
-        android:textSize="24sp"
+        android:textSize="28sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/tvWriteMateTitleTo"
+        app:layout_constraintTop_toBottomOf="@+id/tvWriteMateTitleTo" />
 
     <TextView
         android:id="@+id/tvWriteMateTitleTo"
-        android:layout_width="0dp"
-        android:layout_height="48sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="효지에게"
         android:textColor="#000000"
-        android:textSize="24sp"
+        android:textSize="28sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tvWriteMateTitle"
-        app:layout_constraintEnd_toEndOf="@+id/tvWriteMateTitle"
-        app:layout_constraintStart_toStartOf="@+id/tvWriteMateTitle" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline21" />
 
     <ImageView
         android:id="@+id/imgMateLoad"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="50dp"
         app:layout_constraintStart_toStartOf="@+id/tvWriteMateTitle"
         app:layout_constraintTop_toBottomOf="@+id/tvWriteMateTitle"
         app:srcCompat="@android:drawable/ic_menu_gallery" />
@@ -54,32 +50,53 @@
 
     <EditText
         android:id="@+id/etWriteStoryContent"
-        android:layout_width="0dp"
+        android:layout_width="380dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="내용을 입력해 주세요."
         android:inputType="textMultiLine"
         android:scrollHorizontally="false"
-        app:layout_constraintEnd_toEndOf="@+id/tvWriteMateTitle"
-        app:layout_constraintStart_toStartOf="@+id/imgMateLoad"
+        app:layout_constraintStart_toStartOf="@+id/tvProfileEmail"
         app:layout_constraintTop_toBottomOf="@+id/tvProfileEmail" />
 
     <TextView
         android:id="@+id/tvProfileEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
         android:text="내용입력"
         app:layout_constraintStart_toStartOf="@+id/imgMateLoad"
         app:layout_constraintTop_toBottomOf="@+id/imgMateLoad" />
 
     <Button
         android:id="@+id/btnWriteMateUpload"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:background="@drawable/button"
         android:text="업로드"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="66dp" />
+
+    <ImageView
+        android:id="@+id/imgMtBack"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline21"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/back" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -21,8 +21,12 @@ class BoardWriteStoryActivity : AppCompatActivity() {
         imgLoad = findViewById(R.id.imgWriteStory)
         val etContent = findViewById<EditText>(R.id.etWriteStory)
         val tvTo = findViewById<TextView>(R.id.tvWriteStoryTitle)
-
+        val imgStrBack = findViewById<ImageView>(R.id.imgStrBack)
         val btnUpload = findViewById<Button>(R.id.btnWriteStoryUpload)
+
+        imgStrBack.setOnClickListener {
+            finish()
+        }
 
         imgLoad.setOnClickListener{
 

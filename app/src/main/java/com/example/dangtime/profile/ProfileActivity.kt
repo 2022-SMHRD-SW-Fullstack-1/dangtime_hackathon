@@ -115,10 +115,9 @@ class ProfileActivity : AppCompatActivity() {
 
         tvPfReplyCnt.setOnClickListener{
             val intent = Intent(this@ProfileActivity, HomeActivity::class.java)
-            intent.putExtra("request1", "200")
+            intent.putExtra("request1", "100")
             startActivity(intent)
             finish()
-
         }
 
 
