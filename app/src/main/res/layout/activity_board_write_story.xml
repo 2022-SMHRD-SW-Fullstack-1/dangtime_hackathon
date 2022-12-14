@@ -11,7 +11,7 @@
         android:id="@+id/tvWriteStoryTitle"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="댕댕이들이랑 "
         android:textColor="#000000"
@@ -68,7 +68,7 @@
 
     <EditText
         android:id="@+id/etWriteStory"
-        android:layout_width="380dp"
+        android:layout_width="360dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:ems="10"
