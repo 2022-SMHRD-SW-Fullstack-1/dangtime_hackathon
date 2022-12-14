@@ -45,7 +45,6 @@ class MyPostPostFragment : Fragment() {
 
         FBdatabase.getMemberRef().get().addOnSuccessListener {
             val memberData = it.child(FBAuth.getUid()).getValue(MemberVO::class.java)
-            Log.d("포스트 멤버", memberData.toString())
             if (memberData != null) {
                 memberList.add(memberData)
             }

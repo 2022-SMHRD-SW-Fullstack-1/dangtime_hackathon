@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dangtime.R
@@ -29,6 +30,7 @@ class BookmarkAllFragment : Fragment() {
     val auth = Firebase.auth
     val likeList = ArrayList<String>()
     val loginId = FBAuth.getUid()
+    val memberList = ArrayList<MemberVO>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,28 +40,45 @@ class BookmarkAllFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_bookmark_all, container, false)
         val rvBookAll = view.findViewById<RecyclerView>(R.id.rvBookAll)
 
-
+        FBdatabase.getMemberRef().get().addOnSuccessListener {
+            val memberData = it.child(FBAuth.getUid()).getValue(MemberVO::class.java)
+            if (memberData != null) {
+                memberList.add(memberData)
+            }
+        }
 
         getLikePostData()
 
-        adapter = BookmarkAllAdapter(requireContext(), postList, loginId)
+        adapter = BookmarkAllAdapter(requireContext(), postList, memberList)
 
         rvBookAll.adapter = adapter
-        rvBookAll.layoutManager = LinearLayoutManager(requireContext())
+        rvBookAll.layoutManager = GridLayoutManager(requireContext(), 1)
 
         return view
     }
 
     fun getLikePostData() {
+
+        likeRef.addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                for (model in snapshot.child(loginId).children) {
+                    likeList.add(model.key.toString())
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+
         postRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
 
                 for (model in snapshot.children) {
-                    Log.d("댓글", model.toString())
-                    Log.d("댓글 key", model.key.toString())
-                    Log.d("댓글 value", model.value.toString())
                     val item = model.getValue(HomePostVO::class.java)
-                    if (item != null) {
+                    if (item != null && likeList.contains(model.key)) {
                         postList.add(item)
                     }
                 }
@@ -72,16 +91,7 @@ class BookmarkAllFragment : Fragment() {
 
         })
 
-        likeRef.addValueEventListener(object : ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                Log.d("댓글 스냅샷", snapshot.children.toString())
-            }
 
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-
-        })
     }
 
 }
