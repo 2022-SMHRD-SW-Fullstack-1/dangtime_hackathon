@@ -15,7 +15,8 @@ class SplashActivity : AppCompatActivity() {
                 MainActivity::class.java)
             // Intent 실행
             startActivity(intent)
-        },3000)
+        finish()
+        },2000)
 
     }
 }
