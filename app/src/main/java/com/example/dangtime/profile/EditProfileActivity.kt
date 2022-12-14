@@ -50,10 +50,6 @@ class EditProfileActivity : AppCompatActivity() {
         etPfEditNick.hint = intent.getStringExtra("dogNick")
 
 
-
-
-
-
         imgPfEditBack.setOnClickListener {
             finish()
         }
@@ -69,16 +65,16 @@ class EditProfileActivity : AppCompatActivity() {
         btnPfEdit.setOnClickListener {
             var dogName: String
             var dogNick: String
-            if (etPfEditName != null) {
-                dogName = etPfEditName.text.toString()
-            } else {
+            if (etPfEditName.text.isEmpty()) {
                 dogName = etPfEditName?.hint.toString()
+            } else {
+                dogName = etPfEditName.text.toString()
             }
 
-            if (etPfEditNick != null) {
-                dogNick = etPfEditNick.text.toString()
-            } else {
+            if (etPfEditNick.text.isEmpty()) {
                 dogNick = etPfEditNick?.hint.toString()
+            } else {
+                dogNick = etPfEditNick.text.toString()
             }
             val address = intent.getStringExtra("address")
             FBdatabase.getMemberRef().child(uid)
@@ -88,7 +84,7 @@ class EditProfileActivity : AppCompatActivity() {
 
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
-
+            finish()
         }
 
 

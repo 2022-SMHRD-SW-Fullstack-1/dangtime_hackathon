@@ -1,60 +1,74 @@
 package com.example.dangtime.fragment.mypost
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.dangtime.R
+import com.example.dangtime.fragment.home.HomePostVO
+import com.example.dangtime.util.FBAuth
+import com.example.dangtime.util.FBdatabase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [MyPostPostFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class MyPostPostFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
+    val postList= ArrayList<HomePostVO>()
+    lateinit var adapter: MyPostCommentAdapter
+    val postRef = FBdatabase.getPostRef()
+    val memberRef = FBdatabase.getMemberRef()
+    val loginId = FBAuth.getUid()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_post_post, container, false)
+        getMyPostCommentData()
+
+        val view = inflater.inflate(R.layout.fragment_my_post_post, container, false)
+        val rvMyPostPost = view.findViewById<RecyclerView>(R.id.rvMyPostPost)
+
+
+//        postRef.get().addOnSuccessListener {
+//            Log.d("포스트", it.child("post").toString())
+//            Log.d("포스트 children", it.children.toString())
+//            Log.d("포스트 key", it.key.toString())
+//        }
+
+
+
+        adapter = MyPostCommentAdapter(requireContext(), postList, loginId)
+
+        rvMyPostPost.adapter = adapter
+        rvMyPostPost.layoutManager = GridLayoutManager(requireContext(), 1)
+
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MyPostPostFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MyPostPostFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    fun getMyPostCommentData() {
+        val postListener = object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (model in snapshot.children) {
+                    val item = model.getValue(HomePostVO::class.java)
+                    if (item != null && item.uid == loginId) {
+                        postList.add(item)
+                    }
                 }
+                adapter.notifyDataSetChanged()
             }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        }
+
+            postRef.addValueEventListener(postListener)
     }
 }
