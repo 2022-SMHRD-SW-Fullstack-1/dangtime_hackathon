@@ -32,6 +32,7 @@
         android:id="@+id/tvHomeTitle"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="16dp"
         android:gravity="center_vertical"
         android:paddingLeft="8dp"
         android:text="댕댕이 모여라"
