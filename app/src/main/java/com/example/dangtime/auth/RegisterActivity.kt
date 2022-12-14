@@ -32,7 +32,7 @@ class RegisterActivity : AppCompatActivity() {
         val imgRegisterBack = findViewById<ImageView>(R.id.imgRegisterBack)
 
         val address = intent.getStringExtra("address")
-        Log.d("address", address!!)
+//        Log.d("address", address!!)
         tvRegisterAd.setText(address)
 
         // auth 를 초기화

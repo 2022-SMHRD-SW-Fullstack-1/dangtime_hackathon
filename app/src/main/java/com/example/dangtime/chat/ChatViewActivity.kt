@@ -81,6 +81,7 @@ class ChatViewActivity : AppCompatActivity() {
                         null
                     }).create()
             builder.show()
+
         }
 
         imgChatSend.setOnClickListener {
@@ -255,6 +256,7 @@ class ChatViewActivity : AppCompatActivity() {
 
         override fun getItemCount(): Int {
             return comments.size
+
         }
     }
 }
