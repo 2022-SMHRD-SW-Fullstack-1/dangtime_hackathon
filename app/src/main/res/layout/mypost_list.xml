@@ -79,6 +79,7 @@
         android:layout_width="30dp"
 
         android:layout_height="30dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/tvMyPostHeartCount"
@@ -123,23 +124,30 @@
         android:id="@+id/btnMyPostEdit"
         android:layout_width="60dp"
         android:layout_height="32dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="8dp"
         android:background="@drawable/button_border"
         android:text="수정"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/btnMyPostDel"
+        app:layout_constraintEnd_toStartOf="@+id/btnMyPostDel"
+        app:layout_constraintTop_toTopOf="@+id/btnMyPostDel" />
 
     <Button
         android:id="@+id/btnMyPostDel"
         android:layout_width="60dp"
         android:layout_height="32dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/button_border"
         android:backgroundTint="@color/mainColor"
         android:text="삭제"
-        app:layout_constraintEnd_toEndOf="@+id/btnMyPostEdit"
-        app:layout_constraintStart_toStartOf="@+id/btnMyPostEdit"
-        app:layout_constraintTop_toBottomOf="@+id/btnMyPostEdit" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="38dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
