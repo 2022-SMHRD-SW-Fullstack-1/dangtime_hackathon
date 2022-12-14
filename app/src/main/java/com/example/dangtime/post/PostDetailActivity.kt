@@ -85,6 +85,8 @@ class PostDetailActivity : AppCompatActivity() {
             //var conmment : String = "" ,var count : Int = 0 , var time : String = "", var uid : String = ""
             FBdatabase.getCommentRef().child("$postUid").child(key)
                 .setValue(PostCommentVO("$comment", 0, "$time", "$uid"))
+            FBdatabase.getCommentRef().child("$postUid").child("commentCount")
+                .setValue()
         }
 
 
@@ -103,8 +105,7 @@ class PostDetailActivity : AppCompatActivity() {
                 tvPostDetailHeartCount.text =
                     (snapshot.child("$postUid").child("like").value.toString())
                 tvPostDetailTime.text = (snapshot.child("$postUid").child("time").value.toString())
-                tvPostDetailContent.text =
-                    (snapshot.child("$postUid").child("content").value.toString())
+                tvPostDetailContent.text = (snapshot.child("$postUid").child("content").value.toString())
 
             }
 
@@ -146,8 +147,8 @@ class PostDetailActivity : AppCompatActivity() {
                         commentList.add(commentData)
                     }
                     commentUid.add(model.key.toString())
-                    Log.d("댓글111",commentList.toString())
-                    Log.d("유아이디",commentUid.toString())
+                    Log.d("댓글댓글",commentList.toString())
+                    Log.d("댓글 유아이디",commentUid.toString())
                 }
 
 

@@ -20,7 +20,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="5시간전"
-        app:layout_constraintBottom_toBottomOf="@+id/imgRvPostDetail"
         app:layout_constraintStart_toStartOf="@+id/tvRvPostDetailContent"
         app:layout_constraintTop_toBottomOf="@+id/tvRvPostDetailContent" />
 
@@ -28,11 +27,21 @@
         android:id="@+id/tvRvPostDetailContent"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:text="효지님 반가워요 ㅎㅎ"
-        app:layout_constraintBottom_toBottomOf="@+id/imgRvPostDetail"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tvRvPostDetailName"
+        app:layout_constraintTop_toBottomOf="@+id/tvRvPostDetailName" />
+
+    <TextView
+        android:id="@+id/tvRvPostDetailName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="효지"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/imgRvPostDetail"
         app:layout_constraintStart_toEndOf="@+id/imgRvPostDetail"
         app:layout_constraintTop_toTopOf="@+id/imgRvPostDetail" />
 
