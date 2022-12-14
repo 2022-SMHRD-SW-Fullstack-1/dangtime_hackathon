@@ -40,14 +40,14 @@
         android:id="@+id/tvMyPostContent"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         android:text="저는 효지에요 댕댕이 친구 구합니다 ㅎㅎ"
         android:textColor="#000000"
         android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/imgMyPostProfilePic"
-        app:layout_constraintTop_toBottomOf="@+id/imgMyPostProfilePic" />
+        app:layout_constraintTop_toTopOf="@+id/guideline23" />
 
     <TextView
 
@@ -135,7 +135,7 @@
         android:id="@+id/btnMyPostDel"
         android:layout_width="60dp"
         android:layout_height="32dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/button_border"
         android:backgroundTint="@color/mainColor"
