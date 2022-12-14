@@ -56,9 +56,7 @@ class MyPostPostFragment : Fragment() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (model in snapshot.children) {
                     val item = model.getValue(HomePostVO::class.java)
-                    Log.d("포스트 아이템", item.toString())
-                    if (item != null) {
-
+                    if (item != null && item.uid == loginId) {
                         postList.add(item)
                     }
                 }
@@ -70,12 +68,7 @@ class MyPostPostFragment : Fragment() {
             }
 
         }
-        memberRef.get().addOnSuccessListener {
-            Log.d("포스트 member", it.child("member").value.toString())
-        }
+
             postRef.addValueEventListener(postListener)
-
-
-
     }
 }
