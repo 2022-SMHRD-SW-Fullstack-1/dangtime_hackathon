@@ -14,8 +14,8 @@
         android:layout_marginTop="40dp"
         android:text="이메일"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPostDetailName" />
+        app:layout_constraintStart_toStartOf="@+id/tvDetailName"
+        app:layout_constraintTop_toBottomOf="@+id/tvDetailName" />
 
     <EditText
         android:id="@+id/etLoginEmail"
@@ -41,7 +41,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline3" />
 
     <TextView
-        android:id="@+id/tvPostDetailName"
+        android:id="@+id/tvDetailName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"

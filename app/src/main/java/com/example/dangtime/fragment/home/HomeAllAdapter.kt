@@ -78,17 +78,16 @@ class HomeAllAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
 
-
-
-
-
-
-
         var uid = keyData[position].uid
+
+//
+//        Log.d("라이크", keyData[position].like.toString())
+
 
         val pfListener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-
+//                Log.d("이거다1", uid)
+//                Log.d("이거다2", snapshot.child("$uid").child("dogNick").value.toString())
                 holder.tvHomeAllName.text = snapshot.child("$uid").child("dogNick").value.toString()
                 holder.tvTown.text = snapshot.child("$uid").child("address").value.toString()
 
@@ -110,7 +109,7 @@ class HomeAllAdapter(
                 holder.imgEdit.setImageResource(R.drawable.menu)
 
 
-                Log.d("라이크리스트", postUid[position])
+                Log.d("라이크리스트",postUid[position])
 
                 if (likeList.contains(postUid[position])) {
                     holder.imgHeart.setImageResource(R.drawable.fullheart)
