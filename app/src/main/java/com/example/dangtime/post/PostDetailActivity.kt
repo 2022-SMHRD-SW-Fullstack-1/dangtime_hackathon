@@ -117,6 +117,7 @@ class PostDetailActivity : AppCompatActivity() {
                     (snapshot.child("$postUid").child("like").value.toString())
                 tvPostDetailTime.text = (snapshot.child("$postUid").child("time").value.toString())
                 tvPostDetailContent.text = (snapshot.child("$postUid").child("content").value.toString())
+                tvPostDetailComentCount.text = (snapshot.child("$postUid").child("commentCount").value.toString())
             }
             override fun onCancelled(error: DatabaseError) {
             }
