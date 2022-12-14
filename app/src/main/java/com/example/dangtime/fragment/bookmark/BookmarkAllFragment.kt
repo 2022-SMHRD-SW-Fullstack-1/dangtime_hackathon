@@ -23,11 +23,12 @@ import com.google.firebase.ktx.Firebase
 class BookmarkAllFragment : Fragment() {
 
     val postList = ArrayList<HomePostVO>()
-    lateinit var adapter: MyPostCommentAdapter
+    lateinit var adapter: BookmarkAllAdapter
     val likeRef = FBdatabase.getLikeRef()
     val postRef = FBdatabase.getPostRef()
     val auth = Firebase.auth
-    val memberList = ArrayList<MemberVO>()
+    val likeList = ArrayList<String>()
+    val loginId = FBAuth.getUid()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,11 +38,11 @@ class BookmarkAllFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_bookmark_all, container, false)
         val rvBookAll = view.findViewById<RecyclerView>(R.id.rvBookAll)
 
-        val loginId = FBAuth.getUid()
+
 
         getLikePostData()
 
-        val adapter = BookmarkAllAdapter(requireContext(), postList, loginId)
+        adapter = BookmarkAllAdapter(requireContext(), postList, loginId)
 
         rvBookAll.adapter = adapter
         rvBookAll.layoutManager = LinearLayoutManager(requireContext())
@@ -63,6 +64,17 @@ class BookmarkAllFragment : Fragment() {
                     }
                 }
                 adapter.notifyDataSetChanged()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+
+        likeRef.addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                Log.d("댓글 스냅샷", snapshot.children.toString())
             }
 
             override fun onCancelled(error: DatabaseError) {
