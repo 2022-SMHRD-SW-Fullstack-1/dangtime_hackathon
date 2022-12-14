@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.ImageView
 import com.example.dangtime.R
 import com.example.dangtime.util.FBAuth.Companion.auth
 import com.example.dangtime.util.FBdatabase.Companion.database
@@ -20,8 +21,12 @@ class BoardChoice : AppCompatActivity() {
 
         val btnWriteMate =findViewById<Button>(R.id.btnWriteMate)
         val btnWriteStory = findViewById<Button>(R.id.btnWriteStory)
+        val imgChoiceBack = findViewById<ImageView>(R.id.imgChoiceBack)
         val userInfo = database.getReference("userInfo")//
 
+        imgChoiceBack.setOnClickListener {
+            finish()
+        }
 
         btnWriteMate.setOnClickListener {
 
@@ -48,6 +53,5 @@ class BoardChoice : AppCompatActivity() {
 
             startActivity(intent)
         }
-
     }
 }

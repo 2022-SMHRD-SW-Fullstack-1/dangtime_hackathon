@@ -1,5 +1,6 @@
 package com.example.dangtime.profile
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,6 +11,9 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.example.dangtime.R
 import com.example.dangtime.auth.LoginActivity
+import com.example.dangtime.fragment.home.HomeAllFragment
+import com.example.dangtime.fragment.mypost.MyPostFragment
+import com.example.dangtime.fragment.mypost.MyPostPostFragment
 import com.example.dangtime.post.HomeActivity
 import com.example.dangtime.util.FBAuth
 import com.example.dangtime.util.FBdatabase
@@ -104,12 +108,17 @@ class ProfileActivity : AppCompatActivity() {
 
         tvPfPostCnt.setOnClickListener {
             val intent = Intent(this@ProfileActivity, HomeActivity::class.java)
+            intent.putExtra("request1", "100")
             startActivity(intent)
+            finish()
         }
 
         tvPfReplyCnt.setOnClickListener{
             val intent = Intent(this@ProfileActivity, HomeActivity::class.java)
+            intent.putExtra("request1", "200")
             startActivity(intent)
+            finish()
+
         }
 
 
