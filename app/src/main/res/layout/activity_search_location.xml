@@ -64,13 +64,13 @@
         app:layout_constraintGuide_end="66dp" />
 
     <Button
-        android:id="@+id/btnSearchSearch"
+        android:id="@+id/btnSearchNext"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/button"
         android:insetTop="0dp"
         android:insetBottom="0dp"
-        android:text="검색하기"
+        android:text="다음"
         android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"
