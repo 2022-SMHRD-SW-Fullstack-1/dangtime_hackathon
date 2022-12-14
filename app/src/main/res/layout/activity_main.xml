@@ -31,7 +31,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="60dp"
         android:text="댕댕이 동네친구 만들기"
         android:textColor="@color/black"
         android:textSize="34sp"
@@ -41,10 +41,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvProfileName2"
+        android:id="@+id/tvProfileName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         android:text="우리 동네에는 어떤 댕댕이들이 살고 있을까요?"
         android:textColor="@color/black"
         android:textSize="20sp"
@@ -55,24 +55,13 @@
 
     <ImageView
         android:id="@+id/imgDetail"
-        android:layout_width="wrap_content"
+        android:layout_width="700dp"
         android:layout_height="400dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnGuest"
-        app:layout_constraintEnd_toEndOf="@+id/tvProfileName2"
-        app:layout_constraintStart_toStartOf="@+id/tvProfileName2"
-        app:layout_constraintTop_toBottomOf="@+id/tvProfileName2"
-        app:srcCompat="@drawable/main" />
-
-    <Button
-        android:id="@+id/btnGuest"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/shape_rectangle_button"
-        android:text="일단 구경할게요!"
-        android:textSize="16sp"
-        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/btnMain"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvProfileName"
+        app:layout_constraintVertical_bias="0.725"
+        app:srcCompat="@drawable/main" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
