@@ -2,6 +2,7 @@ package com.example.dangtime.fragment.post
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
@@ -12,24 +13,27 @@ class PostDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_post_detail)
 
-        val tvName = findViewById<TextView>(R.id.tvDetailName)
-        val tvHr = findViewById<TextView>(R.id.tvDetailHr)
-        val tvTown = findViewById<TextView>(R.id.tvDetailTown)
-        val tvCc = findViewById<TextView>(R.id.tvDetailComentCount)
-        val imgBack = findViewById<ImageView>(R.id.imgDetailBack)
-        val imgEdit = findViewById<ImageView>(R.id.imgDetailEdit)
-        val imgHeart = findViewById<ImageView>(R.id.imgDetailHeart)
-        val imgSend = findViewById<ImageView>(R.id.imgDetailSend)
-        val etText = findViewById<EditText>(R.id.etPfEditName)
-        val tvCc2 = findViewById<TextView>(R.id.tvDetailComentCount2)
-
-       // var postList = ArrayList<>()
-
-       // val adapter = PostDetailAdapter(this, )
+        val tvPostDetailContent = findViewById<TextView>(R.id.tvPostDetailContent)
+        val tvPostDetailName = findViewById<TextView>(R.id.tvPostDetailName)
+        val tvPostDetailTime = findViewById<TextView>(R.id.tvPostDetailTime)
+        val tvPostDetailTown = findViewById<TextView>(R.id.tvPostDetailTown)
+        val tvPostDetailHeartCount = findViewById<TextView>(R.id.tvPostDetailHeartCount)
+        val tvPostDetailComentCount2 = findViewById<TextView>(R.id.tvPostDetailComentCount2)
+        val tvPostDetailViewCount = findViewById<TextView>(R.id.tvPostDetailViewCount)
 
 
+        val imgPostDetailBack = findViewById<ImageView>(R.id.imgPostDetailBack)
+        val imgPostDetailHeart = findViewById<ImageView>(R.id.imgPostDetailHeart)
+        val imgPostDetailPuppy = findViewById<ImageView>(R.id.imgPostDetailPuppy)
+        val imgPostDetailSend = findViewById<ImageView>(R.id.imgPostDetailSend)
+        val imgPostDetailEdit = findViewById<ImageView>(R.id.imgPostDetailEdit)
 
 
+        // template = coment_list
+
+        var postInfo = intent.getStringExtra("postInfo")
+        var writerInfo = intent.getStringExtra("writerInfo")
+        var postUid = intent.getStringExtra("postUid")
 
 
     }

@@ -50,7 +50,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPfDltEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/tvPostDetailContent" />
 
     <EditText
         android:id="@+id/etPfDltCheck"
@@ -94,7 +94,7 @@
         app:layout_constraintGuide_end="66dp" />
 
     <TextView
-        android:id="@+id/tvPfDltEmail"
+        android:id="@+id/tvPostDetailContent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="110dp"

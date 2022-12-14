@@ -33,20 +33,20 @@ inner class ViewHolder(itemView: View) :RecyclerView.ViewHolder(itemView){
     var tvCc2 : TextView
 init {
 
-     tvName = itemView.findViewById<TextView>(R.id.tvDetailName)
-     tvHr = itemView.findViewById<TextView>(R.id.tvDetailHr)
+     tvName = itemView.findViewById<TextView>(R.id.tvPostDetailName)
+     tvHr = itemView.findViewById<TextView>(R.id.tvPostDetailTime)
      tvView = itemView.findViewById<TextView>(R.id.tvDetailView)
      tvContent = itemView.findViewById<TextView>(R.id.tv)
-     tvTown = itemView.findViewById<TextView>(R.id.tvDetailTown)
+     tvTown = itemView.findViewById<TextView>(R.id.tvPostDetailTown)
      tvCc =itemView.findViewById<TextView>(R.id.tvDetailComentCount)
      tvHeartCount = itemView.findViewById<TextView>(R.id.tvDetailHeartCount)
      imgDetail = itemView.findViewById<ImageView>(R.id.imgDetail)
-     imgBack = itemView.findViewById<ImageView>(R.id.imgDetailBack)
-     imgEdit = itemView.findViewById<ImageView>(R.id.imgDetailEdit)
-     imgHeart = itemView.findViewById<ImageView>(R.id.imgDetailHeart)
-     imgSend = itemView.findViewById<ImageView>(R.id.imgDetailSend)
-     etText = itemView.findViewById<EditText>(R.id.etPfEditName)
-     tvCc2 = itemView.findViewById<TextView>(R.id.tvDetailComentCount2)
+     imgBack = itemView.findViewById<ImageView>(R.id.imgPostDetailBack)
+     imgEdit = itemView.findViewById<ImageView>(R.id.imgPostDetailEdit)
+     imgHeart = itemView.findViewById<ImageView>(R.id.imgPostDetailHeart)
+     imgSend = itemView.findViewById<ImageView>(R.id.imgPostDetailSend)
+     etText = itemView.findViewById<EditText>(R.id.etPostDetail)
+     tvCc2 = itemView.findViewById<TextView>(R.id.tvPostDetailComentCount2)
 
 }
     }

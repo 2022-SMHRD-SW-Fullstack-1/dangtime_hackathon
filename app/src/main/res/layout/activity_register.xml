@@ -13,8 +13,8 @@
         android:ems="10"
         android:hint="올바른 이메일 형식을 입력해주세요"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="@+id/textView14"
-        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+        app:layout_constraintStart_toStartOf="@+id/tvRvPostDetailTime"
+        app:layout_constraintTop_toBottomOf="@+id/tvRvPostDetailTime" />
 
     <EditText
         android:id="@+id/etRegisterCheck"
@@ -37,7 +37,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/tvRvPostDetailTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -67,7 +67,7 @@
         app:layout_constraintTop_toBottomOf="@+id/etRegisterPw" />
 
     <TextView
-        android:id="@+id/tvDetailHr"
+        android:id="@+id/tvPostDetailTime"
         android:layout_width="260dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
@@ -108,8 +108,8 @@
         android:layout_height="wrap_content"
         android:text="광주 동구 동명동"
         android:textColor="#FF9800"
-        app:layout_constraintStart_toStartOf="@+id/tvDetailHr"
-        app:layout_constraintTop_toBottomOf="@+id/tvDetailHr" />
+        app:layout_constraintStart_toStartOf="@+id/tvPostDetailTime"
+        app:layout_constraintTop_toBottomOf="@+id/tvPostDetailTime" />
 
     <Button
         android:id="@+id/btnRegisterNext"

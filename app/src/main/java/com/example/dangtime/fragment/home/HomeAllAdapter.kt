@@ -12,7 +12,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dangtime.R
 import com.example.dangtime.auth.MemberVO
+import com.example.dangtime.fragment.post.PostDetailActivity
 import com.example.dangtime.post.EditPostActivity
+import com.example.dangtime.post.PostDetailAdapter
 import com.example.dangtime.util.FBAuth
 import com.example.dangtime.util.FBAuth.Companion.auth
 import com.example.dangtime.util.FBdatabase
@@ -75,17 +77,29 @@ class HomeAllAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
+        //댓글
+        holder.tvContent.setOnClickListener{
+            var intent = Intent(context, PostDetailActivity::class.java)
+
+
+            intent.putExtra("postInfo", keyData[position].toString())
+            intent.putExtra("writerInfo",data[position].toString())
+            intent.putExtra("postUid",data[position].toString())
+            context.startActivity(intent)
+
+
+        }
+
+
+
+
+
 
         var uid = keyData[position].uid
 
-
-        Log.d("라이크", keyData[position].like.toString())
-
-
         val pfListener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-//                Log.d("이거다1", uid)
-//                Log.d("이거다2", snapshot.child("$uid").child("dogNick").value.toString())
+
                 holder.tvHomeAllName.text = snapshot.child("$uid").child("dogNick").value.toString()
                 holder.tvTown.text = snapshot.child("$uid").child("address").value.toString()
 
@@ -107,7 +121,7 @@ class HomeAllAdapter(
                 holder.imgEdit.setImageResource(R.drawable.menu)
 
 
-                Log.d("라이크리스트",postUid[position])
+                Log.d("라이크리스트", postUid[position])
 
                 if (likeList.contains(postUid[position])) {
                     holder.imgHeart.setImageResource(R.drawable.fullheart)
@@ -122,45 +136,25 @@ class HomeAllAdapter(
         FBdatabase.getPostRef().addValueEventListener(pfListener2)
 
 
-
-        Log.d("keyData", keyData[position].like.toString())
-
-
-
+        //좋아요
         holder.imgHeart.setOnClickListener {
-            var likeSet = keyData[position].like
 
-
-
-
-
-            //Firebase에 있는 bookmarklist로 접근
-            // Log.d("라이크리스트", likeList.toString())
-            // 누가 북마크를 눌렀는지 + 북마크 키값 Firebase에저장하기
             FBdatabase.getLikeRef().child(FBAuth.getUid()).child(postUid[position]).setValue("good")
-
-            // 이미 저장이 되어있는 게시물인지 아닌지
-            // bookmarkList에 해당 게시물이 포함되어있는지
             if (likeList.contains(postUid[position])) {
-//                val set = (likeSet - 1).toString()
-//                Log.d("세팅1", set)
                 FBdatabase.getLikeRef().child(FBAuth.getUid()).child(postUid[position])
                     .removeValue()
-
-                FBdatabase.getPostRef().child(postUid[position]).child("like").setValue(keyData[position].like-1)
-
+                FBdatabase.getPostRef().child(postUid[position]).child("like")
+                    .setValue(keyData[position].like - 1)
             } else {
-
-//                Log.d("세팅2", set)
                 FBdatabase.getLikeRef().child(FBAuth.getUid()).child(postUid[position])
                     .setValue("good")
-                FBdatabase.getPostRef().child(postUid[position]).child("like").setValue(keyData[position].like+1)
+                FBdatabase.getPostRef().child(postUid[position]).child("like")
+                    .setValue(keyData[position].like + 1)
             }
         }
 
 
-
-
+        //게시글 수정
         holder.imgEdit.setOnClickListener {
             holder.btnEdit.setText("게시글 수정")
             holder.btnEdit.setOnClickListener {
@@ -173,12 +167,8 @@ class HomeAllAdapter(
             holder.btnDel.setText("게시글 삭제")
         }
         holder.imgComment.setOnClickListener {
-
         }
-
-
     }
-
     override fun getItemCount(): Int {
         return keyData.size
     }
