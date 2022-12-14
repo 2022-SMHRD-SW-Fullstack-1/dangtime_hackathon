@@ -200,22 +200,17 @@ class ChatViewActivity : AppCompatActivity() {
                     if (nowD.equals(timeD)) {
                         time = "${timeH}:${timem}"
                     } else {
-                        if (timeD != null) {
-                            time = (nowD.toInt() - timeD.toInt()).toString()
+                        if ((nowD.toInt() - timeD!!.toInt()) > 1){
+                            time = "${timeM}월 ${timeD}일"
+                        }else{
+                            time = "어제"
                         }
-                        time = "${time}일 전"
                     }
                 } else {
-                    if (timeM != null) {
-                        time = (nowM.toInt() - timeM.toInt()).toString()
-                    }
-                    time = "${time}달 전"
+                    time = "${timeM}월 ${timeD}일"
                 }
             } else {
-                if (timeY != null) {
-                    time = (nowY.toInt() - timeY.toInt()).toString()
-                }
-                time = "${time}년 전"
+                time = "${timeY}.${timeM}.${timeD}"
             }
 
             holder.textView_message.textSize = 20F
