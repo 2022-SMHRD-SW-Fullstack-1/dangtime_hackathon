@@ -4,7 +4,9 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageView
+import com.bumptech.glide.Glide
 import com.example.dangtime.R
 import com.example.dangtime.board.BoardChoice
 import com.example.dangtime.chat.ChatActivity
@@ -20,21 +22,26 @@ import com.example.dangtime.fragment.mypost.MyPostCommentFragment
 import com.example.dangtime.fragment.mypost.MyPostFragment
 import com.example.dangtime.fragment.mypost.MyPostPostFragment
 import com.example.dangtime.profile.ProfileActivity
+import com.example.dangtime.util.FBAuth
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import de.hdodenhof.circleimageview.CircleImageView
 
 class HomeActivity : AppCompatActivity() {
+    lateinit var imgHomeProfile : ImageView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
 
-        val imgHomeProfile = findViewById<CircleImageView>(R.id.imgHomeProfile)
+        imgHomeProfile = findViewById<ImageView>(R.id.imgHomeProfile)
         val imgHomeChat = findViewById<ImageView>(R.id.imgHomeChat)
         val bnv = findViewById<BottomNavigationView>(R.id.bnv)
-
         val imgHomeWrite = findViewById<ImageView>(R.id.imgHomeWrite)
+        val uid = FBAuth.getUid()
 
+        getImageData(uid)
         imgHomeWrite.setOnClickListener{
 
             val intent = Intent(this , BoardChoice::class.java)
@@ -171,6 +178,21 @@ class HomeActivity : AppCompatActivity() {
                     R.id.flBookFragment,
                     BookmarkTalkFragment()
                 ).commit()
+            }
+        }
+    }
+
+    fun getImageData(uid: String) {
+        val storageReference = Firebase.storage.reference.child("/userImages/$uid/photo")
+        storageReference.downloadUrl.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                Glide.with(this)
+                    .load(task.result)
+                    .circleCrop()
+                    .into(imgHomeProfile)
+                Log.d("사진","성공")
+            }else {
+                Log.d("사진","실패")
             }
         }
     }
