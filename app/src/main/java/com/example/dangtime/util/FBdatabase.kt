@@ -11,7 +11,7 @@ class FBdatabase {
         val database = Firebase.database
 
         fun getMemberRef():DatabaseReference{
-            return database.getReference("users")
+            return database.getReference("Member")
         }
 
 
