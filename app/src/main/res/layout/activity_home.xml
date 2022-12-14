@@ -29,12 +29,12 @@
         app:srcCompat="@drawable/edit" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/tvHomeTitle"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center_vertical"
         android:paddingLeft="8dp"
-        android:text="관심 목록"
+        android:text="댕댕이 모여라"
         android:textColor="@color/black"
         android:textSize="24sp"
         android:textStyle="bold"

@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
 import com.bumptech.glide.Glide
+import android.widget.TextView
 import com.example.dangtime.R
 import com.example.dangtime.board.BoardChoice
 import com.example.dangtime.chat.ChatActivity
@@ -38,6 +39,8 @@ class HomeActivity : AppCompatActivity() {
         imgHomeProfile = findViewById<ImageView>(R.id.imgHomeProfile)
         val imgHomeChat = findViewById<ImageView>(R.id.imgHomeChat)
         val bnv = findViewById<BottomNavigationView>(R.id.bnv)
+        val tvHomeTitle = findViewById<TextView>(R.id.tvHomeTitle)
+
         val imgHomeWrite = findViewById<ImageView>(R.id.imgHomeWrite)
         val uid = FBAuth.getUid()
 
@@ -92,18 +95,22 @@ class HomeActivity : AppCompatActivity() {
                         R.id.flHome,
                         BookmarkFragment()
                     ).commit()
+                    tvHomeTitle.text = "관심 목록"
                 }
                 R.id.bnvMainTab2 -> {
                     supportFragmentManager.beginTransaction().replace(
                         R.id.flHome,
                         HomeFragment()
                     ).commit()
+                    tvHomeTitle.text = "댕댕이 모여라"
                 }
                 R.id.bnvMainTab3 -> {
                     supportFragmentManager.beginTransaction().replace(
                         R.id.flHome,
                         MyPostFragment()
                     ).commit()
+                    tvHomeTitle.text = "내가 쓴 글"
+
                 }
 
             }
