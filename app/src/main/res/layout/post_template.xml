@@ -12,7 +12,9 @@
         android:layout_marginStart="8dp"
         android:gravity="center"
         android:text="댕타임"
+        android:textColor="@color/black"
         android:textSize="18dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/imgPost"
         app:layout_constraintStart_toEndOf="@+id/imgPost"
         app:layout_constraintTop_toTopOf="@+id/imgPost" />
@@ -35,11 +37,12 @@
     <TextView
         android:id="@+id/tvPostContent"
         android:layout_width="0dp"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="댕타임 멋져요~"
+        android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -50,10 +53,11 @@
         android:id="@+id/tvPostLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
         android:gravity="center"
         android:text="충장로"
-        android:textSize="18sp"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/tvPostContent"
         app:layout_constraintTop_toBottomOf="@+id/tvPostContent" />
@@ -65,7 +69,7 @@
         android:layout_marginStart="8dp"
         android:gravity="center"
         android:text="1시간 전"
-        android:textSize="18sp"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/tvPostLocation"
         app:layout_constraintStart_toEndOf="@+id/tvPostLocation"
         app:layout_constraintTop_toTopOf="@+id/tvPostLocation" />
@@ -90,7 +94,7 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/imgPostComment"
-        app:layout_constraintTop_toTopOf="@+id/imgPostComment" />
+        app:layout_constraintTop_toBottomOf="@+id/tvPostContent" />
 
     <ImageView
         android:id="@+id/imgPostComment"
@@ -106,10 +110,10 @@
         android:id="@+id/tvPostComment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:gravity="center"
         android:text="0"
         android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/tvPostContent"
         app:layout_constraintTop_toBottomOf="@+id/tvPostContent" />
 

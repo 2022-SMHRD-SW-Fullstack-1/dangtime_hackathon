@@ -26,7 +26,7 @@ inner class ViewHolder(itemView: View) :RecyclerView.ViewHolder(itemView){
     var tvHeartCount : TextView
     var imgDetail : ImageView
     var imgBack : ImageView
-    var imgEdit : ImageView
+//    var imgEdit : ImageView
     var imgHeart : ImageView
     var imgSend : ImageView
     var etText : EditText
@@ -42,7 +42,7 @@ init {
      tvHeartCount = itemView.findViewById<TextView>(R.id.tvDetailHeartCount)
      imgDetail = itemView.findViewById<ImageView>(R.id.imgDetail)
      imgBack = itemView.findViewById<ImageView>(R.id.imgDetailBack)
-     imgEdit = itemView.findViewById<ImageView>(R.id.imgDetailEdit)
+//     imgEdit = itemView.findViewById<ImageView>(R.id.imgDetailEdit)
      imgHeart = itemView.findViewById<ImageView>(R.id.imgDetailHeart)
      imgSend = itemView.findViewById<ImageView>(R.id.imgDetailSend)
      etText = itemView.findViewById<EditText>(R.id.etPfEditName)
