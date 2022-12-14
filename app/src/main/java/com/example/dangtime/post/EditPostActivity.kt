@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.ImageView
 import com.example.dangtime.R
 
 class EditPostActivity : AppCompatActivity() {
@@ -14,8 +15,11 @@ class EditPostActivity : AppCompatActivity() {
         val btnSend = findViewById<Button>(R.id.btnHomeAllEditSend)
         val btnEditPic = findViewById<Button>(R.id.btnHomeAllEditPicture)
         val btnDelPic = findViewById<Button>(R.id.btnHomeAllDelPicture)
+        val imgPostEditBack = findViewById<ImageView>(R.id.imgPostEditBack)
 
-
+        imgPostEditBack.setOnClickListener {
+            finish()
+        }
 
         btnEditPic.setOnClickListener {
             val boardList = intent.getStringExtra("board")
