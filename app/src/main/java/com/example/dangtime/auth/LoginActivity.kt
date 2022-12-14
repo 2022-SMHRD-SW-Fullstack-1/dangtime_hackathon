@@ -47,35 +47,40 @@ class LoginActivity : AppCompatActivity() {
         etLoginPw.setText(loginPw)
 
 
-
         btnLogin.setOnClickListener {
             val email = etLoginEmail.text.toString()
             val pw = etLoginPw.text.toString()
-            Log.d("login",email)
-            Log.d("login",pw)
 
-            auth.signInWithEmailAndPassword(email, pw).addOnCompleteListener(this){task ->
+            if(email == null){
+                Toast.makeText(this, "이메일을 입력해주세요", Toast.LENGTH_SHORT).show()
+            }else{
+                if (pw == null){
+                    Toast.makeText(this, "비밀번호를 입력해주세요", Toast.LENGTH_SHORT).show()
+                }else{
+                    auth.signInWithEmailAndPassword(email, pw).addOnCompleteListener(this) { task ->
 
-                if(task.isSuccessful){
-                    Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
+                        if (task.isSuccessful) {
+                            Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
 
-                    val editor = sharedPreferences.edit()
-                    editor.putString("loginId", email)
-                    editor.putString("loginPw", pw)
-                    editor.commit()
+                            val editor = sharedPreferences.edit()
+                            editor.putString("loginId", email)
+                            editor.putString("loginPw", pw)
+                            editor.commit()
 
 
-                    val editorSp = sp.edit()
-                    editorSp.putString("loginId",email)
-                    editorSp.putString("loginPw",pw)
-                    editorSp.commit()
+                            val editorSp = sp.edit()
+                            editorSp.putString("loginId", email)
+                            editorSp.putString("loginPw", pw)
+                            editorSp.commit()
 
-                    val intent = Intent(this, HomeActivity::class.java)
-                    startActivity(intent)
-                    finish()
+                            val intent = Intent(this, HomeActivity::class.java)
+                            startActivity(intent)
+                            finish()
 
-                } else{
-                    Toast.makeText(this, "로그인 실패", Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(this, "로그인 실패", Toast.LENGTH_SHORT).show()
+                        }
+                    }
                 }
             }
         }
@@ -91,8 +96,6 @@ class LoginActivity : AppCompatActivity() {
 
         val imgLoginBack = findViewById<ImageView>(R.id.imgLoginBack)
         imgLoginBack.setOnClickListener {
-//            val intent = Intent(this@LoginActivity, MainActivity::class.java)
-//            startActivity(intent)
             finish()
         }
 
