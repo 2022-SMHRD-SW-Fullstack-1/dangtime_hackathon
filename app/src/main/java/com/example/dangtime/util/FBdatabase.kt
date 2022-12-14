@@ -15,13 +15,13 @@ class FBdatabase {
         }
 
 
+
+
         fun getPostRef(): DatabaseReference {
             return database.getReference("post")
         }
 
-        fun getLikeRef(): DatabaseReference {
-            return database.getReference("likelist")
-        }
+
 
 
         fun getUserInfo(): DatabaseReference {
@@ -30,6 +30,11 @@ class FBdatabase {
         fun getChatRoom(): DatabaseReference{
             return database.getReference("chatrooms")
         }
+        fun getLikeRef(): DatabaseReference {
+            return database.getReference("likelist")
+        }
+
+
 
 
         fun getChatRef(): DatabaseReference {
