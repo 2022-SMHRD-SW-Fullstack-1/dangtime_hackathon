@@ -6,12 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dangtime.R
 import com.example.dangtime.fragment.home.HomePostVO
 import com.example.dangtime.util.FBAuth
 import com.example.dangtime.util.FBdatabase
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -20,28 +22,28 @@ import com.google.firebase.ktx.Firebase
 
 class MyPostCommentFragment : Fragment() {
 
-    val postList= ArrayList<HomePostVO>()
+    val postList = ArrayList<HomePostVO>()
     lateinit var adapter: MyPostCommentAdapter
     val postRef = FBdatabase.getPostRef()
     val auth = Firebase.auth
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         val view = inflater.inflate(R.layout.fragment_my_post_comment, container, false)
         val rvMyPostComment = view.findViewById<RecyclerView>(R.id.rvMyPostComment)
         val loginId = FBAuth.getUid()
 
 
+//        getMyPostCommentData()
 
-        getMyPostCommentData()
 
 
         adapter = MyPostCommentAdapter(requireContext(), postList, loginId)
 
         rvMyPostComment.adapter = adapter
-        rvMyPostComment.layoutManager = LinearLayoutManager(requireContext())
+        rvMyPostComment.layoutManager = GridLayoutManager(requireContext(), 1)
 
         return view
     }
@@ -49,9 +51,11 @@ class MyPostCommentFragment : Fragment() {
     fun getMyPostCommentData() {
         val postListener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                for(model in snapshot.children) {
+                for (model in snapshot.children) {
                     val item = model.getValue(HomePostVO::class.java)
                     if (item != null) {
+                        Log.d("포스트", model.toString())
+
                         postList.add(item)
                     }
                 }
@@ -63,8 +67,9 @@ class MyPostCommentFragment : Fragment() {
             }
 
         }
-        if(auth.currentUser?.uid != null) {
-            postRef.addValueEventListener(postListener)
-        }
+
+
+        postRef.addValueEventListener(postListener)
+
     }
 }

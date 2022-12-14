@@ -69,7 +69,6 @@ class HomeAllFragment : Fragment() {
 
                     }
                     postKeyUid.add(model.key.toString())
-                    Log.d("포스트키",postKeyUid.toString())
                 }
                 //adapter 새로고침 하기
                 Log.d("데이터4", data.toString())

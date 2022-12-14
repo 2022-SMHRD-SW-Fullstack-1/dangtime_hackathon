@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.dangtime.R
 import com.example.dangtime.auth.LoginActivity
 import com.example.dangtime.fragment.home.HomePostVO
+import com.example.dangtime.util.FBdatabase
 import de.hdodenhof.circleimageview.CircleImageView
 
 class MyPostPostAdapter(
@@ -51,12 +52,9 @@ class MyPostPostAdapter(
         }
 
 
-        holder.tvPostName.text = postList[position].name
         holder.tvPostContent.text = postList[position].content
-        holder.tvPostLocation.text = postList[position].location
         holder.tvPostTime.text = postList[position].time
         holder.tvPostLike.text = postList[position].like.toString()
-        holder.tvPostComment.text = postList[position].comment.toString()
     }
 
     override fun getItemCount(): Int {

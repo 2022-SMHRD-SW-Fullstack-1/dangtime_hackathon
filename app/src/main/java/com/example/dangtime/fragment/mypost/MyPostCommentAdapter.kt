@@ -50,12 +50,9 @@ class MyPostCommentAdapter(
         }
 
 
-        holder.tvPostName.text = postList[position].name
         holder.tvPostContent.text = postList[position].content
-        holder.tvPostLocation.text = postList[position].location
         holder.tvPostTime.text = postList[position].time
         holder.tvPostLike.text = postList[position].like.toString()
-        holder.tvPostComment.text = postList[position].comment.toString()
 
 
     }
