@@ -33,7 +33,7 @@ class HomeAllAdapter(
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        val imgHomeAllProfile: ImageView
+        val imgHomeAllProfile : ImageView
         val imgHeart: ImageView
         val imgComment: ImageView
         val tvHomeAllName: TextView
@@ -42,25 +42,21 @@ class HomeAllAdapter(
         val tvContent: TextView
         val tvHeratCount: TextView
         val tvCommentCount: TextView
-        val imgEdit: ImageView
-        val btnEdit: Button
-        val btnDel: Button
+//        val imgEdit: ImageView
 
 
         init {
 
-            imgHomeAllProfile = itemView.findViewById(R.id.imgHomeAllProfilePic)
-            imgHeart = itemView.findViewById(R.id.imgHomeAllHeart)
-            imgComment = itemView.findViewById(R.id.imgHomeAllComment)
-            tvHomeAllName = itemView.findViewById(R.id.tvHomeAllName)
-            tvTime = itemView.findViewById(R.id.tvHomeAllHr)
-            tvTown = itemView.findViewById(R.id.tvHomeAllTown)
-            tvContent = itemView.findViewById(R.id.tvHomeAllContent)
-            tvHeratCount = itemView.findViewById(R.id.tvHomeAllHeartCount)
-            tvCommentCount = itemView.findViewById(R.id.tvHomeAllCommentCount)
-            imgEdit = itemView.findViewById(R.id.imgHomeAllEdit)
-            btnEdit = itemView.findViewById(R.id.btnHomeAllEdit)
-            btnDel = itemView.findViewById(R.id.btnHomeAllDel)
+            imgHomeAllProfile = itemView.findViewById(R.id.imgPost)
+            imgHeart = itemView.findViewById(R.id.imgPfEdit)
+            imgComment = itemView.findViewById(R.id.imgPostComment)
+            tvHomeAllName = itemView.findViewById(R.id.tvPostName)
+            tvTime = itemView.findViewById(R.id.tvPostTime)
+            tvTown = itemView.findViewById(R.id.tvPostLocation)
+            tvContent = itemView.findViewById(R.id.tvPostContent)
+            tvHeratCount = itemView.findViewById(R.id.tvPostLike)
+            tvCommentCount = itemView.findViewById(R.id.tvPostComment)
+//            imgEdit = itemView.findViewById(R.id.imgHomeAllEdit)
 
         }
 
@@ -69,7 +65,7 @@ class HomeAllAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(context)
-        val view = inflater.inflate(R.layout.home_all_list, null)
+        val view = inflater.inflate(R.layout.post_template, null)
 
 
         return ViewHolder(view)
@@ -106,7 +102,7 @@ class HomeAllAdapter(
                 holder.imgComment.setImageResource(R.drawable.message)
                 holder.tvCommentCount.text = "0"
                 holder.tvHeratCount.text = keyData[position].like.toString()
-                holder.imgEdit.setImageResource(R.drawable.menu)
+   //             holder.imgEdit.setImageResource(R.drawable.menu)
 
 
                 Log.d("라이크리스트",postUid[position])
@@ -143,17 +139,17 @@ class HomeAllAdapter(
 
 
         //게시글 수정
-        holder.imgEdit.setOnClickListener {
-            holder.btnEdit.setText("게시글 수정")
-            holder.btnEdit.setOnClickListener {
-                var intent = Intent(context, EditPostActivity::class.java)
-
-                intent.putExtra("board", keyData[position].toString())
-                intent.putExtra("member", data[position].toString())
-                context.startActivity(intent)
-            }
-            holder.btnDel.setText("게시글 삭제")
-        }
+//        holder.imgEdit.setOnClickListener {
+//            holder.btnEdit.setText("게시글 수정")
+//            holder.btnEdit.setOnClickListener {
+//                var intent = Intent(context, EditPostActivity::class.java)
+//
+//                intent.putExtra("board", keyData[position].toString())
+//                intent.putExtra("member", data[position].toString())
+//                context.startActivity(intent)
+//            }
+//            holder.btnDel.setText("게시글 삭제")
+//        }
 
 
         //댓글

@@ -52,7 +52,6 @@ init {
                 holder.tvRvPostDetailContent.text = snapshot.child("$uid").child("dogNick").value.toString()
                 holder.tvRvPostDetailTime.text = snapshot.child("$uid").child("address").value.toString()
 
-
             }
 
             override fun onCancelled(error: DatabaseError) {
