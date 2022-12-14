@@ -8,9 +8,8 @@
 
     <FrameLayout
         android:id="@+id/flHome"
-        android:layout_width="409dp"
-        android:layout_height="525dp"
-        android:layout_marginEnd="2dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/bnv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,6 +31,7 @@
         android:id="@+id/tvHomeTitle"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="8dp"
         android:gravity="center_vertical"
         android:paddingLeft="8dp"
         android:text="댕댕이 모여라"
