@@ -6,11 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Adapter
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dangtime.R
+import com.example.dangtime.util.FBAuth.Companion.auth
 import com.example.dangtime.util.FBdatabase
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -40,7 +43,6 @@ class HomeAllFragment : Fragment() {
         val tvContent = view.findViewById<TextView>(R.id.tvHomeAllContent)
         val tvHeartCount = view.findViewById<TextView>(R.id.tvHomeAllHeartCount)
         val commentCount = view.findViewById<TextView>(R.id.tvHomeAllCommentCount)
-        val imgEdit = view.findViewById<ImageView>(R.id.imgHomeAllEdit)
 
 
 

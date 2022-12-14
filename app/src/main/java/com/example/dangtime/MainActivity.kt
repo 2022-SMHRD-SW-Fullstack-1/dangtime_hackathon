@@ -3,9 +3,11 @@ package com.example.dangtime
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import com.example.dangtime.auth.LoginActivity
 import com.example.dangtime.post.HomeActivity
+import com.example.dangtime.util.FBAuth
 
 
 class MainActivity : AppCompatActivity() {
@@ -20,11 +22,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val btnGuest = findViewById<Button>(R.id.btnGuest)
-        btnGuest.setOnClickListener {
-            val intent = Intent(this@MainActivity, HomeActivity::class.java)
-            startActivity(intent)
-        }
 
 
     }

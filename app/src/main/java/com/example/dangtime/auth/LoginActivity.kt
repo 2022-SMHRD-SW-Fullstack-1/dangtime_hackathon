@@ -39,9 +39,9 @@ class LoginActivity : AppCompatActivity() {
 
         val etLoginEmail = findViewById<EditText>(R.id.etLoginEmail)
         val etLoginPw = findViewById<EditText>(R.id.etLoginPw)
-        val btnLogin = findViewById<Button>(R.id.btnLogin)
+        val btnLogin = findViewById<Button>(R.id.btnLoginLogin)
         val imgLoginRegister = findViewById<ImageView>(R.id.imgLoginRegister)
-        val tvLoginRegister = findViewById<TextView>(R.id.tvLoginRegister)
+        val tvDetailTown = findViewById<TextView>(R.id.tvDetailTown)
         etLoginEmail.setText(loginId)
         etLoginPw.setText(loginPw)
 
@@ -63,6 +63,7 @@ class LoginActivity : AppCompatActivity() {
                     editor.putString("loginPw", pw)
                     editor.commit()
 
+
                     val editorSp = sp.edit()
                     editorSp.putString("loginId",email)
                     editorSp.putString("loginPw",pw)
@@ -82,7 +83,7 @@ class LoginActivity : AppCompatActivity() {
             val intent = Intent(this@LoginActivity, LocationActivity::class.java)
             startActivity(intent)
         }
-        tvLoginRegister.setOnClickListener {
+        tvDetailTown.setOnClickListener {
             val intent = Intent(this@LoginActivity, LocationActivity::class.java)
             startActivity(intent)
         }
