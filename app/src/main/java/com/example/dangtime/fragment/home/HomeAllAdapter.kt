@@ -77,18 +77,7 @@ class HomeAllAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        //댓글
-        holder.tvContent.setOnClickListener{
-            var intent = Intent(context, PostDetailActivity::class.java)
 
-
-            intent.putExtra("postInfo", keyData[position].toString())
-            intent.putExtra("writerInfo",data[position].toString())
-            intent.putExtra("postUid",data[position].toString())
-            context.startActivity(intent)
-
-
-        }
 
 
 
@@ -166,8 +155,22 @@ class HomeAllAdapter(
             }
             holder.btnDel.setText("게시글 삭제")
         }
-        holder.imgComment.setOnClickListener {
+
+
+        //댓글
+        holder.tvContent.setOnClickListener{
+            var intent = Intent(context, PostDetailActivity::class.java)
+
+
+            intent.putExtra("postInfo", keyData[position].toString())
+            intent.putExtra("writerInfo",data[position].toString())
+            intent.putExtra("postUid",postUid[position].toString())
+            context.startActivity(intent)
+
+
         }
+
+
     }
     override fun getItemCount(): Int {
         return keyData.size

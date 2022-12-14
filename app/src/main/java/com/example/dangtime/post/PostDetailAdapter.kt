@@ -9,45 +9,28 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dangtime.R
+import com.example.dangtime.util.FBdatabase
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 
-class PostDetailAdapter(val context: Context , val postDetailList : ArrayList<PostDetailVO>) : RecyclerView.Adapter<PostDetailAdapter.ViewHolder>() {
+class PostDetailAdapter(val context: Context , val commentList : ArrayList<PostCommentVO>) : RecyclerView.Adapter<PostDetailAdapter.ViewHolder>() {
 
 
 
 
 
 inner class ViewHolder(itemView: View) :RecyclerView.ViewHolder(itemView){
-    var tvName : TextView
-    var tvHr : TextView
-    var tvView : TextView
-    var tvContent : TextView
-    var tvTown : TextView
-    var tvCc : TextView
-    var tvHeartCount : TextView
-    var imgDetail : ImageView
-    var imgBack : ImageView
-    var imgEdit : ImageView
-    var imgHeart : ImageView
-    var imgSend : ImageView
-    var etText : EditText
-    var tvCc2 : TextView
+
+
+    var tvRvPostDetailTime : TextView
+    var tvRvPostDetailContent : TextView
+    var imgRvPostDetail : ImageView
+
 init {
-
-     tvName = itemView.findViewById<TextView>(R.id.tvPostDetailName)
-     tvHr = itemView.findViewById<TextView>(R.id.tvPostDetailTime)
-     tvView = itemView.findViewById<TextView>(R.id.tvDetailView)
-     tvContent = itemView.findViewById<TextView>(R.id.tv)
-     tvTown = itemView.findViewById<TextView>(R.id.tvPostDetailTown)
-     tvCc =itemView.findViewById<TextView>(R.id.tvDetailComentCount)
-     tvHeartCount = itemView.findViewById<TextView>(R.id.tvDetailHeartCount)
-     imgDetail = itemView.findViewById<ImageView>(R.id.imgDetail)
-     imgBack = itemView.findViewById<ImageView>(R.id.imgPostDetailBack)
-     imgEdit = itemView.findViewById<ImageView>(R.id.imgPostDetailEdit)
-     imgHeart = itemView.findViewById<ImageView>(R.id.imgPostDetailHeart)
-     imgSend = itemView.findViewById<ImageView>(R.id.imgPostDetailSend)
-     etText = itemView.findViewById<EditText>(R.id.etPostDetail)
-     tvCc2 = itemView.findViewById<TextView>(R.id.tvPostDetailComentCount2)
-
+    tvRvPostDetailTime = itemView.findViewById(R.id.tvRvPostDetailTime)
+    tvRvPostDetailContent = itemView.findViewById(R.id.tvRvPostDetailContent)
+    imgRvPostDetail = itemView.findViewById(R.id.imgRvPostDetail)
 }
     }
 
@@ -61,10 +44,27 @@ init {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
+        var uid = commentList[position].uid
+
+        val pfListener = object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                holder.tvRvPostDetailContent.text = snapshot.child("$uid").child("dogNick").value.toString()
+                holder.tvRvPostDetailTime.text = snapshot.child("$uid").child("address").value.toString()
+
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+        }
+        FBdatabase.getCommentRef().addValueEventListener(pfListener)
+
+
     }
 
     override fun getItemCount(): Int {
 
-        return postDetailList.size
+        return commentList.size
     }
 }
