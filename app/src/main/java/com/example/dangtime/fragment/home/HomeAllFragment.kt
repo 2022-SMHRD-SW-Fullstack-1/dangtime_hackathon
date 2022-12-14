@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dangtime.R
+import com.example.dangtime.util.FBAuth.Companion.auth
 import com.example.dangtime.util.FBdatabase
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -20,6 +21,8 @@ class HomeAllFragment : Fragment() {
     lateinit var adapter: HomeAllAdapter
     var data = ArrayList<ListVO>()
     var postKeyUid = ArrayList<String>()
+    var likeList = ArrayList<String>()
+
 
 
     override fun onCreateView(
@@ -28,17 +31,37 @@ class HomeAllFragment : Fragment() {
     ): View? {
 
         val view = inflater.inflate(R.layout.fragment_home_all, container, false)
-
-
         val rvHollAll = view.findViewById<RecyclerView>(R.id.rvHollAll)
 
 
 
+        //        holder.imgHeart.setOnClickListener {
+//
+//            var like = keyData[position].like.toInt()
+//            if (clickHeart === 0) {
+//
+//                var setLike = like.toString()
+//                FBdatabase.getPostRef().child(uid).child("like").setValue(setLike)
+//                clickHeart += 1
+//                holder.imgHeart.setImageResource(R.drawable.fullheart)
+//                holder.tvHeratCount.text = keyData[position].like.toString()
+//            } else {
+//                like -=1
+//                var setLike = like.toString()
+//                FBdatabase.getPostRef().child(uid).child("like").setValue(setLike)
+//                holder.imgHeart.setImageResource(R.drawable.emptyheart)
+//                holder.tvHeratCount.text = keyData[position].like.toString()
+//                clickHeart -= 1
+//            }
+//        }
 
-        getMemberData()
 
 
-        adapter = HomeAllAdapter(requireContext(), keyData, data, postKeyUid)
+
+        getlikeList()
+
+
+        adapter = HomeAllAdapter(requireContext(), keyData, data, postKeyUid, likeList)
         rvHollAll.adapter = adapter
 
         rvHollAll.layoutManager = GridLayoutManager(requireContext(), 1)
@@ -73,6 +96,7 @@ class HomeAllFragment : Fragment() {
                 }
                 //adapter 새로고침 하기
                 Log.d("데이터4", data.toString())
+
                 adapter.notifyDataSetChanged()
 
 //                Log.d("ㅎㅎㅎ222", keyData[0].toString())
@@ -107,6 +131,7 @@ class HomeAllFragment : Fragment() {
                         data.add(item)
                     }
                 }
+                getPostData()
                 // adapter 새로고침 하기
 //                Log.d("ㅎㅎㅎ", data[0].toString())
             }
@@ -116,9 +141,35 @@ class HomeAllFragment : Fragment() {
 
         }
         FBdatabase.getMemberRef().addValueEventListener(posterListener)
-        getPostData()
 
 
+
+    }
+
+    fun getlikeList(){
+        // bookmarklist경로에 있는 데이터를 다 가지고 오자
+        // 게시물의 uid값 ---> bookmarkList
+
+        val postlistener2 = object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                likeList.clear()
+                for (model in snapshot.children){
+                    likeList.add(model.key.toString())
+                }
+                //adapter 새로고침 하기
+                adapter.notifyDataSetChanged()
+
+                //bookmarkList에 있는 데이터만 가지고와서 data(ArrayList<VO>에 담고 있다.
+                getMemberData()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+        }
+        FBdatabase.getLikeRef().addValueEventListener(postlistener2)
     }
 
 
