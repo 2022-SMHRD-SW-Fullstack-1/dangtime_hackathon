@@ -7,7 +7,7 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
 
-        android:id="@+id/imgHomeAllProfile"
+        android:id="@+id/imgHomeAllProfilePic"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
@@ -31,9 +31,9 @@
         android:textColor="#000000"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/imgHomeAllProfile"
-        app:layout_constraintStart_toEndOf="@+id/imgHomeAllProfile"
-        app:layout_constraintTop_toTopOf="@+id/imgHomeAllProfile" />
+        app:layout_constraintBottom_toBottomOf="@+id/imgHomeAllProfilePic"
+        app:layout_constraintStart_toEndOf="@+id/imgHomeAllProfilePic"
+        app:layout_constraintTop_toTopOf="@+id/imgHomeAllProfilePic" />
 
     <TextView
 
@@ -46,8 +46,8 @@
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/imgHomeAllProfile"
-        app:layout_constraintTop_toBottomOf="@+id/imgHomeAllProfile" />
+        app:layout_constraintStart_toStartOf="@+id/imgHomeAllProfilePic"
+        app:layout_constraintTop_toBottomOf="@+id/imgHomeAllProfilePic" />
 
     <TextView
 
