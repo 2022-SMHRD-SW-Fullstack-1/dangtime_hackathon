@@ -13,6 +13,7 @@ import android.widget.Toast
 import com.example.dangtime.MainActivity
 import com.example.dangtime.R
 import com.example.dangtime.post.HomeActivity
+import com.example.dangtime.util.LocationPermissionActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -80,11 +81,11 @@ class LoginActivity : AppCompatActivity() {
         }
 
         imgLoginRegister.setOnClickListener {
-            val intent = Intent(this@LoginActivity, LocationActivity::class.java)
+            val intent = Intent(this@LoginActivity, LocationPermissionActivity::class.java)
             startActivity(intent)
         }
         tvDetailTown.setOnClickListener {
-            val intent = Intent(this@LoginActivity, LocationActivity::class.java)
+            val intent = Intent(this@LoginActivity, LocationPermissionActivity::class.java)
             startActivity(intent)
         }
 
