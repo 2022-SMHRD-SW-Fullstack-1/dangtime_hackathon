@@ -62,6 +62,7 @@ class PostDetailAdapter(
                 holder.tvRvPostDetailTime.text =
                     snapshot.child("$postUid").child(comUid).child("time").value.toString()
 
+
                // 멤버 uid 가져오기
               userUid = snapshot.child("$postUid").child(comUid).child("uid").value.toString()
 

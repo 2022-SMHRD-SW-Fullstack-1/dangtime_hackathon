@@ -45,6 +45,7 @@ class HomeAllAdapter(
 //        val imgEdit: ImageView
 
 
+
         init {
 
             imgHomeAllProfile = itemView.findViewById(R.id.imgPost)
@@ -56,7 +57,7 @@ class HomeAllAdapter(
             tvContent = itemView.findViewById(R.id.tvPostContent)
             tvHeratCount = itemView.findViewById(R.id.tvPostLike)
             tvCommentCount = itemView.findViewById(R.id.tvPostComment)
-//            imgEdit = itemView.findViewById(R.id.imgHomeAllEdit)
+//          imgEdit = itemView.findViewById(R.id.imgHomeAllEdit)
 
         }
 
@@ -103,6 +104,7 @@ class HomeAllAdapter(
                 holder.tvCommentCount.text = "0"
                 holder.tvHeratCount.text = keyData[position].like.toString()
    //             holder.imgEdit.setImageResource(R.drawable.menu)
+                holder.tvCommentCount.text= keyData[position].commentCount.toString()
 
 
                 Log.d("라이크리스트",postUid[position])
@@ -138,18 +140,7 @@ class HomeAllAdapter(
         }
 
 
-        //게시글 수정
-//        holder.imgEdit.setOnClickListener {
-//            holder.btnEdit.setText("게시글 수정")
-//            holder.btnEdit.setOnClickListener {
-//                var intent = Intent(context, EditPostActivity::class.java)
-//
-//                intent.putExtra("board", keyData[position].toString())
-//                intent.putExtra("member", data[position].toString())
-//                context.startActivity(intent)
-//            }
-//            holder.btnDel.setText("게시글 삭제")
-//        }
+
 
 
         //댓글
