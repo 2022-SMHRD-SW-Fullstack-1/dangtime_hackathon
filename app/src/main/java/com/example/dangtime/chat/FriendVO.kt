@@ -5,5 +5,4 @@ data class FriendVO(
     val name: String? = null,
     val profileImageUrl: String? = null,
     val uid: String? = null
-) {
-}
+)

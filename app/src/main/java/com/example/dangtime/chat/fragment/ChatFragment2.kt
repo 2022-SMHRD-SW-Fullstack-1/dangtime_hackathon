@@ -18,6 +18,7 @@ import com.example.dangtime.chat.ChatModel
 import com.example.dangtime.chat.ChatViewActivity
 import com.example.dangtime.chat.FriendVO
 import com.example.dangtime.post.HomeActivity
+import com.example.dangtime.util.FBdatabase
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -32,7 +33,6 @@ import kotlin.collections.ArrayList
 
 class ChatFragment2 : Fragment() {
 
-    private val fireDatabase = FirebaseDatabase.getInstance().reference
     lateinit var imgChatFlBack: ImageView
 
     override fun onCreateView(
@@ -66,7 +66,7 @@ class ChatFragment2 : Fragment() {
             uid = Firebase.auth.currentUser?.uid.toString()
             println(uid)
 
-            fireDatabase.child("chatrooms").orderByChild("userInfo/$uid").equalTo(true)
+            FBdatabase.getChatRoom().orderByChild("users/$uid").equalTo(true)
                 .addListenerForSingleValueEvent(object :
                     ValueEventListener {
                     override fun onCancelled(error: DatabaseError) {
@@ -95,12 +95,6 @@ class ChatFragment2 : Fragment() {
             val tvChatlistContent: TextView =
                 itemView.findViewById(R.id.tvChatlistContent)
             val tvChatlistTime: TextView = itemView.findViewById(R.id.tvChatlistTime)
-            val imgChatFlBack :ImageView
-
-            init{
-                imgChatFlBack = itemView.findViewById(R.id.imgChatFlBack)
-            }
-
         }
 
         override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
@@ -112,7 +106,7 @@ class ChatFragment2 : Fragment() {
                     destinationUsers.add(destinationUid)
                 }
             }
-            fireDatabase.child("userInfo").child("$destinationUid")
+            FBdatabase.getUserInfo().child("$destinationUid")
                 .addListenerForSingleValueEvent(object :
                     ValueEventListener {
                     override fun onCancelled(error: DatabaseError) {

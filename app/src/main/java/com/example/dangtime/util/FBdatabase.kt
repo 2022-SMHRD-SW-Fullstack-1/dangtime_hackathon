@@ -22,6 +22,9 @@ class FBdatabase {
         fun getUserInfo(): DatabaseReference {
             return database.getReference("userInfo")
         }
+        fun getChatRoom(): DatabaseReference{
+            return database.getReference("chatrooms")
+        }
 
 
         fun getChatRef(): DatabaseReference {
