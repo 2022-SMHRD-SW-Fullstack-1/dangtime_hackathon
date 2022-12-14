@@ -31,6 +31,7 @@ class HomeAllAdapter(
     var data: ArrayList<ListVO>,
     var postUid: ArrayList<String>,
     var likeList: ArrayList<String>
+
 ) : RecyclerView.Adapter<HomeAllAdapter.ViewHolder>() {
 
 
@@ -45,6 +46,7 @@ class HomeAllAdapter(
         val tvContent: TextView
         val tvHeratCount: TextView
         val tvCommentCount: TextView
+        val imgPostUpload : ImageView
 //        val imgEdit: ImageView
 
 
@@ -61,6 +63,7 @@ class HomeAllAdapter(
             tvHeratCount = itemView.findViewById(R.id.tvPostLike)
             tvCommentCount = itemView.findViewById(R.id.tvPostComment)
 //          imgEdit = itemView.findViewById(R.id.imgHomeAllEdit)
+            imgPostUpload = itemView.findViewById(R.id.imgPostUpload)
 
         }
 
@@ -105,6 +108,20 @@ class HomeAllAdapter(
                             Log.d("사진","실패")
                         }
                     }
+
+                // 유저가 게시글에 업로드한 이미지
+                val storageReferencePost = Firebase.storage.reference.child("/postUploadImages/$imgUid/photo")
+                storageReferencePost.downloadUrl.addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Glide.with(context)
+                            .load(task.result)
+                            .circleCrop()
+                            .into(holder.imgPostUpload)
+                        Log.d("사진게시판","성공")
+                    }else {
+                        Log.d("사진게시판","실패")
+                    }
+                }
 
 
 

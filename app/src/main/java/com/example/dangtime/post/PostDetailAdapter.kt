@@ -22,8 +22,7 @@ class PostDetailAdapter(
     val context: Context,
     val commentList: ArrayList<PostCommentVO>,
     val commentUid: ArrayList<String>,
-    val postUid: String,
-
+    val postUid: String
 ) :
     RecyclerView.Adapter<PostDetailAdapter.ViewHolder>() {
     var userUid : String =""
@@ -36,12 +35,13 @@ class PostDetailAdapter(
         var tvRvPostDetailName : TextView
 
 
+
         init {
             tvRvPostDetailTime = itemView.findViewById(R.id.tvRvPostDetailTime)
             tvRvPostDetailContent = itemView.findViewById(R.id.tvRvPostDetailContent)
             imgRvPostDetail = itemView.findViewById(R.id.imgRvPostDetail)
             tvRvPostDetailName = itemView.findViewById(R.id.tvRvPostDetailName)
-        }
+     }
     }
 
 
@@ -97,6 +97,8 @@ class PostDetailAdapter(
                         Log.d("사진","실패")
                     }
                 }
+
+
             }
 
             override fun onCancelled(error: DatabaseError) {

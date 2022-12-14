@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.dangtime.R
 import com.example.dangtime.post.HomeActivity
 import com.example.dangtime.post.PostCommentVO
@@ -18,6 +19,8 @@ import com.example.dangtime.util.FBdatabase
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 class PostDetailActivity : AppCompatActivity() {
     lateinit var userUid: String
@@ -42,6 +45,7 @@ class PostDetailActivity : AppCompatActivity() {
         val tvPostDetailViewCount = findViewById<TextView>(R.id.tvPostDetailViewCount)
         val rvPostDetail = findViewById<RecyclerView>(R.id.rvPostDetail)
 
+        val imgPostDetailUpload = findViewById<ImageView>(R.id.imgPostDetailUpload)
 
         val imgPostDetailBack = findViewById<ImageView>(R.id.imgPostDetailBack)
         val imgPostDetailHeart = findViewById<ImageView>(R.id.imgPostDetailHeart)
@@ -118,6 +122,19 @@ class PostDetailActivity : AppCompatActivity() {
                 tvPostDetailTime.text = (snapshot.child("$postUid").child("time").value.toString())
                 tvPostDetailContent.text = (snapshot.child("$postUid").child("content").value.toString())
                 tvPostDetailComentCount.text = (snapshot.child("$postUid").child("commentCount").value.toString())
+
+                val storageReferencePost = Firebase.storage.reference.child("/postUploadImages/$postUid/photo")
+                storageReferencePost.downloadUrl.addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Glide.with(this@PostDetailActivity)
+                            .load(task.result)
+                            .circleCrop()
+                            .into(imgPostDetailUpload)
+                        Log.d("사진게시판2","성공")
+                    }else {
+                        Log.d("사진게시판2","실패")
+                    }
+                }
             }
             override fun onCancelled(error: DatabaseError) {
             }
