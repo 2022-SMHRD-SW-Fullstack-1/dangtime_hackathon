@@ -124,7 +124,7 @@ class ProfileActivity : AppCompatActivity() {
 
     }
     fun getImageData(uid: String) {
-        val storageReference = Firebase.storage.reference.child("/userImages/$uid/photo.png")
+        val storageReference = Firebase.storage.reference.child("/userImages/$uid/photo")
         storageReference.downloadUrl.addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 Glide.with(this)

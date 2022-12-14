@@ -97,7 +97,7 @@ class EditProfileActivity : AppCompatActivity() {
     fun imgUpload() {
         val storage = Firebase.storage
         val storageRef = storage.reference
-        val mountainRef = storageRef.child("/userImages/$uid/photo.png")
+        val mountainRef = storageRef.child("/userImages/$uid/photo")
         imgPfEdit.isDrawingCacheEnabled = true
         imgPfEdit.buildDrawingCache()
         val bitmap = (imgPfEdit.drawable as BitmapDrawable).bitmap
