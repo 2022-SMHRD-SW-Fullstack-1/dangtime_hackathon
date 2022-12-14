@@ -70,7 +70,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline6" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/imgPostComment"
         android:layout_width="300dp"
         android:layout_height="300dp"
         app:layout_constraintBottom_toTopOf="@+id/btnLocationSearch"

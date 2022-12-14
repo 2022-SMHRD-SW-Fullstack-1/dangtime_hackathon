@@ -8,7 +8,7 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
 
-        android:id="@+id/imgHomeAllProfilePic"
+        android:id="@+id/imgMyPostProfilePic"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
@@ -24,7 +24,7 @@
 
     <TextView
 
-        android:id="@+id/tvHomeAllName"
+        android:id="@+id/tvMyPostName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -32,25 +32,25 @@
         android:textColor="#000000"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/imgHomeAllProfilePic"
-        app:layout_constraintStart_toEndOf="@+id/imgHomeAllProfilePic"
-        app:layout_constraintTop_toTopOf="@+id/imgHomeAllProfilePic" />
+        app:layout_constraintBottom_toBottomOf="@+id/imgMyPostProfilePic"
+        app:layout_constraintStart_toEndOf="@+id/imgMyPostProfilePic"
+        app:layout_constraintTop_toTopOf="@+id/imgMyPostProfilePic" />
 
     <ImageView
 
-        android:id="@+id/imgHomeAllHeart"
+        android:id="@+id/imgMyPostHeart"
         android:layout_width="30dp"
 
         android:layout_height="30dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/tvHomeAllHeartCount"
-        app:layout_constraintEnd_toStartOf="@+id/tvHomeAllHeartCount"
-        app:layout_constraintTop_toTopOf="@+id/tvHomeAllHeartCount"
+        app:layout_constraintBottom_toBottomOf="@+id/tvMyPostHeartCount"
+        app:layout_constraintEnd_toStartOf="@+id/tvMyPostHeartCount"
+        app:layout_constraintTop_toTopOf="@+id/tvMyPostHeartCount"
         app:srcCompat="@drawable/emptyheart" />
 
     <TextView
 
-        android:id="@+id/tvHomeAllHeartCount"
+        android:id="@+id/tvMyPostHeartCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -61,25 +61,25 @@
 
     <TextView
 
-        android:id="@+id/tvHomeAllCommentCount"
+        android:id="@+id/tvMyPostCommentCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:text="2"
-        app:layout_constraintBottom_toBottomOf="@+id/imgHomeAllHeart"
-        app:layout_constraintEnd_toStartOf="@+id/imgHomeAllHeart"
-        app:layout_constraintTop_toTopOf="@+id/imgHomeAllHeart" />
+        app:layout_constraintBottom_toBottomOf="@+id/imgMyPostHeart"
+        app:layout_constraintEnd_toStartOf="@+id/imgMyPostHeart"
+        app:layout_constraintTop_toTopOf="@+id/imgMyPostHeart" />
 
     <ImageView
 
-        android:id="@+id/imgHomeAllComment"
+        android:id="@+id/imgMyPostComment"
         android:layout_width="30dp"
 
         android:layout_height="30dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/tvHomeAllCommentCount"
-        app:layout_constraintEnd_toStartOf="@+id/tvHomeAllCommentCount"
-        app:layout_constraintTop_toTopOf="@+id/tvHomeAllCommentCount"
+        app:layout_constraintBottom_toBottomOf="@+id/tvMyPostCommentCount"
+        app:layout_constraintEnd_toStartOf="@+id/tvMyPostCommentCount"
+        app:layout_constraintTop_toTopOf="@+id/tvMyPostCommentCount"
         app:srcCompat="@drawable/reply" />
 
     <EditText
@@ -92,8 +92,8 @@
         android:hint="수정할 내용을 입력 해주세요."
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/imgHomeAllProfilePic"
-        app:layout_constraintTop_toBottomOf="@+id/imgHomeAllProfilePic" />
+        app:layout_constraintStart_toStartOf="@+id/imgMyPostProfilePic"
+        app:layout_constraintTop_toBottomOf="@+id/imgMyPostProfilePic" />
 
     <Button
         android:id="@+id/btnHomeAllEditSend"

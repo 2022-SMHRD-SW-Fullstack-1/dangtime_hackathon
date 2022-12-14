@@ -7,14 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.dangtime.R
 import com.example.dangtime.auth.LoginActivity
+import com.example.dangtime.auth.MemberVO
 import com.example.dangtime.fragment.home.HomePostVO
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import de.hdodenhof.circleimageview.CircleImageView
 
 class MyPostCommentAdapter(
     val context: Context, val postList: ArrayList<HomePostVO>,
-    val loginId: String,
+    val memberList: ArrayList<MemberVO>
 ): RecyclerView.Adapter<MyPostCommentAdapter.ViewHolder>() {
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imgPost: CircleImageView
@@ -44,15 +48,24 @@ class MyPostCommentAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        if(loginId == null) {
-            val intent = Intent(context, LoginActivity::class.java)
-            context.startActivity(intent)
+
+
+        val storageReference =
+            Firebase.storage.reference.child("/userImages/${memberList[0].uid}/photo")
+        storageReference.downloadUrl.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                Glide.with(context)                    .load(task.result)
+                    .into(holder.imgPost)
+            }
         }
+        val location = memberList[0].address.split(" ").asReversed()
 
-
+        holder.tvPostName.text = "${memberList[0].dogNick} ${memberList[0].dogName}"
+        holder.tvPostLocation.text = location[0].substring(1, location[0].length - 1)
         holder.tvPostContent.text = postList[position].content
         holder.tvPostTime.text = postList[position].time
         holder.tvPostLike.text = postList[position].like.toString()
+        holder.tvPostComment.text = postList[position].commentCount.toString()
 
 
     }
