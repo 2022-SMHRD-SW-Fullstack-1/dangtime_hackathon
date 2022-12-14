@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dangtime.R
+import com.example.dangtime.auth.MemberVO
 import com.example.dangtime.fragment.home.HomePostVO
 import com.example.dangtime.util.FBAuth
 import com.example.dangtime.util.FBdatabase
@@ -24,8 +25,10 @@ class MyPostCommentFragment : Fragment() {
 
     val postList = ArrayList<HomePostVO>()
     lateinit var adapter: MyPostCommentAdapter
+    val likeRef = FBdatabase.getLikeRef()
     val postRef = FBdatabase.getPostRef()
     val auth = Firebase.auth
+    val commentList = ArrayList<MemberVO>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,7 +43,7 @@ class MyPostCommentFragment : Fragment() {
 
 
 
-        adapter = MyPostCommentAdapter(requireContext(), postList, loginId)
+        adapter = MyPostCommentAdapter(requireContext(), postList, commentList)
 
         rvMyPostComment.adapter = adapter
         rvMyPostComment.layoutManager = GridLayoutManager(requireContext(), 1)
@@ -54,7 +57,6 @@ class MyPostCommentFragment : Fragment() {
                 for (model in snapshot.children) {
                     val item = model.getValue(HomePostVO::class.java)
                     if (item != null) {
-                        Log.d("포스트", model.toString())
 
                         postList.add(item)
                     }
