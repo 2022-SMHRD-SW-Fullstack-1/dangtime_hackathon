@@ -1,6 +1,7 @@
 package com.example.dangtime.post
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,11 +9,14 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.dangtime.R
 import com.example.dangtime.util.FBdatabase
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 class PostDetailAdapter(
     val context: Context,
@@ -81,6 +85,18 @@ class PostDetailAdapter(
                     (snapshot.child("$userUid").child("dogName").value.toString())
 
 
+                val storageReference = Firebase.storage.reference.child("/userImages/$userUid/photo")
+                storageReference.downloadUrl.addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Glide.with(context)
+                            .load(task.result)
+                            .circleCrop()
+                            .into(holder.imgRvPostDetail)
+                        Log.d("사진","성공")
+                    }else {
+                        Log.d("사진","실패")
+                    }
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {
