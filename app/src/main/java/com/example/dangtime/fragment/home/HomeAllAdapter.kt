@@ -99,7 +99,7 @@ class HomeAllAdapter(
             override fun onDataChange(snapshot: DataSnapshot) {
                 holder.tvContent.text = keyData[position].content
                 holder.tvTime.text = keyData[position].time
-                holder.imgComment.setImageResource(R.drawable.message)
+//                holder.imgComment.setImageResource(R.drawable.message)
                 holder.tvCommentCount.text = "0"
                 holder.tvHeratCount.text = keyData[position].like.toString()
    //             holder.imgEdit.setImageResource(R.drawable.menu)

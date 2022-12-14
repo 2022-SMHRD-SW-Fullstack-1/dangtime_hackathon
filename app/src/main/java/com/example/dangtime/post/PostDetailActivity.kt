@@ -74,6 +74,9 @@ class PostDetailActivity : AppCompatActivity() {
         imgPostDetailSend.setOnClickListener {
             val uid = FBAuth.getUid()
             val time = FBAuth.getTime()
+            val commentCount =  FBdatabase.getCommentRef().child("$postUid").child("commentCount")
+
+           // Log.d("커맨트몇", commentCount)
 
             // setValue가 되기전에 미리 BoardVO가 저장될 key값(uid_)을 만들자
 
@@ -85,8 +88,8 @@ class PostDetailActivity : AppCompatActivity() {
             //var conmment : String = "" ,var count : Int = 0 , var time : String = "", var uid : String = ""
             FBdatabase.getCommentRef().child("$postUid").child(key)
                 .setValue(PostCommentVO("$comment", 0, "$time", "$uid"))
-            FBdatabase.getCommentRef().child("$postUid").child("commentCount")
-                .setValue()
+//            FBdatabase.getCommentRef().child("$postUid").child("commentCount")
+//                .setValue()
         }
 
 
