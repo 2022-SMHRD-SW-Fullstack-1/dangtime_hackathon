@@ -14,6 +14,7 @@ import com.example.dangtime.R
 import com.example.dangtime.auth.MemberVO
 import com.example.dangtime.post.EditPostActivity
 import com.example.dangtime.util.FBAuth
+import com.example.dangtime.util.FBAuth.Companion.auth
 import com.example.dangtime.util.FBdatabase
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -23,7 +24,8 @@ class HomeAllAdapter(
     var context: Context,
     var keyData: ArrayList<HomePostVO>,
     var data: ArrayList<ListVO>,
-    var postUid: ArrayList<String>
+    var postUid: ArrayList<String>,
+    var likeList: ArrayList<String>
 ) : RecyclerView.Adapter<HomeAllAdapter.ViewHolder>() {
 
 
@@ -75,15 +77,18 @@ class HomeAllAdapter(
 
 
         var uid = keyData[position].uid
-        var clickHeart: Int = 0
+
+
         Log.d("라이크", keyData[position].like.toString())
 
 
         val pfListener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                Log.d("이거다1", uid)
-                Log.d("이거다2", snapshot.child("$uid").child("dogNick").value.toString())
+//                Log.d("이거다1", uid)
+//                Log.d("이거다2", snapshot.child("$uid").child("dogNick").value.toString())
                 holder.tvHomeAllName.text = snapshot.child("$uid").child("dogNick").value.toString()
+                holder.tvTown.text = snapshot.child("$uid").child("address").value.toString()
+
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -92,34 +97,67 @@ class HomeAllAdapter(
         FBdatabase.getMemberRef().addValueEventListener(pfListener)
 
 
-        holder.tvContent.text = keyData[position].content
-        holder.tvTime.text = keyData[position].time
-        holder.imgComment.setImageResource(R.drawable.message)
-        holder.tvCommentCount.text = "0"
-        holder.imgHeart.setImageResource(R.drawable.emptyheart)
-        holder.tvHeratCount.text = keyData[position].like.toString()
-        holder.imgEdit.setImageResource(R.drawable.menu)
+        val pfListener2 = object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                holder.tvContent.text = keyData[position].content
+                holder.tvTime.text = keyData[position].time
+                holder.imgComment.setImageResource(R.drawable.message)
+                holder.tvCommentCount.text = "0"
+                holder.tvHeratCount.text = keyData[position].like.toString()
+                holder.imgEdit.setImageResource(R.drawable.menu)
 
 
-//        holder.imgHeart.setOnClickListener {
-//
-//            var like = keyData[position].like.toInt()
-//            if (clickHeart === 0) {
-//
-//                var setLike = like.toString()
-//                FBdatabase.getPostRef().child(uid).child("like").setValue(setLike)
-//                clickHeart += 1
-//                holder.imgHeart.setImageResource(R.drawable.fullheart)
-//                holder.tvHeratCount.text = keyData[position].like.toString()
-//            } else {
-//                like -=1
-//                var setLike = like.toString()
-//                FBdatabase.getPostRef().child(uid).child("like").setValue(setLike)
-//                holder.imgHeart.setImageResource(R.drawable.emptyheart)
-//                holder.tvHeratCount.text = keyData[position].like.toString()
-//                clickHeart -= 1
-//            }
-//        }
+                Log.d("라이크리스트",postUid[position])
+
+                if (likeList.contains(postUid[position])) {
+                    holder.imgHeart.setImageResource(R.drawable.fullheart)
+                } else {
+                    holder.imgHeart.setImageResource(R.drawable.emptyheart)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+        }
+        FBdatabase.getPostRef().addValueEventListener(pfListener2)
+
+
+
+        Log.d("keyData", keyData[position].like.toString())
+
+
+
+        holder.imgHeart.setOnClickListener {
+            var likeSet = keyData[position].like
+
+
+
+
+
+            //Firebase에 있는 bookmarklist로 접근
+            // Log.d("라이크리스트", likeList.toString())
+            // 누가 북마크를 눌렀는지 + 북마크 키값 Firebase에저장하기
+            FBdatabase.getLikeRef().child(FBAuth.getUid()).child(postUid[position]).setValue("good")
+
+            // 이미 저장이 되어있는 게시물인지 아닌지
+            // bookmarkList에 해당 게시물이 포함되어있는지
+            if (likeList.contains(postUid[position])) {
+//                val set = (likeSet - 1).toString()
+//                Log.d("세팅1", set)
+                FBdatabase.getLikeRef().child(FBAuth.getUid()).child(postUid[position])
+                    .removeValue()
+
+                FBdatabase.getPostRef().child(postUid[position]).child("like").setValue(keyData[position].like-1)
+
+            } else {
+
+//                Log.d("세팅2", set)
+                FBdatabase.getLikeRef().child(FBAuth.getUid()).child(postUid[position])
+                    .setValue("good")
+                FBdatabase.getPostRef().child(postUid[position]).child("like").setValue(keyData[position].like+1)
+            }
+        }
+
 
 
 

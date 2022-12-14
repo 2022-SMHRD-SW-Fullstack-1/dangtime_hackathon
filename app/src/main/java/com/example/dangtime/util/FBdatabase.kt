@@ -27,6 +27,11 @@ class FBdatabase {
         fun getChatRoom(): DatabaseReference{
             return database.getReference("chatrooms")
         }
+        fun getLikeRef(): DatabaseReference {
+            return database.getReference("likelist")
+        }
+
+
 
 
         fun getChatRef(): DatabaseReference {
