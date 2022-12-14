@@ -1,10 +1,12 @@
 package com.example.dangtime.post
 
-import android.app.Activity
+
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageView
+import com.bumptech.glide.Glide
 import android.widget.TextView
 import com.example.dangtime.R
 import com.example.dangtime.board.BoardChoice
@@ -21,22 +23,28 @@ import com.example.dangtime.fragment.mypost.MyPostCommentFragment
 import com.example.dangtime.fragment.mypost.MyPostFragment
 import com.example.dangtime.fragment.mypost.MyPostPostFragment
 import com.example.dangtime.profile.ProfileActivity
+import com.example.dangtime.util.FBAuth
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import de.hdodenhof.circleimageview.CircleImageView
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
+
 
 class HomeActivity : AppCompatActivity() {
+    lateinit var imgHomeProfile : ImageView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
 
-        val imgHomeProfile = findViewById<CircleImageView>(R.id.imgHomeProfile)
+        imgHomeProfile = findViewById<ImageView>(R.id.imgHomeProfile)
         val imgHomeChat = findViewById<ImageView>(R.id.imgHomeChat)
         val bnv = findViewById<BottomNavigationView>(R.id.bnv)
         val tvHomeTitle = findViewById<TextView>(R.id.tvHomeTitle)
 
         val imgHomeWrite = findViewById<ImageView>(R.id.imgHomeWrite)
+        val uid = FBAuth.getUid()
 
+        getImageData(uid)
         imgHomeWrite.setOnClickListener{
 
             val intent = Intent(this , BoardChoice::class.java)
@@ -57,6 +65,7 @@ class HomeActivity : AppCompatActivity() {
 
 
         val request1 = intent.getStringExtra("request1")
+        val request2 = intent.getStringExtra("request2")
 
         if (request1 == "100") {
             bnv.selectedItemId = R.id.bnvMainTab3
@@ -65,13 +74,6 @@ class HomeActivity : AppCompatActivity() {
                     MyPostFragment()
                 ).commit()
             changeMyPostFragment(1)
-        }else if(request1 == "200"){
-            bnv.selectedItemId = R.id.bnvMainTab3
-            supportFragmentManager.beginTransaction().replace(
-                R.id.flHome,
-                MyPostFragment()
-            ).commit()
-            changeMyPostFragment(2)
         } else {
             supportFragmentManager.beginTransaction().replace(
                 R.id.flHome,
@@ -79,6 +81,9 @@ class HomeActivity : AppCompatActivity() {
             ).commit()
             bnv.selectedItemId = R.id.bnvMainTab2
         }
+
+
+
 
         bnv.setOnItemSelectedListener { item ->
             when (item.itemId) {
@@ -177,6 +182,21 @@ class HomeActivity : AppCompatActivity() {
                     R.id.flBookFragment,
                     BookmarkTalkFragment()
                 ).commit()
+            }
+        }
+    }
+
+    fun getImageData(uid: String) {
+        val storageReference = Firebase.storage.reference.child("/userImages/$uid/photo")
+        storageReference.downloadUrl.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                Glide.with(this)
+                    .load(task.result)
+                    .circleCrop()
+                    .into(imgHomeProfile)
+                Log.d("사진","성공")
+            }else {
+                Log.d("사진","실패")
             }
         }
     }

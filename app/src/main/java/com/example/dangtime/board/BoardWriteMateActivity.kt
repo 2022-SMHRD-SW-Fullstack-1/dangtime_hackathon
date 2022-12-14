@@ -32,11 +32,15 @@ class BoardWriteMateActivity : AppCompatActivity() {
         imgLoad = findViewById(R.id.imgMateLoad)
         val etContent = findViewById<EditText>(R.id.etWriteStoryContent)
         val tvTo = findViewById<TextView>(R.id.tvWriteMateTitleTo)
+        val imgMtBack = findViewById<ImageView>(R.id.imgMtBack)
 
         val btnUpload = findViewById<Button>(R.id.btnWriteMateUpload)
         val userNick = intent.getStringExtra("userNick")
-        tvTo.setText(userNick+"에게")
+        tvTo.setText("$userNick 에게")
 
+        imgMtBack.setOnClickListener {
+            finish()
+        }
 
         imgLoad.setOnClickListener{
 

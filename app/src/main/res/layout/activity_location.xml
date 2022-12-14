@@ -71,8 +71,8 @@
 
     <ImageView
         android:id="@+id/imgPostComment"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         app:layout_constraintBottom_toTopOf="@+id/btnLocationSearch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

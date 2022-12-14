@@ -9,19 +9,16 @@
     <TextView
 
         android:id="@+id/tvWriteStoryTitle"
-        android:layout_width="0dp"
-        android:layout_height="60sp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="76dp"
-        android:layout_marginEnd="16dp"
-        android:text="댕댕이들이랑 복작복작 수다떨기!"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="댕댕이들이랑 "
         android:textColor="#000000"
-        android:textSize="24sp"
+        android:textSize="28sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/guideline20" />
 
     <ImageView
 
@@ -30,9 +27,9 @@
 
 
         android:layout_height="64dp"
-        android:layout_marginTop="36dp"
-        app:layout_constraintStart_toStartOf="@+id/tvWriteStoryTitle"
-        app:layout_constraintTop_toBottomOf="@+id/tvWriteStoryTitle"
+        android:layout_marginTop="50dp"
+        app:layout_constraintStart_toStartOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
         app:srcCompat="@android:drawable/ic_menu_gallery" />
 
     <TextView
@@ -45,12 +42,12 @@
         app:layout_constraintTop_toTopOf="@+id/imgWriteStory" />
 
 
-
     <TextView
         android:id="@+id/tvProfileEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
         android:text="내용입력"
         app:layout_constraintStart_toStartOf="@+id/imgWriteStory"
         app:layout_constraintTop_toBottomOf="@+id/imgWriteStory" />
@@ -58,25 +55,55 @@
     <Button
 
         android:id="@+id/btnWriteStoryUpload"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:background="@drawable/button"
         android:text="업로드"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/etWriteStory"
-        android:layout_width="0dp"
+        android:layout_width="380dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="내용을 입력해 주세요."
         android:inputType="textMultiLine"
         android:scrollHorizontally="false"
-        app:layout_constraintEnd_toEndOf="@+id/tvWriteStoryTitle"
         app:layout_constraintStart_toStartOf="@+id/tvProfileEmail"
         app:layout_constraintTop_toBottomOf="@+id/tvProfileEmail" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="66dp" />
+
+    <ImageView
+        android:id="@+id/imgStrBack"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline20"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/back" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="복작복작 수다떨기!"
+        android:textColor="#000000"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/tvWriteStoryTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvWriteStoryTitle" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
