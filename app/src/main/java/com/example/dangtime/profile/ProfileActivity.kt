@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide
 import com.example.dangtime.R
 import com.example.dangtime.auth.LoginActivity
 import com.example.dangtime.fragment.home.HomeAllFragment
+import com.example.dangtime.fragment.home.HomePostVO
 import com.example.dangtime.fragment.mypost.MyPostFragment
 import com.example.dangtime.fragment.mypost.MyPostPostFragment
 import com.example.dangtime.post.HomeActivity
@@ -32,6 +33,11 @@ class ProfileActivity : AppCompatActivity() {
     lateinit var dogName: String
     lateinit var address: String
     lateinit var imgPf : ImageView
+
+    lateinit var tvPfPostCnt: TextView
+    val postList = ArrayList<HomePostVO>()
+    val postRef = FBdatabase.getPostRef()
+    val loginId = FBAuth.getUid()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,6 +67,7 @@ class ProfileActivity : AppCompatActivity() {
         tvProfileEmail.text = email
 
         getImageData(uid)
+        getMyPostPostData()
 
         val pfListener = object : ValueEventListener{
 
@@ -92,6 +99,7 @@ class ProfileActivity : AppCompatActivity() {
             intent.putExtra("dogNick",dogNick)
             intent.putExtra("address",address)
             startActivity(intent)
+            finish()
         }
 
         btnProfileLogout.setOnClickListener {
@@ -135,5 +143,24 @@ class ProfileActivity : AppCompatActivity() {
                 Log.d("사진","실패")
             }
         }
+    }
+
+    fun getMyPostPostData() {
+        val postListener = object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (model in snapshot.children) {
+                    val item = model.getValue(HomePostVO::class.java)
+                    if (item != null && item.uid == loginId) {
+                        postList.add(item)
+                        tvPfPostCnt.text = postList.size.toString()
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        }
+        postRef.addValueEventListener(postListener)
     }
 }
