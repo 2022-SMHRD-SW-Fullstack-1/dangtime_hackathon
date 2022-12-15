@@ -6,16 +6,21 @@ import android.graphics.drawable.BitmapDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
+import com.bumptech.glide.Glide
 import com.example.dangtime.R
 import com.example.dangtime.fragment.home.HomeAllFragment
 import com.example.dangtime.post.HomeActivity
 import com.example.dangtime.util.FBAuth
 import com.example.dangtime.util.FBdatabase
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import java.io.ByteArrayOutputStream
@@ -37,8 +42,12 @@ class BoardWriteMateActivity : AppCompatActivity() {
         val tvMateLoad = findViewById<TextView>(R.id.tvMateLoad)
 
         val btnUpload = findViewById<Button>(R.id.btnWriteMateUpload)
-        val userNick = intent.getStringExtra("userNick")
-        tvTo.setText("$userNick 에게")
+
+        var userUid = FBAuth.getUid()
+
+
+
+
 
         imgMtBack.setOnClickListener {
             finish()
