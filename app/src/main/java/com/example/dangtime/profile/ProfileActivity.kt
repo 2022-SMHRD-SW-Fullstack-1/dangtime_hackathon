@@ -33,6 +33,11 @@ class ProfileActivity : AppCompatActivity() {
     lateinit var address: String
     lateinit var imgPf : ImageView
 
+    lateinit var tvPfPostCnt: TextView
+    val postList = ArrayList<HomePostVO>()
+    val postRef = FBdatabase.getPostRef()
+    val loginId = FBAuth.getUid()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,7 +65,8 @@ class ProfileActivity : AppCompatActivity() {
         val email = user?.email.toString()
         tvProfileEmail.text = email
 
-
+        getImageData(uid)
+        getMyPostPostData()
 
         val pfListener = object : ValueEventListener{
 
@@ -116,16 +122,13 @@ class ProfileActivity : AppCompatActivity() {
 
         tvPfReplyCnt.setOnClickListener{
             val intent = Intent(this@ProfileActivity, HomeActivity::class.java)
-            startActivityForResult(intent, 200)
+            intent.putExtra("request1", "100")
+            startActivity(intent)
             finish()
         }
 
-        getImageData(uid)
-
 
     }
-
-
     fun getImageData(uid: String) {
         val storageReference = Firebase.storage.reference.child("/userImages/$uid/photo")
         storageReference.downloadUrl.addOnCompleteListener { task ->
@@ -139,5 +142,24 @@ class ProfileActivity : AppCompatActivity() {
                 Log.d("사진","실패")
             }
         }
+    }
+
+    fun getMyPostPostData() {
+        val postListener = object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (model in snapshot.children) {
+                    val item = model.getValue(HomePostVO::class.java)
+                    if (item != null && item.uid == loginId) {
+                        postList.add(item)
+                        tvPfPostCnt.text = postList.size.toString()
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        }
+        postRef.addValueEventListener(postListener)
     }
 }
