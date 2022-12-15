@@ -133,8 +133,9 @@ class PostDetailActivity : AppCompatActivity() {
         val pfListener2 = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
 
-                tvPostDetailName.text =
-                    (snapshot.child("$userUid").child("dogName").value.toString())
+                val dogNick = snapshot.child("$userUid").child("dogNick").value.toString()
+                val dogName = snapshot.child("$userUid").child("dogName").value.toString()
+                tvPostDetailName.text = "$dogNick $dogName"
             }
 
             override fun onCancelled(error: DatabaseError) {
