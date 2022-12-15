@@ -128,7 +128,6 @@ class PostDetailActivity : AppCompatActivity() {
                     if (task.isSuccessful) {
                         Glide.with(this@PostDetailActivity)
                             .load(task.result)
-                            .circleCrop()
                             .into(imgPostDetailUpload)
                         Log.d("사진게시판2","성공")
                     }else {

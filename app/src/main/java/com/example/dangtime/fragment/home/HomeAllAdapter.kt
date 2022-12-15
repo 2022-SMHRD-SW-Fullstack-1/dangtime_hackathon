@@ -115,7 +115,6 @@ class HomeAllAdapter(
                     if (task.isSuccessful) {
                         Glide.with(context)
                             .load(task.result)
-                            .circleCrop()
                             .into(holder.imgPostUpload)
                         Log.d("사진게시판","성공")
                     }else {
