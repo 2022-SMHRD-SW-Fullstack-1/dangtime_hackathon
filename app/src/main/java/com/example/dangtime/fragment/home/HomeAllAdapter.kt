@@ -95,7 +95,7 @@ class HomeAllAdapter(
                 holder.tvTown.text = snapshot.child("$uid").child("address").value.toString()
 
 
-                //이미지 업로두
+                //이미지 업로드
                     val storageReference = Firebase.storage.reference.child("/userImages/$uid/photo")
                     storageReference.downloadUrl.addOnCompleteListener { task ->
                         if (task.isSuccessful) {
@@ -115,7 +115,7 @@ class HomeAllAdapter(
                     if (task.isSuccessful) {
                         Glide.with(context)
                             .load(task.result)
-                            .circleCrop()
+//                            .circleCrop()
                             .into(holder.imgPostUpload)
                         Log.d("사진게시판","성공")
                     }else {
