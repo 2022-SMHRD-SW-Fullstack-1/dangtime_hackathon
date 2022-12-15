@@ -135,7 +135,6 @@ class DogInfoActivity : AppCompatActivity() {
                                     userProfile.toString(),
                                     uid
                                 )
-                                Log.d("dogino4", friend.toString())
                                 FBdatabase.getUserInfo().child(uid).setValue(friend)
                             }
                     }
