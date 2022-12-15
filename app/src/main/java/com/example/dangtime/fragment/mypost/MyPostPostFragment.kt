@@ -26,7 +26,7 @@ class MyPostPostFragment : Fragment() {
     lateinit var adapter: MyPostPostAdapter
     val postRef = FBdatabase.getPostRef()
     val loginId = FBAuth.getUid()
-    val memberList = ArrayList<MemberVO>()
+    lateinit var memberList: MemberVO
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -46,7 +46,7 @@ class MyPostPostFragment : Fragment() {
         FBdatabase.getMemberRef().get().addOnSuccessListener {
             val memberData = it.child(FBAuth.getUid()).getValue(MemberVO::class.java)
             if (memberData != null) {
-                memberList.add(memberData)
+                memberList = memberData
             }
         }
 

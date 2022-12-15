@@ -128,7 +128,6 @@ class PostDetailActivity : AppCompatActivity() {
                     if (task.isSuccessful) {
                         Glide.with(this@PostDetailActivity)
                             .load(task.result)
-                            .circleCrop()
                             .into(imgPostDetailUpload)
                         Log.d("사진게시판2","성공")
                     }else {
@@ -174,9 +173,6 @@ class PostDetailActivity : AppCompatActivity() {
                     commentUid.add(model.key.toString())
 
                 }
-                Log.d("댓글 댓글",commentList.toString())
-                Log.d("댓글 유아이디",commentUid.toString())
-                Log.d("댓글 사이즈", commentUid.size.toString())
 
                 FBdatabase.getPostRef().child("$postUid").child("commentCount")
                     .setValue(commentUid.size)

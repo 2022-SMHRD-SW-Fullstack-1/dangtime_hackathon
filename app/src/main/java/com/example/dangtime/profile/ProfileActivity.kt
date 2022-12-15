@@ -56,7 +56,7 @@ class ProfileActivity : AppCompatActivity() {
         val btnProfileEdit = findViewById<Button>(R.id.btnProfileEdit)
         val btnProfileLogout = findViewById<Button>(R.id.btnProfileLogout)
         val btnProfileDelete = findViewById<Button>(R.id.btnProfileDelete)
-        val tvPfPostCnt = findViewById<TextView>(R.id.tvPfPostCnt)
+        tvPfPostCnt = findViewById<TextView>(R.id.tvPfPostCnt)
         val tvPfReplyCnt = findViewById<TextView>(R.id.tvPfReplyCnt)
         val tvPfLocation = findViewById<TextView>(R.id.tvPfLocation)
         imgPf = findViewById(R.id.imgPf)

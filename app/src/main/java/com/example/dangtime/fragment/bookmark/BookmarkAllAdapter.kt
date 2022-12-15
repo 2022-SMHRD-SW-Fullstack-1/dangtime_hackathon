@@ -20,7 +20,7 @@ import de.hdodenhof.circleimageview.CircleImageView
 
 class BookmarkAllAdapter(
     val context: Context, val postList: ArrayList<HomePostVO>,
-    val memberList: ArrayList<MemberVO>,
+    val memberList: MemberVO,
 ) : RecyclerView.Adapter<BookmarkAllAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -55,16 +55,16 @@ class BookmarkAllAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         val storageReference =
-            Firebase.storage.reference.child("/userImages/${memberList[0].uid}/photo")
+            Firebase.storage.reference.child("/userImages/${memberList.uid}/photo")
         storageReference.downloadUrl.addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 Glide.with(context)                    .load(task.result)
                     .into(holder.imgPost)
             }
         }
-        val location = memberList[0].address.split(" ").asReversed()
+        val location = memberList.address.split(" ").asReversed()
 
-        holder.tvPostName.text = "${memberList[0].dogNick} ${memberList[0].dogName}"
+        holder.tvPostName.text = "${memberList.dogNick} ${memberList.dogName}"
         holder.tvPostLocation.text = location[0].substring(1, location[0].length - 1)
         holder.tvPostContent.text = postList[position].content
         holder.tvPostTime.text = postList[position].time
