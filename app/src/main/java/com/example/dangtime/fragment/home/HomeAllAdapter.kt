@@ -188,7 +188,7 @@ class HomeAllAdapter(
 
             intent.putExtra("postInfo", keyData[position].toString())
             intent.putExtra("writerInfo", data[position].toString())
-            intent.putExtra("postUid", postUid[position].toString())
+            intent.putExtra("postUid", postUid[position])
 
             context.startActivity(intent)
 
