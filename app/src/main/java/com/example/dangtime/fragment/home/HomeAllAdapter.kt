@@ -91,9 +91,9 @@ class HomeAllAdapter(
             override fun onDataChange(snapshot: DataSnapshot) {
 //                Log.d("이거다1", uid)
 //                Log.d("이거다2", snapshot.child("$uid").child("dogNick").value.toString())
+
                 holder.tvHomeAllName.text = snapshot.child("$uid").child("dogNick").value.toString()
                 holder.tvTown.text = snapshot.child("$uid").child("address").value.toString()
-
 
                 //이미지 업로두
                     val storageReference = Firebase.storage.reference.child("/userImages/$uid/photo")
@@ -115,7 +115,6 @@ class HomeAllAdapter(
                     if (task.isSuccessful) {
                         Glide.with(context)
                             .load(task.result)
-                            .circleCrop()
                             .into(holder.imgPostUpload)
                         Log.d("사진게시판","성공")
                     }else {
