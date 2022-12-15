@@ -24,7 +24,6 @@ import com.example.dangtime.util.FBdatabase
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import de.hdodenhof.circleimageview.CircleImageView
-import kotlin.math.log
 
 class MyPostPostAdapter(
     val context: Context, val postList: ArrayList<HomePostVO>,
@@ -67,7 +66,6 @@ class MyPostPostAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        Log.d("포스트유아이디1번",  postUid[position])
 
         val storageReference =
             Firebase.storage.reference.child("/userImages/${memberList[0].uid}/photo")
@@ -77,10 +75,9 @@ class MyPostPostAdapter(
                     .into(holder.imgMyPostProfilePic)
             }
         }
-        val location = memberList[0].address.split(" ").asReversed()
 
         holder.tvMyPostName.text = "${memberList[0].dogNick} ${memberList[0].dogName}"
-        holder.tvMyPostLocation.text = location[0].substring(1, location[0].length - 1)
+        holder.tvMyPostLocation.text = memberList[0].address
         holder.tvMyPostContent.text = postList[position].content
         holder.tvMyPostTime.text = postList[position].time
         holder.tvMyPostHeartCount.text = postList[position].like.toString()
@@ -93,13 +90,11 @@ class MyPostPostAdapter(
             intent.putExtra("writerInfo", memberList[position].toString())
             intent.putExtra("postUid", postUid[position])
 
-            Log.d("유아이디 가짜", postUid[position])
 
             context.startActivity(intent)
         }
 
         holder.btnMyPostEdit.setOnClickListener {
-
             val intent = Intent(context, EditPostActivity::class.java)
             Log.d("유아이디 진짜", postUid[position])
             intent.putExtra("postList", postList[position])

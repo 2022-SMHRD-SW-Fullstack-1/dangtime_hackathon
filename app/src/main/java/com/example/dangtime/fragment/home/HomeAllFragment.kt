@@ -102,6 +102,7 @@ class HomeAllFragment : Fragment() {
                     postKeyUid.add(model.key.toString())
                 }
                 //adapter 새로고침 하기
+                Log.d("키 데이터", keyData.toString())
                 keyData.reverse()
                 postKeyUid.reverse()
                 adapter.notifyDataSetChanged()
@@ -136,6 +137,7 @@ class HomeAllFragment : Fragment() {
                         data.add(item)
                     }
                 }
+                Log.d("그냥 데이터", data.toString())
                 getPostData()
                 // adapter 새로고침 하기
 //                Log.d("ㅎㅎㅎ", data[0].toString())

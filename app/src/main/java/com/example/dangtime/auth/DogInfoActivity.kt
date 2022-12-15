@@ -48,9 +48,10 @@ class DogInfoActivity : AppCompatActivity() {
         var profileCheck = false
 
         val address = intent.getStringExtra("address")
+        val splitLocation = address!!.split(" ").asReversed()
+        val trimLocation = splitLocation[0].substring(1, splitLocation[0].length - 1)
         tvRegisterAdd.setText(address)
 
-        Log.d("member", address!!)
 
         imgRegistration.setOnClickListener {
             val intentImage = Intent(
@@ -89,7 +90,6 @@ class DogInfoActivity : AppCompatActivity() {
                                     userProfile.toString(),
                                     uid
                                 )
-                                Log.d("dogino4", friend.toString())
                                 FBdatabase.getUserInfo().child(uid).setValue(friend)
                             }
                     }
@@ -97,7 +97,7 @@ class DogInfoActivity : AppCompatActivity() {
 
             var key = FBdatabase.getMemberRef().child(uid).key.toString()
             FBdatabase.getMemberRef().child(key)
-                .setValue(MemberVO(uid, address!!, dogName!!, dogNick!!))
+                .setValue(MemberVO(uid, trimLocation!!, dogName!!, dogNick!!))
 
             startActivity(intent)
         }
