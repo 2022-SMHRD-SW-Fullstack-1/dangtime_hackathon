@@ -30,7 +30,7 @@ class BookmarkAllFragment : Fragment() {
     val auth = Firebase.auth
     val likeList = ArrayList<String>()
     val loginId = FBAuth.getUid()
-    val memberList = ArrayList<MemberVO>()
+    lateinit var memberList: MemberVO
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,7 +43,7 @@ class BookmarkAllFragment : Fragment() {
         FBdatabase.getMemberRef().get().addOnSuccessListener {
             val memberData = it.child(FBAuth.getUid()).getValue(MemberVO::class.java)
             if (memberData != null) {
-                memberList.add(memberData)
+                memberList = memberData
             }
         }
 

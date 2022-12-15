@@ -89,12 +89,12 @@ class HomeAllFragment : Fragment() {
         val postlistener2 = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
 
-                Log.d("데이터1", data.toString())
-
+                Log.d("데이터 키", keyData.toString())
 
                 keyData.clear()
                 for (model in snapshot.children) {
                     val postData = model.getValue(HomePostVO::class.java)
+                Log.d("데이터 모델", keyData.toString())
                     if (postData != null) {
 
                         keyData.add(postData)
@@ -103,7 +103,6 @@ class HomeAllFragment : Fragment() {
                     postKeyUid.add(model.key.toString())
                 }
                 //adapter 새로고침 하기
-                Log.d("데이터4", data.toString())
 
                 adapter.notifyDataSetChanged()
 
@@ -125,7 +124,6 @@ class HomeAllFragment : Fragment() {
         //content경로에 있는 데이터를 다 가지고 오자
         // uid  ---> keyData
         // - ListVO ---> data
-        Log.d("데이터2", data.toString())
         val posterListener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
 
@@ -135,7 +133,6 @@ class HomeAllFragment : Fragment() {
                     var item = model.getValue(ListVO::class.java)
 
                     if (item != null) {
-                        Log.d("데이터3", data.toString())
                         data.add(item)
                     }
                 }
