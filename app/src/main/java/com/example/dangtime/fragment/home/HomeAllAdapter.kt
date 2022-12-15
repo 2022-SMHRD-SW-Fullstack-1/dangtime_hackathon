@@ -185,17 +185,13 @@ class HomeAllAdapter(
         holder.tvContent.setOnClickListener {
             var intent = Intent(context, PostDetailActivity::class.java)
 
-
             intent.putExtra("postInfo", keyData[position].toString())
             intent.putExtra("writerInfo", data[position].toString())
             intent.putExtra("postUid", postUid[position].toString())
 
             context.startActivity(intent)
 
-
         }
-
-
     }
 
     override fun getItemCount(): Int {
