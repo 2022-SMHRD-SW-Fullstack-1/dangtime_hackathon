@@ -27,7 +27,6 @@ import de.hdodenhof.circleimageview.CircleImageView
 class MyPostPostAdapter(
     val context: Context, val postList: ArrayList<HomePostVO>,
     val memberList:  ArrayList<MemberVO>,
-    val postUid : ArrayList<String>
 ) : RecyclerView.Adapter<MyPostPostAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -74,10 +73,9 @@ class MyPostPostAdapter(
                     .into(holder.imgMyPostProfilePic)
             }
         }
-        val location = memberList[0].address.split(" ").asReversed()
 
         holder.tvMyPostName.text = "${memberList[0].dogNick} ${memberList[0].dogName}"
-        holder.tvMyPostLocation.text = location[0].substring(1, location[0].length - 1)
+        holder.tvMyPostLocation.text = memberList[0].address
         holder.tvMyPostContent.text = postList[position].content
         holder.tvMyPostTime.text = postList[position].time
         holder.tvMyPostHeartCount.text = postList[position].like.toString()
@@ -85,18 +83,11 @@ class MyPostPostAdapter(
 
         holder.tvMyPostContent.setOnClickListener {
             val intent = Intent(context, PostDetailActivity::class.java)
-
-            intent.putExtra("postInfo", postList[position].toString())
-            intent.putExtra("writerInfo", memberList[position].toString())
-            intent.putExtra("postUid", postUid[position])
-
-
             context.startActivity(intent)
         }
 
         holder.btnMyPostEdit.setOnClickListener {
             val intent = Intent(context, EditPostActivity::class.java)
-            intent.putExtra("postUid",postUid[position])
             context.startActivity(intent)
         }
     }

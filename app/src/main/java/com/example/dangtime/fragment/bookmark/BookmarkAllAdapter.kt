@@ -2,7 +2,6 @@ package com.example.dangtime.fragment.bookmark
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,7 +19,7 @@ import de.hdodenhof.circleimageview.CircleImageView
 
 class BookmarkAllAdapter(
     val context: Context, val postList: ArrayList<HomePostVO>,
-    val memberList:  ArrayList<MemberVO>, val postUid : ArrayList<String>
+    val likeMemberList: ArrayList<MemberVO>, val postImageList: ArrayList<String>
 ) : RecyclerView.Adapter<BookmarkAllAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -32,8 +31,7 @@ class BookmarkAllAdapter(
         val tvPostLike: TextView
         val tvPostComment: TextView
         val imgPfEdit: ImageView
-        val imgPostUpload : ImageView
-
+        val imgPostUpload: ImageView
 
         init {
             imgPost = itemView.findViewById(R.id.imgPost)
@@ -58,36 +56,28 @@ class BookmarkAllAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         val storageReference =
-            Firebase.storage.reference.child("/userImages/${memberList[0].uid}/photo")
+            Firebase.storage.reference.child("/userImages/${likeMemberList[position].uid}/photo")
         storageReference.downloadUrl.addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                Glide.with(context)                    .load(task.result)
+                Glide.with(context).load(task.result)
                     .into(holder.imgPost)
             }
         }
-        val location = memberList[0].address.split(" ").asReversed()
 
-        holder.tvPostName.text = "${memberList[0].dogNick} ${memberList[0].dogName}"
-        holder.tvPostLocation.text = location[0].substring(1, location[0].length - 1)
+        Firebase.storage.reference.child("/postUploadImages/${postImageList[position]}/photo")
+            .downloadUrl.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Glide.with(context).load(task.result)
+                        .into(holder.imgPostUpload)
+                }
+            }
+
+        holder.tvPostName.text = "${likeMemberList[position].dogNick} ${likeMemberList[position].dogName}"
+        holder.tvPostLocation.text = likeMemberList[position].address
         holder.tvPostContent.text = postList[position].content
         holder.tvPostTime.text = postList[position].time
         holder.tvPostLike.text = postList[position].like.toString()
         holder.tvPostComment.text = postList[position].commentCount.toString()
-
-        var imgUid = postUid[position]
-
-        val storageReferencePost = Firebase.storage.reference.child("/postUploadImages/$imgUid/photo")
-        storageReferencePost.downloadUrl.addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                Glide.with(context)
-                    .load(task.result)
-                    .into(holder.imgPostUpload)
-                Log.d("사진게시판","성공")
-            }else {
-                Log.d("사진게시판","실패")
-            }
-        }
-
         holder.imgPfEdit.setImageResource(R.drawable.fullheart)
     }
 
