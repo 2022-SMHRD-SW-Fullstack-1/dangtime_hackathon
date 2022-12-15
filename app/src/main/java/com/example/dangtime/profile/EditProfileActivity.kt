@@ -32,11 +32,12 @@ class EditProfileActivity : AppCompatActivity() {
         auth = Firebase.auth
 
         val imgPfEditBack = findViewById<ImageView>(R.id.imgPfEditBack)
-        imgPfEdit = findViewById(R.id.imgPfEdit)
+        imgPfEdit = findViewById<ImageView>(R.id.imgPfEdit)
         val btnPfEditUpload = findViewById<Button>(R.id.btnPfEditUpload)
         val etPfEditName = findViewById<EditText>(R.id.etPostDetail)
         val etPfEditNick = findViewById<EditText>(R.id.etPfEditNick)
         val btnPfEdit = findViewById<Button>(R.id.btnPfEdit)
+
 
         etPfEditName.hint = intent.getStringExtra("dogName")
         etPfEditNick.hint = intent.getStringExtra("dogNick")
@@ -81,11 +82,12 @@ class EditProfileActivity : AppCompatActivity() {
             val address = intent.getStringExtra("address")
             FBdatabase.getMemberRef().child(uid)
                 .setValue(MemberVO(uid, address!!, dogName!!, dogNick!!))
-
             val intent = Intent(this@EditProfileActivity, ProfileActivity::class.java)
             startActivity(intent)
             finish()
         }
+
+
     }
 
     fun imgUpload() {

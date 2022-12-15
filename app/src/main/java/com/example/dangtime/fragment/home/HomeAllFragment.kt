@@ -104,7 +104,8 @@ class HomeAllFragment : Fragment() {
                 }
                 //adapter 새로고침 하기
                 Log.d("데이터4", data.toString())
-
+                keyData.reverse()
+                postKeyUid.reverse()
                 adapter.notifyDataSetChanged()
 
 //                Log.d("ㅎㅎㅎ222", keyData[0].toString())
