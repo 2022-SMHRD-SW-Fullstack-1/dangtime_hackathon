@@ -12,6 +12,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.dangtime.R
+import com.example.dangtime.fragment.home.HomeAllFragment
 import com.example.dangtime.post.HomeActivity
 import com.example.dangtime.util.FBAuth
 import com.example.dangtime.util.FBdatabase
@@ -86,7 +87,7 @@ class BoardWriteMateActivity : AppCompatActivity() {
 
         val storeage = Firebase.storage
         val storageRef = storeage.reference
-        val mountainsRef = storageRef.child("$key.png")
+        val mountainsRef = storageRef.child("/postUploadImages/$key/photo")
 
         // Get the data from an ImageView as bytes
         imgLoad.isDrawingCacheEnabled = true
