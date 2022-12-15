@@ -6,10 +6,12 @@ import android.graphics.drawable.BitmapDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.activity.result.contract.ActivityResultContracts
+import com.bumptech.glide.Glide
 import com.example.dangtime.R
 import com.example.dangtime.auth.MemberVO
 import com.example.dangtime.util.FBAuth
@@ -41,6 +43,7 @@ class EditProfileActivity : AppCompatActivity() {
         etPfEditName.hint = intent.getStringExtra("dogName")
         etPfEditNick.hint = intent.getStringExtra("dogNick")
 
+        getImageData(uid)
 
         imgPfEditBack.setOnClickListener {
             finish()
@@ -108,6 +111,19 @@ class EditProfileActivity : AppCompatActivity() {
     ) {
         if (it.resultCode == RESULT_OK) {
             imgPfEdit.setImageURI(it.data?.data)
+        }
+    }
+    fun getImageData(uid: String) {
+        val storageReference = Firebase.storage.reference.child("/userImages/$uid/photo")
+        storageReference.downloadUrl.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                Glide.with(this)
+                    .load(task.result)
+                    .into(imgPfEdit)
+                Log.d("사진","성공")
+            }else {
+                Log.d("사진","실패")
+            }
         }
     }
 }
