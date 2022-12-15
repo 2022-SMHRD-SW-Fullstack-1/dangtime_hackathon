@@ -2,31 +2,26 @@ package com.example.dangtime.fragment.mypost
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.dangtime.R
-import com.example.dangtime.auth.LoginActivity
 import com.example.dangtime.auth.MemberVO
 import com.example.dangtime.fragment.home.HomePostVO
-import com.example.dangtime.fragment.home.ListVO
 import com.example.dangtime.fragment.post.PostDetailActivity
 import com.example.dangtime.post.EditPostActivity
-import com.example.dangtime.util.FBAuth
-import com.example.dangtime.util.FBdatabase
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import de.hdodenhof.circleimageview.CircleImageView
 
 class MyPostPostAdapter(
     val context: Context, val postList: ArrayList<HomePostVO>,
-    val memberList:  ArrayList<MemberVO>,
+    val memberList: ArrayList<MemberVO>,
+    postUid: ArrayList<String>,
 ) : RecyclerView.Adapter<MyPostPostAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
