@@ -26,7 +26,7 @@ import de.hdodenhof.circleimageview.CircleImageView
 
 class MyPostPostAdapter(
     val context: Context, val postList: ArrayList<HomePostVO>,
-    val memberList: ArrayList<MemberVO>,
+    val memberList:  ArrayList<MemberVO>,
 ) : RecyclerView.Adapter<MyPostPostAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

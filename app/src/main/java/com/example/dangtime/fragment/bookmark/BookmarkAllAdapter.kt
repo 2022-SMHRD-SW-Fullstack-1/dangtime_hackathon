@@ -5,6 +5,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -18,7 +19,7 @@ import de.hdodenhof.circleimageview.CircleImageView
 
 class BookmarkAllAdapter(
     val context: Context, val postList: ArrayList<HomePostVO>,
-    val memberList: ArrayList<MemberVO>,
+    val memberList:  ArrayList<MemberVO>,
 ) : RecyclerView.Adapter<BookmarkAllAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -29,6 +30,7 @@ class BookmarkAllAdapter(
         val tvPostTime: TextView
         val tvPostLike: TextView
         val tvPostComment: TextView
+        val imgPfEdit: ImageView
 
         init {
             imgPost = itemView.findViewById(R.id.imgPost)
@@ -38,6 +40,7 @@ class BookmarkAllAdapter(
             tvPostTime = itemView.findViewById(R.id.tvPostTime)
             tvPostLike = itemView.findViewById(R.id.tvPostLike)
             tvPostComment = itemView.findViewById(R.id.tvPostComment)
+            imgPfEdit = itemView.findViewById(R.id.imgPfEdit)
         }
     }
 
@@ -66,8 +69,7 @@ class BookmarkAllAdapter(
         holder.tvPostTime.text = postList[position].time
         holder.tvPostLike.text = postList[position].like.toString()
         holder.tvPostComment.text = postList[position].commentCount.toString()
-
-
+        holder.imgPfEdit.setImageResource(R.drawable.fullheart)
     }
 
     override fun getItemCount(): Int {
