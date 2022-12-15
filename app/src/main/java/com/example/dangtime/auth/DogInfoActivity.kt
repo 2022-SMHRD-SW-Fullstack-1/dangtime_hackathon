@@ -1,9 +1,8 @@
 package com.example.dangtime.auth
 
-import android.Manifest
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
@@ -64,10 +63,17 @@ class DogInfoActivity : AppCompatActivity() {
         imgRegistration = findViewById(R.id.imgRegistration)
         var profileCheck = false
 
+        val address = intent.getStringExtra("address")
+        val splitLocation = address!!.split(" ").asReversed()
+        val trimLocation = splitLocation[0].substring(1, splitLocation[0].length - 1)
+        tvRegisterAdd.setText(address)
+
 //        사진추가
         val photoLl = findViewById<LinearLayout>(R.id.photoLl)
         photoLl.visibility = View.GONE
         var photo = false
+
+
         imgRegistration.setOnClickListener {
             if (photo) {
                 photo = false
@@ -100,10 +106,6 @@ class DogInfoActivity : AppCompatActivity() {
             photoLl.visibility = View.GONE
         }
 
-
-        val address = intent.getStringExtra("address")
-        tvRegisterAdd.setText(address)
-
         btnRegister.setOnClickListener {
             val email = intent.getStringExtra("email")!!
             val intent = Intent(this@DogInfoActivity, HomeActivity::class.java)
@@ -131,13 +133,14 @@ class DogInfoActivity : AppCompatActivity() {
                                     userProfile.toString(),
                                     uid
                                 )
-                                Log.d("dogino4", friend.toString())
                                 FBdatabase.getUserInfo().child(uid).setValue(friend)
                             }
                     }
-                var key = FBdatabase.getMemberRef().child(uid).key.toString()
-                FBdatabase.getMemberRef().child(key)
-                    .setValue(MemberVO(uid, address!!, dogName!!, dogNick!!))
+            }
+
+            var key = FBdatabase.getMemberRef().child(uid).key.toString()
+            FBdatabase.getMemberRef().child(key)
+                .setValue(MemberVO(uid, trimLocation!!, dogName!!, dogNick!!))
 
                 startActivity(intent)
             }
@@ -234,19 +237,5 @@ class DogInfoActivity : AppCompatActivity() {
                         .show();
                 }
 
-            }
-        }
     }
-
-    private fun galleryAddPic() {
-        val mediaScanIntent: Intent = Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-        // 해당 경로에 있는 파일을 객체화(새로 파일을 만든다는 것으로 이해하면 안 됨)
-        val f: File = File(mCurrentPhotoPath);
-        val contentUri: Uri = Uri.fromFile(f);
-        mediaScanIntent.setData(contentUri);
-        sendBroadcast(mediaScanIntent);
-        imgRegistration.setImageURI(imageUri);
-        Toast.makeText(this, "사진이 앨범에 저장되었습니다.", Toast.LENGTH_SHORT).show();
-    }
-
 }

@@ -39,35 +39,18 @@ class EditPostActivity : AppCompatActivity() {
             Log.d("보드멤버",memberList.toString())
         }
 
-        btnHomeAllDelPicture.setOnClickListener{
 
-
-
-
-            val uid = FBAuth.getUid()
-            val time = FBAuth.getTime()
-
-            // setValue가 되기전에 미리 BoardVO가 저장될 key값(uid_)을 만들자
-
-            //먼저 uid를 만들고  key저장
-            var key = FBdatabase.getPostRef().push().key.toString()
-
-            Firebase.storage.reference.child("/postUploadImages/$uid").delete()
-
-
-            val intent = Intent(this,HomeActivity::class.java)
-            startActivity(intent)
+        imgPostEditBack.setOnClickListener {
+            finish()
         }
 
+        btnHomeAllDelPicture.setOnClickListener{
 
-
-
-
-
-
-
-
-
+//            Firebase.storage.reference.child("/postUploadImages/$uid").delete()
+//
+//            val intent = Intent(this,HomeActivity::class.java)
+//            startActivity(intent)
+        }
 
 
 

@@ -35,6 +35,13 @@
         </provider>
 
         <activity
+            android:name=".LoginSplashActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".util.LocationPermissionActivity"
             android:exported="false">
             <meta-data
