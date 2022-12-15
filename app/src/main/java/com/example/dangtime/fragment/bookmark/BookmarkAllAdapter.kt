@@ -5,6 +5,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -18,7 +19,7 @@ import de.hdodenhof.circleimageview.CircleImageView
 
 class BookmarkAllAdapter(
     val context: Context, val postList: ArrayList<HomePostVO>,
-    val memberList: MemberVO,
+    val memberList:  ArrayList<MemberVO>,
 ) : RecyclerView.Adapter<BookmarkAllAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -29,6 +30,7 @@ class BookmarkAllAdapter(
         val tvPostTime: TextView
         val tvPostLike: TextView
         val tvPostComment: TextView
+        val imgPfEdit: ImageView
 
         init {
             imgPost = itemView.findViewById(R.id.imgPost)
@@ -38,6 +40,7 @@ class BookmarkAllAdapter(
             tvPostTime = itemView.findViewById(R.id.tvPostTime)
             tvPostLike = itemView.findViewById(R.id.tvPostLike)
             tvPostComment = itemView.findViewById(R.id.tvPostComment)
+            imgPfEdit = itemView.findViewById(R.id.imgPfEdit)
         }
     }
 
@@ -51,23 +54,22 @@ class BookmarkAllAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         val storageReference =
-            Firebase.storage.reference.child("/userImages/${memberList.uid}/photo")
+            Firebase.storage.reference.child("/userImages/${memberList[0].uid}/photo")
         storageReference.downloadUrl.addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 Glide.with(context)                    .load(task.result)
                     .into(holder.imgPost)
             }
         }
-        val location = memberList.address.split(" ").asReversed()
+        val location = memberList[0].address.split(" ").asReversed()
 
-        holder.tvPostName.text = "${memberList.dogNick} ${memberList.dogName}"
+        holder.tvPostName.text = "${memberList[0].dogNick} ${memberList[0].dogName}"
         holder.tvPostLocation.text = location[0].substring(1, location[0].length - 1)
         holder.tvPostContent.text = postList[position].content
         holder.tvPostTime.text = postList[position].time
         holder.tvPostLike.text = postList[position].like.toString()
         holder.tvPostComment.text = postList[position].commentCount.toString()
-
-
+        holder.imgPfEdit.setImageResource(R.drawable.fullheart)
     }
 
     override fun getItemCount(): Int {

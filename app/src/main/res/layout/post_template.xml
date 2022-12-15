@@ -82,7 +82,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/tvPostLike"
         app:layout_constraintEnd_toStartOf="@+id/tvPostLike"
         app:layout_constraintTop_toTopOf="@+id/tvPostLike"
-        app:srcCompat="@drawable/favorite" />
+        app:srcCompat="@drawable/emptyheart" />
 
     <TextView
         android:id="@+id/tvPostLike"
