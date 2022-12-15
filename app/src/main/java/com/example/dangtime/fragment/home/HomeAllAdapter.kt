@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.dangtime.R
 import com.example.dangtime.auth.MemberVO
 import com.example.dangtime.fragment.post.PostDetailActivity
@@ -21,6 +22,8 @@ import com.example.dangtime.util.FBdatabase
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 class HomeAllAdapter(
     var context: Context,
@@ -28,6 +31,7 @@ class HomeAllAdapter(
     var data: ArrayList<ListVO>,
     var postUid: ArrayList<String>,
     var likeList: ArrayList<String>
+
 ) : RecyclerView.Adapter<HomeAllAdapter.ViewHolder>() {
 
 
@@ -42,7 +46,9 @@ class HomeAllAdapter(
         val tvContent: TextView
         val tvHeratCount: TextView
         val tvCommentCount: TextView
+        val imgPostUpload : ImageView
 //        val imgEdit: ImageView
+
 
 
         init {
@@ -56,7 +62,8 @@ class HomeAllAdapter(
             tvContent = itemView.findViewById(R.id.tvPostContent)
             tvHeratCount = itemView.findViewById(R.id.tvPostLike)
             tvCommentCount = itemView.findViewById(R.id.tvPostComment)
-//            imgEdit = itemView.findViewById(R.id.imgHomeAllEdit)
+//          imgEdit = itemView.findViewById(R.id.imgHomeAllEdit)
+            imgPostUpload = itemView.findViewById(R.id.imgPostUpload)
 
         }
 
@@ -73,7 +80,7 @@ class HomeAllAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-
+      var imgUid = postUid[position].toString()
         var uid = keyData[position].uid
 
 //
@@ -86,6 +93,37 @@ class HomeAllAdapter(
 //                Log.d("이거다2", snapshot.child("$uid").child("dogNick").value.toString())
                 holder.tvHomeAllName.text = snapshot.child("$uid").child("dogNick").value.toString()
                 holder.tvTown.text = snapshot.child("$uid").child("address").value.toString()
+
+
+                //이미지 업로두
+                    val storageReference = Firebase.storage.reference.child("/userImages/$uid/photo")
+                    storageReference.downloadUrl.addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            Glide.with(context)
+                                .load(task.result)
+                                .circleCrop()
+                                .into(holder.imgHomeAllProfile)
+                            Log.d("사진","성공")
+                        }else {
+                            Log.d("사진","실패")
+                        }
+                    }
+
+                // 유저가 게시글에 업로드한 이미지
+                val storageReferencePost = Firebase.storage.reference.child("/postUploadImages/$imgUid/photo")
+                storageReferencePost.downloadUrl.addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Glide.with(context)
+                            .load(task.result)
+                            .circleCrop()
+                            .into(holder.imgPostUpload)
+                        Log.d("사진게시판","성공")
+                    }else {
+                        Log.d("사진게시판","실패")
+                    }
+                }
+
+
 
             }
 
@@ -103,6 +141,7 @@ class HomeAllAdapter(
                 holder.tvCommentCount.text = "0"
                 holder.tvHeratCount.text = keyData[position].like.toString()
    //             holder.imgEdit.setImageResource(R.drawable.menu)
+                holder.tvCommentCount.text= keyData[position].commentCount.toString()
 
 
                 Log.d("라이크리스트",postUid[position])
@@ -138,18 +177,7 @@ class HomeAllAdapter(
         }
 
 
-        //게시글 수정
-//        holder.imgEdit.setOnClickListener {
-//            holder.btnEdit.setText("게시글 수정")
-//            holder.btnEdit.setOnClickListener {
-//                var intent = Intent(context, EditPostActivity::class.java)
-//
-//                intent.putExtra("board", keyData[position].toString())
-//                intent.putExtra("member", data[position].toString())
-//                context.startActivity(intent)
-//            }
-//            holder.btnDel.setText("게시글 삭제")
-//        }
+
 
 
         //댓글
@@ -160,6 +188,7 @@ class HomeAllAdapter(
             intent.putExtra("postInfo", keyData[position].toString())
             intent.putExtra("writerInfo",data[position].toString())
             intent.putExtra("postUid",postUid[position].toString())
+
             context.startActivity(intent)
 
 
@@ -167,9 +196,12 @@ class HomeAllAdapter(
 
 
     }
+
     override fun getItemCount(): Int {
         return keyData.size
     }
+
+
 
 
 }
