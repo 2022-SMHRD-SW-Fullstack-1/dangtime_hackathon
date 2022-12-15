@@ -30,7 +30,8 @@ class BookmarkAllFragment : Fragment() {
     val auth = Firebase.auth
     val likeList = ArrayList<String>()
     val loginId = FBAuth.getUid()
-    val memberList = ArrayList<MemberVO>()
+   var memberList = ArrayList<MemberVO>()
+    var postUid = ArrayList<String>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,16 +41,15 @@ class BookmarkAllFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_bookmark_all, container, false)
         val rvBookAll = view.findViewById<RecyclerView>(R.id.rvBookAll)
 
+
         FBdatabase.getMemberRef().get().addOnSuccessListener {
             val memberData = it.child(FBAuth.getUid()).getValue(MemberVO::class.java)
-            if (memberData != null) {
-                memberList.add(memberData)
-            }
+                memberList.add(memberData!!)
         }
 
         getLikePostData()
 
-        adapter = BookmarkAllAdapter(requireContext(), postList, memberList)
+        adapter = BookmarkAllAdapter(requireContext(), postList, memberList, postUid)
 
         rvBookAll.adapter = adapter
         rvBookAll.layoutManager = GridLayoutManager(requireContext(), 1)
@@ -81,6 +81,7 @@ class BookmarkAllFragment : Fragment() {
                     if (item != null && likeList.contains(model.key)) {
                         postList.add(item)
                     }
+                    postUid.add(model.key.toString())
                 }
                 adapter.notifyDataSetChanged()
             }

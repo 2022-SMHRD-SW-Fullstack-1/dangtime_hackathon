@@ -2,9 +2,11 @@ package com.example.dangtime.fragment.bookmark
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -18,7 +20,7 @@ import de.hdodenhof.circleimageview.CircleImageView
 
 class BookmarkAllAdapter(
     val context: Context, val postList: ArrayList<HomePostVO>,
-    val memberList: ArrayList<MemberVO>,
+    val memberList:  ArrayList<MemberVO>, val postUid : ArrayList<String>
 ) : RecyclerView.Adapter<BookmarkAllAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -29,6 +31,9 @@ class BookmarkAllAdapter(
         val tvPostTime: TextView
         val tvPostLike: TextView
         val tvPostComment: TextView
+        val imgPfEdit: ImageView
+        val imgPostUpload : ImageView
+
 
         init {
             imgPost = itemView.findViewById(R.id.imgPost)
@@ -38,6 +43,8 @@ class BookmarkAllAdapter(
             tvPostTime = itemView.findViewById(R.id.tvPostTime)
             tvPostLike = itemView.findViewById(R.id.tvPostLike)
             tvPostComment = itemView.findViewById(R.id.tvPostComment)
+            imgPfEdit = itemView.findViewById(R.id.imgPfEdit)
+            imgPostUpload = itemView.findViewById(R.id.imgPostUpload)
         }
     }
 
@@ -67,7 +74,21 @@ class BookmarkAllAdapter(
         holder.tvPostLike.text = postList[position].like.toString()
         holder.tvPostComment.text = postList[position].commentCount.toString()
 
+        var imgUid = postUid[position]
 
+        val storageReferencePost = Firebase.storage.reference.child("/postUploadImages/$imgUid/photo")
+        storageReferencePost.downloadUrl.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                Glide.with(context)
+                    .load(task.result)
+                    .into(holder.imgPostUpload)
+                Log.d("사진게시판","성공")
+            }else {
+                Log.d("사진게시판","실패")
+            }
+        }
+
+        holder.imgPfEdit.setImageResource(R.drawable.fullheart)
     }
 
     override fun getItemCount(): Int {
