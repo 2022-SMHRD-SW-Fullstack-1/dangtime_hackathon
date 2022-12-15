@@ -3,6 +3,7 @@ package com.example.dangtime.chat.fragment
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +20,7 @@ import com.example.dangtime.chat.ChatViewActivity
 import com.example.dangtime.chat.FriendVO
 import com.example.dangtime.post.HomeActivity
 import com.example.dangtime.util.FBdatabase
+import com.example.dangtime.util.Util
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -113,6 +115,7 @@ class ChatFragment2 : Fragment() {
                     }
 
                     override fun onDataChange(snapshot: DataSnapshot) {
+                        Log.d("체크", snapshot.toString())
                         val friend = snapshot.getValue<FriendVO>()
                         Glide.with(holder.itemView.context).load(friend?.profileImageUrl)
                             .apply(RequestOptions().circleCrop())
@@ -125,7 +128,37 @@ class ChatFragment2 : Fragment() {
             commentMap.putAll(chatModel[position].comments)
             val lastMessageKey = commentMap.keys.toTypedArray()[0]
             holder.tvChatlistContent.text = chatModel[position].comments[lastMessageKey]?.message
-            holder.tvChatlistTime.text = chatModel[position].comments[lastMessageKey]?.time
+
+            var time = chatModel[position].comments[lastMessageKey]?.time
+            val timeY = time?.substring(0, 4)
+            val timeM = time?.substring(5, 7)
+            val timeD = time?.substring(8, 10)
+            val timeH = time?.substring(11, 13)
+            val timem = time?.substring(14, 16)
+
+            val now = Util.getTime()
+            val nowY = now.substring(0, 4)
+            val nowM = now.substring(5, 7)
+            val nowD = now.substring(8, 10)
+
+            if (nowY.equals(timeY)) {
+                if (nowM.equals(timeM)) {
+                    if (nowD.equals(timeD)) {
+                        time = "${timeH}:${timem}"
+                    } else {
+                        if ((nowD.toInt() - timeD!!.toInt()) > 1){
+                            time = "${timeM}월 ${timeD}일"
+                        }else{
+                            time = "어제"
+                        }
+                    }
+                } else {
+                    time = "${timeM}월 ${timeD}일"
+                }
+            } else {
+                time = "${timeY}.${timeM}.${timeD}"
+            }
+            holder.tvChatlistTime.text = time
 
             //채팅창 선책 시 이동
             holder.itemView.setOnClickListener {
