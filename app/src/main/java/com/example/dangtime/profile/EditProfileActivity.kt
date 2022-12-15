@@ -74,8 +74,6 @@ class EditProfileActivity : AppCompatActivity() {
 
             imgUpload()
 
-            val intent = Intent(this, ProfileActivity::class.java)
-            startActivity(intent)
             finish()
         }
 
