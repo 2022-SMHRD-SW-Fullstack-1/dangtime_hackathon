@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide
 import com.example.dangtime.R
 import com.example.dangtime.auth.LoginActivity
 import com.example.dangtime.fragment.home.HomeAllFragment
+import com.example.dangtime.fragment.home.HomePostVO
 import com.example.dangtime.fragment.mypost.MyPostFragment
 import com.example.dangtime.fragment.mypost.MyPostPostFragment
 import com.example.dangtime.post.HomeActivity
