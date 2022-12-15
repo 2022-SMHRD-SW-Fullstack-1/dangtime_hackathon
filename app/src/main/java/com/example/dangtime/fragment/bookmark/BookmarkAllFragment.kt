@@ -31,6 +31,7 @@ class BookmarkAllFragment : Fragment() {
     val likeList = ArrayList<String>()
     val loginId = FBAuth.getUid()
    var memberList = ArrayList<MemberVO>()
+    var postUid = ArrayList<String>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,7 +49,7 @@ class BookmarkAllFragment : Fragment() {
 
         getLikePostData()
 
-        adapter = BookmarkAllAdapter(requireContext(), postList, memberList)
+        adapter = BookmarkAllAdapter(requireContext(), postList, memberList, postUid)
 
         rvBookAll.adapter = adapter
         rvBookAll.layoutManager = GridLayoutManager(requireContext(), 1)

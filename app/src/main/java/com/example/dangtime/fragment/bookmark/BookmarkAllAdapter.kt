@@ -2,9 +2,11 @@ package com.example.dangtime.fragment.bookmark
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -18,7 +20,7 @@ import de.hdodenhof.circleimageview.CircleImageView
 
 class BookmarkAllAdapter(
     val context: Context, val postList: ArrayList<HomePostVO>,
-    val memberList:  ArrayList<MemberVO>,
+    val memberList:  ArrayList<MemberVO>, val postUid : ArrayList<String>
 ) : RecyclerView.Adapter<BookmarkAllAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -31,6 +33,7 @@ class BookmarkAllAdapter(
         val tvPostComment: TextView
         val imgPfEdit: ImageView
         val imgPostUpload : ImageView
+
 
         init {
             imgPost = itemView.findViewById(R.id.imgPost)
