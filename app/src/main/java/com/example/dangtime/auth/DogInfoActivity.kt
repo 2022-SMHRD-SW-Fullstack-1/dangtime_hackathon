@@ -15,12 +15,11 @@ import com.example.dangtime.post.HomeActivity
 import com.example.dangtime.util.FBAuth
 import com.example.dangtime.util.FBdatabase
 import com.google.firebase.storage.FirebaseStorage
-import de.hdodenhof.circleimageview.CircleImageView
 
 class DogInfoActivity : AppCompatActivity() {
 
     private var imageUri: Uri? = null
-    lateinit var imgRegistration: CircleImageView
+    lateinit var imgRegistration: ImageView
 
     //이미지 등록
     private val getContent =
@@ -38,7 +37,6 @@ class DogInfoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dog_info)
 
-        val imgDogBack = findViewById<ImageView>(R.id.imgDogBack)
         val etRegisterDogName = findViewById<EditText>(R.id.etRegisterDogName)
         val etRegisterDogNick = findViewById<EditText>(R.id.etRegisterDogNick)
         val btnRegister = findViewById<Button>(R.id.btnRegister)
@@ -60,7 +58,6 @@ class DogInfoActivity : AppCompatActivity() {
             getContent.launch(intentImage)
             profileCheck = true
         }
-
 
         btnRegister.setOnClickListener {
             val email = intent.getStringExtra("email")!!
@@ -102,7 +99,7 @@ class DogInfoActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-
+        val imgDogBack = findViewById<ImageView>(R.id.imgDogBack)
         imgDogBack.setOnClickListener {
             finish()
         }

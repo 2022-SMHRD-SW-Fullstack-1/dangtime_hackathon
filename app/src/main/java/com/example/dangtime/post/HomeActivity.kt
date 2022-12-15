@@ -69,8 +69,6 @@ class HomeActivity : AppCompatActivity() {
 
 
         val request1 = intent.getStringExtra("request1")
-        val request2 = intent.getStringExtra("request2")
-
 
 
 
