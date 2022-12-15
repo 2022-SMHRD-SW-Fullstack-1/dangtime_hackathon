@@ -21,6 +21,9 @@ class FBdatabase {
             return database.getReference("post")
         }
 
+
+
+
         fun getUserInfo(): DatabaseReference {
             return database.getReference("userInfo")
         }
@@ -29,6 +32,9 @@ class FBdatabase {
         }
         fun getLikeRef(): DatabaseReference {
             return database.getReference("likelist")
+        }
+        fun getCommentRef(): DatabaseReference {
+            return database.getReference("commentlist")
         }
 
 

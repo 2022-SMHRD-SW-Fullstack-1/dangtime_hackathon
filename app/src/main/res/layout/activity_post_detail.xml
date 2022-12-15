@@ -7,7 +7,7 @@
     tools:context=".fragment.post.PostDetailActivity">
 
     <TextView
-        android:id="@+id/tvDetailName"
+        android:id="@+id/tvPostDetailName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -15,12 +15,12 @@
         android:textColor="#000000"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
+        app:layout_constraintBottom_toBottomOf="@+id/imgPostDetailPuppy"
+        app:layout_constraintStart_toEndOf="@+id/imgPostDetailPuppy"
+        app:layout_constraintTop_toTopOf="@+id/imgPostDetailPuppy" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/tvPostDetailViewCount"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -28,20 +28,20 @@
         android:text="8명이 보고갔어요."
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintStart_toStartOf="@+id/imgPostDetailPuppy"
+        app:layout_constraintTop_toBottomOf="@+id/imgPostDetailPuppy" />
 
     <TextView
-        android:id="@+id/tvPfDltEmail"
+        android:id="@+id/tvPostDetailContent"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="저는 효지에요 댕댕이 친구 구합니다 ㅎㅎ"
         android:textColor="#000000"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView7"
-        app:layout_constraintStart_toStartOf="@+id/textView7"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintEnd_toEndOf="@+id/tvPostDetailViewCount"
+        app:layout_constraintStart_toStartOf="@+id/tvPostDetailViewCount"
+        app:layout_constraintTop_toBottomOf="@+id/tvPostDetailViewCount" />
 
     <TextView
         android:id="@+id/tvDetailTown"
@@ -50,12 +50,12 @@
         android:layout_marginTop="24dp"
         android:text="동명동"
         android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/tvPfDltEmail"
-        app:layout_constraintTop_toBottomOf="@+id/tvPfDltEmail" />
+        app:layout_constraintStart_toStartOf="@+id/tvPostDetailContent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPostDetailContent" />
 
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imgPostDetailPuppy"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
@@ -70,13 +70,13 @@
         app:layout_constraintTop_toTopOf="@+id/guideline13" />
 
     <ImageView
-        android:id="@+id/imgDetailHeart"
+        android:id="@+id/imgPostDetailHeart"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginEnd="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView11"
-        app:layout_constraintEnd_toStartOf="@+id/textView11"
-        app:layout_constraintTop_toTopOf="@+id/textView11"
+        app:layout_constraintBottom_toBottomOf="@+id/tvPostDetailHeartCount"
+        app:layout_constraintEnd_toStartOf="@+id/tvPostDetailHeartCount"
+        app:layout_constraintTop_toTopOf="@+id/tvPostDetailHeartCount"
         app:srcCompat="@drawable/emptyheart" />
 
     <TextView
@@ -85,11 +85,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="2"
-        app:layout_constraintEnd_toEndOf="@+id/tvPfDltEmail"
-        app:layout_constraintTop_toBottomOf="@+id/tvPfDltEmail" />
+        app:layout_constraintEnd_toEndOf="@+id/tvPostDetailContent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPostDetailContent" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/tvPostDetailHeartCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -99,7 +99,7 @@
         app:layout_constraintTop_toTopOf="@+id/imgComent" />
 
     <TextView
-        android:id="@+id/tvDetailComentCount2"
+        android:id="@+id/tvPostDetailComentCount2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -117,17 +117,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPfDltEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/tvPostDetailContent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvDetail"
+        android:id="@+id/rvPostDetail"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="50dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDetailComentCount2" />
+        app:layout_constraintTop_toBottomOf="@+id/tvPostDetailComentCount2" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline7"
@@ -137,7 +137,7 @@
         app:layout_constraintGuide_begin="593dp" />
 
     <EditText
-        android:id="@+id/etPfEditName"
+        android:id="@+id/etPostDetail"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
@@ -147,12 +147,12 @@
         android:hint="댓글을 작성해 주세요."
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imgDetailSend"
+        app:layout_constraintEnd_toStartOf="@+id/imgPostDetailSend"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline14" />
 
     <TextView
-        android:id="@+id/tvDetailHr"
+        android:id="@+id/tvPostDetailTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -161,6 +161,16 @@
         app:layout_constraintBottom_toBottomOf="@+id/tvDetailTown"
         app:layout_constraintStart_toEndOf="@+id/tvDetailTown"
         app:layout_constraintTop_toTopOf="@+id/tvDetailTown" />
+
+    <ImageView
+        android:id="@+id/imgPostDetailEdit"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline13"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/edit" />
 
     <ImageView
         android:id="@+id/imageView7"
@@ -173,7 +183,7 @@
         app:srcCompat="@drawable/orangeheart2" />
 
     <ImageView
-        android:id="@+id/imgDetailBack"
+        android:id="@+id/imgPostDetailBack"
         android:layout_width="40dp"
         android:layout_height="40dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline13"
@@ -199,13 +209,13 @@
         app:srcCompat="@drawable/reply" />
 
     <ImageView
-        android:id="@+id/imgDetailSend"
+        android:id="@+id/imgPostDetailSend"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/etPfEditName"
+        app:layout_constraintBottom_toBottomOf="@+id/etPostDetail"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/etPfEditName"
+        app:layout_constraintTop_toTopOf="@+id/etPostDetail"
         app:srcCompat="@drawable/up" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -213,5 +223,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.8998483" />
+        app:layout_constraintGuide_percent="0.9" />
 </androidx.constraintlayout.widget.ConstraintLayout>

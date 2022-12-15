@@ -1,5 +1,6 @@
 package com.example.dangtime.fragment.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dangtime.R
+import com.example.dangtime.post.PostDetailAdapter
 import com.example.dangtime.util.FBAuth
 import com.example.dangtime.util.FBAuth.Companion.auth
 import com.example.dangtime.util.FBdatabase
@@ -62,12 +64,18 @@ class HomeAllFragment : Fragment() {
         getlikeList()
 
 
+
         adapter = HomeAllAdapter(requireContext(), keyData, data, postKeyUid, likeList)
         rvHollAll.adapter = adapter
 
         rvHollAll.layoutManager = GridLayoutManager(requireContext(), 1)
 
-
+//        val intent = Intent(context,PostDetailAdapter::class.java)
+//        intent.putExtra("keyData",keyData)
+//        intent.putExtra("data",data)
+//        intent.putExtra("postKeyUid",postKeyUid)
+//        intent.putExtra("likeList",likeList)
+//        startActivity(intent)
         // Inflate the layout for this fragment
         return view
     }
