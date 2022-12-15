@@ -12,6 +12,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
+import com.bumptech.glide.Glide
 import com.example.dangtime.R
 import com.example.dangtime.auth.MemberVO
 import com.example.dangtime.fragment.home.HomeAllFragment
@@ -27,13 +28,11 @@ import java.io.ByteArrayOutputStream
 
 class BoardWriteMateActivity : AppCompatActivity() {
 
-    lateinit var imgLoad: ImageView
+    lateinit var imgLoad : ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_board_write_mate)
-
-
 
 
         // id값 다 찾아오기

@@ -65,7 +65,6 @@ class HomeAllAdapter(
 //          imgEdit = itemView.findViewById(R.id.imgHomeAllEdit)
             imgPostUpload = itemView.findViewById(R.id.imgPostUpload)
 
-
         }
 
 
@@ -103,7 +102,6 @@ class HomeAllAdapter(
                 holder.tvHomeAllName.text =
                     "${holder.memberList.dogNick} ${holder.memberList.dogName}"
                 holder.tvTown.text = holder.memberList.address
-
 
                 //이미지 업로두
                 val storageReference = Firebase.storage.reference.child("/userImages/$uid/photo")

@@ -94,7 +94,6 @@ class HomeAllFragment : Fragment() {
                 keyData.clear()
                 for (model in snapshot.children) {
                     val postData = model.getValue(HomePostVO::class.java)
-                Log.d("데이터 모델", keyData.toString())
                     if (postData != null) {
 
                         keyData.add(postData)
@@ -103,7 +102,8 @@ class HomeAllFragment : Fragment() {
                     postKeyUid.add(model.key.toString())
                 }
                 //adapter 새로고침 하기
-
+                keyData.reverse()
+                postKeyUid.reverse()
                 adapter.notifyDataSetChanged()
 
 //                Log.d("ㅎㅎㅎ222", keyData[0].toString())
