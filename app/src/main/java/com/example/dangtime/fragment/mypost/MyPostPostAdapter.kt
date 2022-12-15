@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.dangtime.R
@@ -15,6 +16,8 @@ import com.example.dangtime.auth.MemberVO
 import com.example.dangtime.fragment.home.HomePostVO
 import com.example.dangtime.fragment.post.PostDetailActivity
 import com.example.dangtime.post.EditPostActivity
+import com.example.dangtime.post.HomeActivity
+import com.example.dangtime.util.FBdatabase
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import de.hdodenhof.circleimageview.CircleImageView
@@ -97,7 +100,9 @@ class MyPostPostAdapter(
 
         holder.btnMyPostDel.setOnClickListener {
             FBdatabase.getPostRef().child(postUid[position]).removeValue()
-
+            Toast.makeText(context, "게시물이 삭제되었습니다", Toast.LENGTH_SHORT).show()
+//            val intent = Intent(context, HomeActivity::class.java)
+//            context.startActivity(intent)
         }
 
     }

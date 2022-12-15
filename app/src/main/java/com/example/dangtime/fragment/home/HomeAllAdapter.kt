@@ -1,5 +1,6 @@
 package com.example.dangtime.fragment.home
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.util.Log
@@ -78,9 +79,10 @@ class HomeAllAdapter(
         return ViewHolder(view)
     }
 
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        var imgUid = postUid[position].toString()
+        var imgUid = postUid[position]
         var uid = keyData[position].uid
 
         FBdatabase.getMemberRef().get().addOnSuccessListener {
@@ -113,9 +115,9 @@ class HomeAllAdapter(
                             .load(task.result)
                             .circleCrop()
                             .into(holder.imgHomeAllProfile)
-                        Log.d("사진","성공")
-                    }else {
-                        Log.d("사진","실패")
+                        Log.d("사진", "성공")
+                    } else {
+                        Log.d("사진", "실패")
                     }
                 }
 
@@ -129,6 +131,7 @@ class HomeAllAdapter(
                             .into(holder.imgPostUpload)
                         Log.d("사진게시판", "성공")
                     } else {
+                        holder.imgPostUpload.visibility = View.GONE
                         Log.d("사진게시판", "실패")
                     }
                 }
@@ -203,6 +206,4 @@ class HomeAllAdapter(
     override fun getItemCount(): Int {
         return keyData.size
     }
-
-
 }

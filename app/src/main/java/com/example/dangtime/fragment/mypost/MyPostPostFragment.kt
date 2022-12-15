@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dangtime.R
@@ -15,6 +17,7 @@ import com.example.dangtime.util.FBdatabase
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+
 
 class MyPostPostFragment : Fragment() {
 
@@ -29,6 +32,7 @@ class MyPostPostFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+        fragmentManager?.let { refreshFragment(this@MyPostPostFragment, it) }
         getMyPostPostData()
         val view = inflater.inflate(R.layout.fragment_my_post_post, container, false)
         val rvMyPostPost = view.findViewById<RecyclerView>(R.id.rvMyPostPost)
@@ -79,6 +83,11 @@ class MyPostPostFragment : Fragment() {
         }
 
         postRef.addValueEventListener(postListener)
+    }
+
+    fun refreshFragment(fragment: Fragment, fragmentManager: FragmentManager){
+        var ft  : FragmentTransaction = fragmentManager.beginTransaction()
+        ft.detach(fragment).attach(fragment).commit()
     }
 }
 

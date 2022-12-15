@@ -92,6 +92,7 @@ class HomeAllFragment : Fragment() {
                 Log.d("데이터 키", keyData.toString())
 
                 keyData.clear()
+                postKeyUid.clear()
                 for (model in snapshot.children) {
                     val postData = model.getValue(HomePostVO::class.java)
                     if (postData != null) {
