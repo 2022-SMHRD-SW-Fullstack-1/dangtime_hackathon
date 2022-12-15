@@ -30,6 +30,7 @@ class BookmarkAllFragment : Fragment() {
     val auth = Firebase.auth
     val likeList = ArrayList<String>()
     val loginId = FBAuth.getUid()
+    var postUid = ArrayList<String>()
     lateinit var memberList: MemberVO
 
     override fun onCreateView(
@@ -49,7 +50,7 @@ class BookmarkAllFragment : Fragment() {
 
         getLikePostData()
 
-        adapter = BookmarkAllAdapter(requireContext(), postList, memberList)
+        adapter = BookmarkAllAdapter(requireContext(), postList, memberList,postUid)
 
         rvBookAll.adapter = adapter
         rvBookAll.layoutManager = GridLayoutManager(requireContext(), 1)
@@ -80,7 +81,9 @@ class BookmarkAllFragment : Fragment() {
                     val item = model.getValue(HomePostVO::class.java)
                     if (item != null && likeList.contains(model.key)) {
                         postList.add(item)
+
                     }
+                    postUid.add(model.key.toString())
                 }
                 adapter.notifyDataSetChanged()
             }

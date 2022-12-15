@@ -20,7 +20,7 @@ import de.hdodenhof.circleimageview.CircleImageView
 
 class BookmarkAllAdapter(
     val context: Context, val postList: ArrayList<HomePostVO>,
-    val memberList: MemberVO,
+    val memberList: MemberVO, val postUid : ArrayList<String>
 ) : RecyclerView.Adapter<BookmarkAllAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -71,7 +71,7 @@ class BookmarkAllAdapter(
         holder.tvPostLike.text = postList[position].like.toString()
         holder.tvPostComment.text = postList[position].commentCount.toString()
 
-        var imgUid = postList[position].toString()
+        var imgUid = postUid[position]
 
         val storageReferencePost = Firebase.storage.reference.child("/postUploadImages/$imgUid/photo")
         storageReferencePost.downloadUrl.addOnCompleteListener { task ->
