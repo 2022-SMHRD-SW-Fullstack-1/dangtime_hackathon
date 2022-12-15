@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
@@ -38,6 +39,7 @@ class MyPostPostAdapter(
         val tvMyPostCommentCount: TextView
         val btnMyPostEdit: Button
         val btnMyPostDel: Button
+        val imgMyPostHeart : ImageView
 
 
         init {
@@ -51,6 +53,7 @@ class MyPostPostAdapter(
             tvMyPostCommentCount = itemView.findViewById(R.id.tvMyPostCommentCount)
             btnMyPostEdit = itemView.findViewById(R.id.btnMyPostEdit)
             btnMyPostDel = itemView.findViewById(R.id.btnMyPostDel)
+            imgMyPostHeart = itemView.findViewById(R.id.imgMyPostHeart)
         }
     }
 
