@@ -56,19 +56,12 @@ class PostDetailActivity : AppCompatActivity() {
         val etPostDetail = findViewById<EditText>(R.id.etPostDetail)
 
 
-
-
         var postInfo = intent.getStringExtra("postInfo")
         var writerInfo = intent.getStringExtra("writerInfo")
         postUid = intent.getStringExtra("postUid").toString()
 
 
         getCommentData()
-
-
-
-
-
 
 
         // =commentCnt
@@ -84,9 +77,6 @@ class PostDetailActivity : AppCompatActivity() {
         imgPostDetailSend.setOnClickListener {
             val uid = FBAuth.getUid()
             val time = FBAuth.getTime()
-
-
-
 
 
             // setValue가 되기전에 미리 BoardVO가 저장될 key값(uid_)을 만들자
@@ -154,8 +144,6 @@ class PostDetailActivity : AppCompatActivity() {
 
 
     }
-
-
 
 
     fun getCommentData() {

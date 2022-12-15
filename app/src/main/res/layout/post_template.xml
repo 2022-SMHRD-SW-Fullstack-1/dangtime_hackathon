@@ -22,7 +22,7 @@
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imgPost"
         android:layout_width="48dp"
-        android:layout_height   ="48dp"
+        android:layout_height="48dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="36dp"
         android:src="@drawable/dogprofile"
@@ -119,8 +119,8 @@
 
     <ImageView
         android:id="@+id/imgPostUpload"
-        android:layout_width="0dp"
-        android:layout_height="176dp"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="@+id/tvPostContent"
         app:layout_constraintStart_toStartOf="@+id/tvPostContent"

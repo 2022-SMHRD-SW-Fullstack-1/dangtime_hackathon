@@ -3,6 +3,7 @@ package com.example.dangtime.auth
 import android.annotation.SuppressLint
 import android.app.TaskStackBuilder.create
 import android.content.Intent
+import android.location.Address
 import android.location.LocationRequest
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -17,6 +18,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.protocol.HttpCoreContext.create
+import kotlin.properties.Delegates
 
 class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 

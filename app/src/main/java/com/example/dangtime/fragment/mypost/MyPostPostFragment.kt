@@ -31,6 +31,7 @@ class MyPostPostFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         getMyPostPostData()
 
         val view = inflater.inflate(R.layout.fragment_my_post_post, container, false)
@@ -49,8 +50,6 @@ class MyPostPostFragment : Fragment() {
                 memberList.add(memberData)
             }
         }
-
-
 
 
         adapter = MyPostPostAdapter(requireContext(), postList, memberList)

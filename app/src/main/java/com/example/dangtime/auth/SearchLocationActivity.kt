@@ -40,7 +40,7 @@ class SearchLocationActivity : AppCompatActivity() {
 
         btnSearchNext.setOnClickListener {
             val intent = Intent(this@SearchLocationActivity, RegisterActivity::class.java)
-            intent.putExtra("address", etSearchLocation.text.toString())
+            intent.putExtra("addr", etSearchLocation.text.toString())
             startActivity(intent)
             finish()
         }
