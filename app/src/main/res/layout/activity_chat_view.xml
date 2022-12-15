@@ -61,7 +61,7 @@
         android:layout_height="0dp"
         android:background="@color/white"
         android:ems="10"
-        android:hint="안녕하세요@@안녕하세요"
+        android:hint="안녕! 나랑 산책가자!"
         android:inputType="textPersonName"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
