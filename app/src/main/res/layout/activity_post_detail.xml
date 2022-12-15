@@ -35,13 +35,13 @@
         android:id="@+id/tvPostDetailContent"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:text="저는 효지에요 댕댕이 친구 구합니다 ㅎㅎ"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/tvPostDetailViewCount"
         app:layout_constraintStart_toStartOf="@+id/tvPostDetailViewCount"
-        app:layout_constraintTop_toBottomOf="@+id/tvPostDetailViewCount" />
+        app:layout_constraintTop_toBottomOf="@+id/imgPostDetailUpload" />
 
     <TextView
         android:id="@+id/tvDetailTown"
@@ -98,16 +98,6 @@
         app:layout_constraintEnd_toStartOf="@+id/imgComent"
         app:layout_constraintTop_toTopOf="@+id/imgComent" />
 
-    <TextView
-        android:id="@+id/tvPostDetailComentCount2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="1마리 댕댕이들 대화중"
-        app:layout_constraintEnd_toEndOf="@+id/imageView7"
-        app:layout_constraintStart_toStartOf="@+id/imageView7"
-        app:layout_constraintTop_toBottomOf="@+id/imageView7" />
-
     <View
         android:id="@+id/view"
         android:layout_width="match_parent"
@@ -123,11 +113,10 @@
         android:id="@+id/rvPostDetail"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="50dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPostDetailComentCount2" />
+        app:layout_constraintTop_toBottomOf="@+id/view" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline7"
@@ -173,16 +162,6 @@
         app:srcCompat="@drawable/edit" />
 
     <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view"
-        app:srcCompat="@drawable/orangeheart2" />
-
-    <ImageView
         android:id="@+id/imgPostDetailBack"
         android:layout_width="40dp"
         android:layout_height="40dp"
@@ -224,4 +203,14 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.9" />
+
+    <ImageView
+        android:id="@+id/imgPostDetailUpload"
+        android:layout_width="0dp"
+        android:layout_height="172dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/tvPostDetailContent"
+        app:layout_constraintStart_toStartOf="@+id/tvPostDetailContent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPostDetailViewCount"
+        app:srcCompat="@drawable/chat_bubble" />
 </androidx.constraintlayout.widget.ConstraintLayout>
