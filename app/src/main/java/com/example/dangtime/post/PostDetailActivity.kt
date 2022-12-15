@@ -42,7 +42,6 @@ class PostDetailActivity : AppCompatActivity() {
         val tvPostDetailTown = findViewById<TextView>(R.id.tvDetailTown)
         val tvPostDetailHeartCount = findViewById<TextView>(R.id.tvPostDetailHeartCount)
         tvPostDetailComentCount = findViewById<TextView>(R.id.tvDetailComentCount)
-        val tvPostDetailViewCount = findViewById<TextView>(R.id.tvPostDetailViewCount)
         val rvPostDetail = findViewById<RecyclerView>(R.id.rvPostDetail)
 
         val imgPostDetailUpload = findViewById<ImageView>(R.id.imgPostDetailUpload)
@@ -56,12 +55,19 @@ class PostDetailActivity : AppCompatActivity() {
         val etPostDetail = findViewById<EditText>(R.id.etPostDetail)
 
 
+
+
         var postInfo = intent.getStringExtra("postInfo")
         var writerInfo = intent.getStringExtra("writerInfo")
         postUid = intent.getStringExtra("postUid").toString()
 
 
         getCommentData()
+
+
+
+
+
 
 
         // =commentCnt
@@ -132,7 +138,6 @@ class PostDetailActivity : AppCompatActivity() {
 
         val pfListener2 = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-
                 val dogNick = snapshot.child("$userUid").child("dogNick").value.toString()
                 val dogName = snapshot.child("$userUid").child("dogName").value.toString()
                 tvPostDetailName.text = "$dogNick $dogName"
@@ -145,6 +150,8 @@ class PostDetailActivity : AppCompatActivity() {
 
 
     }
+
+
 
 
     fun getCommentData() {

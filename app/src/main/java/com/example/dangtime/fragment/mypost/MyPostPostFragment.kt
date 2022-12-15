@@ -28,8 +28,8 @@ class MyPostPostFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        getMyPostPostData()
 
+        getMyPostPostData()
         val view = inflater.inflate(R.layout.fragment_my_post_post, container, false)
         val rvMyPostPost = view.findViewById<RecyclerView>(R.id.rvMyPostPost)
 

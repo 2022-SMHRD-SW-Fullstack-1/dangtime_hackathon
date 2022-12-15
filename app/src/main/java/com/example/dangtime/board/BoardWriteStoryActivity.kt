@@ -39,7 +39,7 @@ class BoardWriteStoryActivity : AppCompatActivity() {
 
         val pfListener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {//
-                val dogName =    snapshot.child(userUid).child("dogName").value.toString()
+                val dogName = snapshot.child(userUid).child("dogName").value.toString()
                 Log.d("강아지",userUid)
                 Log.d("강아지",dogName)
                 tvTo.setText("$dogName 에게")
