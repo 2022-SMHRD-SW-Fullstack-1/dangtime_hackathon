@@ -77,7 +77,8 @@ class LocationActivity : AppCompatActivity() {
                         val intent = Intent(this, MapActivity::class.java)
                         intent.putExtra("lat", lat.toString())
                         intent.putExtra("long", long.toString())
-                        intent.putExtra("addr", address.toString())
+//                        주소 동단위로 자르기
+                        intent.putExtra("addr", address[address.size - 2].toString())
                         startActivity(intent)
                     }
                 }

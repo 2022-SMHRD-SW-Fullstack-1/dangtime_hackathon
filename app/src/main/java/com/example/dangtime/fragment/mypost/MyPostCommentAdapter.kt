@@ -2,9 +2,11 @@ package com.example.dangtime.fragment.mypost
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -12,65 +14,64 @@ import com.example.dangtime.R
 import com.example.dangtime.auth.LoginActivity
 import com.example.dangtime.auth.MemberVO
 import com.example.dangtime.fragment.home.HomePostVO
+import com.example.dangtime.post.PostCommentVO
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import de.hdodenhof.circleimageview.CircleImageView
 
 class MyPostCommentAdapter(
-    val context: Context, val postList: ArrayList<HomePostVO>,
-    val memberList: ArrayList<MemberVO>
-): RecyclerView.Adapter<MyPostCommentAdapter.ViewHolder>() {
+    val context: Context, val commentList: ArrayList<PostCommentVO>,
+    val myId: ArrayList<MemberVO>
+) : RecyclerView.Adapter<MyPostCommentAdapter.ViewHolder>() {
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val imgPost: CircleImageView
-        val tvPostName: TextView
-        val tvPostContent: TextView
-        val tvPostLocation: TextView
-        val tvPostTime: TextView
-        val tvPostLike: TextView
-        val tvPostComment: TextView
+        val imgRvPostDetail: ImageView
+        val tvRvPostDetailName: TextView
+        val tvRvPostDetailContent: TextView
+        val tvRvPostDetailTime: TextView
 
         init {
-            imgPost = itemView.findViewById(R.id.imgPost)
-            tvPostName = itemView.findViewById(R.id.tvPostName)
-            tvPostContent = itemView.findViewById(R.id.tvPostContent)
-            tvPostLocation = itemView.findViewById(R.id.tvPostLocation)
-            tvPostTime = itemView.findViewById(R.id.tvPostTime)
-            tvPostLike = itemView.findViewById(R.id.tvPostLike)
-            tvPostComment = itemView.findViewById(R.id.tvPostComment)
+            imgRvPostDetail = itemView.findViewById(R.id.imgRvPostDetail)
+            tvRvPostDetailName = itemView.findViewById(R.id.tvRvPostDetailName)
+            tvRvPostDetailContent = itemView.findViewById(R.id.tvRvPostDetailContent)
+
+            tvRvPostDetailTime = itemView.findViewById(R.id.tvRvPostDetailTime)
+
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(context)
-        val view = layoutInflater.inflate(R.layout.post_template, null)
+        val view = layoutInflater.inflate(R.layout.coment_list, null)
 
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-
-        val storageReference =
-            Firebase.storage.reference.child("/userImages/${memberList[0].uid}/photo")
-        storageReference.downloadUrl.addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                Glide.with(context)                    .load(task.result)
-                    .into(holder.imgPost)
+        if(holder.imgRvPostDetail != null) {
+            val storageReference =
+                Firebase.storage.reference.child("/userImages/${myId[0].uid}/photo")
+            storageReference.downloadUrl.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Glide.with(context).load(task.result).circleCrop()
+                        .into(holder.imgRvPostDetail)
+                }
             }
         }
-        val location = memberList[0].address.split(" ").asReversed()
+        Log.d("마이 닉", myId[0].dogNick)
+        Log.d("마이 이름", myId[0].dogName)
+        Log.d("마이", myId[0].toString())
 
-        holder.tvPostName.text = "${memberList[0].dogNick} ${memberList[0].dogName}"
-        holder.tvPostLocation.text = location[0].substring(1, location[0].length - 1)
-        holder.tvPostContent.text = postList[position].content
-        holder.tvPostTime.text = postList[position].time
-        holder.tvPostLike.text = postList[position].like.toString()
-        holder.tvPostComment.text = postList[position].commentCount.toString()
+
+        holder.tvRvPostDetailName.text = "${myId[0].dogNick} ${myId[0].dogName}"
+        holder.tvRvPostDetailContent.text = commentList[position].conmment
+        holder.tvRvPostDetailTime.text = commentList[position].time
+
 
 
     }
 
     override fun getItemCount(): Int {
-        return postList.size
+        return commentList.size
     }
 }

@@ -49,6 +49,8 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         val long = intent.getStringExtra("long").toString()
         val addr = intent.getStringExtra("addr").toString()
 
+        Log.d("맵", addr)
+
         // Add a marker in Sydney and move the camera
         val smhrd = LatLng(lat.toDouble(), long.toDouble())
         mMap.addMarker(
