@@ -51,7 +51,6 @@ class HomeAllAdapter(
 //        val imgEdit: ImageView
 
 
-
         init {
 
             imgHomeAllProfile = itemView.findViewById(R.id.imgPost)
@@ -84,6 +83,12 @@ class HomeAllAdapter(
         var imgUid = postUid[position].toString()
         var uid = keyData[position].uid
 
+        FBdatabase.getMemberRef().get().addOnSuccessListener {
+            val memberData = it.child(uid).getValue(MemberVO::class.java)
+            if (memberData != null) {
+                holder.memberList = memberData
+            }
+        }
 //
 //        Log.d("라이크", keyData[position].like.toString())
 
@@ -93,9 +98,10 @@ class HomeAllAdapter(
 //                Log.d("이거다1", uid)
 //                Log.d("이거다2", snapshot.child("$uid").child("dogNick").value.toString())
 
-                holder.tvHomeAllName.text = snapshot.child("$uid").child("dogNick").value.toString()
-                holder.tvTown.text = snapshot.child("$uid").child("address").value.toString()
 
+                holder.tvHomeAllName.text =
+                    "${holder.memberList.dogNick} ${holder.memberList.dogName}"
+                holder.tvTown.text = holder.memberList.address
 
 
                 //이미지 업로드
@@ -112,20 +118,21 @@ class HomeAllAdapter(
                             Log.d("사진","실패")
                         }
                     }
+                }
 
                 // 유저가 게시글에 업로드한 이미지
-                val storageReferencePost = Firebase.storage.reference.child("/postUploadImages/$imgUid/photo")
+                val storageReferencePost =
+                    Firebase.storage.reference.child("/postUploadImages/$imgUid/photo")
                 storageReferencePost.downloadUrl.addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         Glide.with(context)
                             .load(task.result)
                             .into(holder.imgPostUpload)
-                        Log.d("사진게시판","성공")
-                    }else {
-                        Log.d("사진게시판","실패")
+                        Log.d("사진게시판", "성공")
+                    } else {
+                        Log.d("사진게시판", "실패")
                     }
                 }
-
 
 
             }
@@ -143,11 +150,8 @@ class HomeAllAdapter(
 //                holder.imgComment.setImageResource(R.drawable.message)
                 holder.tvCommentCount.text = "0"
                 holder.tvHeratCount.text = keyData[position].like.toString()
-   //             holder.imgEdit.setImageResource(R.drawable.menu)
-                holder.tvCommentCount.text= keyData[position].commentCount.toString()
-
-
-                Log.d("라이크리스트",postUid[position])
+                //             holder.imgEdit.setImageResource(R.drawable.menu)
+                holder.tvCommentCount.text = keyData[position].commentCount.toString()
 
                 if (likeList.contains(postUid[position])) {
                     holder.imgHeart.setImageResource(R.drawable.fullheart)
@@ -180,17 +184,14 @@ class HomeAllAdapter(
         }
 
 
-
-
-
         //댓글
-        holder.tvContent.setOnClickListener{
+        holder.tvContent.setOnClickListener {
             var intent = Intent(context, PostDetailActivity::class.java)
 
 
             intent.putExtra("postInfo", keyData[position].toString())
-            intent.putExtra("writerInfo",data[position].toString())
-            intent.putExtra("postUid",postUid[position].toString())
+            intent.putExtra("writerInfo", data[position].toString())
+            intent.putExtra("postUid", postUid[position])
 
             context.startActivity(intent)
 
@@ -203,8 +204,6 @@ class HomeAllAdapter(
     override fun getItemCount(): Int {
         return keyData.size
     }
-
-
 
 
 }

@@ -1,5 +1,6 @@
 package com.example.dangtime.post
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +9,11 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.dangtime.R
+import com.example.dangtime.board.BoardVO
+import com.example.dangtime.util.FBAuth
+import com.example.dangtime.util.FBdatabase
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 class EditPostActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,9 +39,20 @@ class EditPostActivity : AppCompatActivity() {
             Log.d("보드멤버",memberList.toString())
         }
 
+
         imgPostEditBack.setOnClickListener {
             finish()
         }
+
+        btnHomeAllDelPicture.setOnClickListener{
+
+//            Firebase.storage.reference.child("/postUploadImages/$uid").delete()
+//
+//            val intent = Intent(this,HomeActivity::class.java)
+//            startActivity(intent)
+        }
+
+
 
 
 

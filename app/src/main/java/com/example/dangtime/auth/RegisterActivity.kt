@@ -31,15 +31,18 @@ class RegisterActivity : AppCompatActivity() {
         val tvRegisterAd = findViewById<TextView>(R.id.tvRegisterAd)
         val imgRegisterBack = findViewById<ImageView>(R.id.imgRegisterBack)
 
-        val address = intent.getStringExtra("addr")
+        val address = intent.getStringExtra("address")
 //        Log.d("address", address!!)
         tvRegisterAd.setText(address)
-
 
         // auth 를 초기화
         auth = Firebase.auth
         // Firebase.auth : 로그인, 회원가입, 인증 시스템에 대한 모든 기능이 담겨있다!
 
+
+        imgRegisterBack.setOnClickListener {
+            finish()
+        }
 
         btnRegisterNext.setOnClickListener {
 
@@ -88,7 +91,6 @@ class RegisterActivity : AppCompatActivity() {
                             startActivity(intent)
                             finish()
                         } else {
-
                             // 실패했을 때 실행시킬 코드
                             Toast.makeText(this, "회원가입 실패", Toast.LENGTH_SHORT).show()
 
@@ -96,6 +98,7 @@ class RegisterActivity : AppCompatActivity() {
                     }
 
             }
+
 
             imgRegisterBack.setOnClickListener {
 //            val intent = Intent(this@RegisterActivity, SearchLocationActivity::class.jav0a)

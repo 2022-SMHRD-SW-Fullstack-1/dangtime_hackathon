@@ -76,10 +76,10 @@ class HomeActivity : AppCompatActivity() {
 
         if (request1 == "100") {
             bnv.selectedItemId = R.id.bnvMainTab3
-                supportFragmentManager.beginTransaction().replace(
-                    R.id.flHome,
-                    MyPostFragment()
-                ).commit()
+            supportFragmentManager.beginTransaction().replace(
+                R.id.flHome,
+                MyPostFragment()
+            ).commit()
             changeMyPostFragment(1)
         } else {
             supportFragmentManager.beginTransaction().replace(

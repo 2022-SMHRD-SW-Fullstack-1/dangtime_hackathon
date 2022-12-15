@@ -27,11 +27,11 @@ class MyPostPostFragment : Fragment() {
     val postRef = FBdatabase.getPostRef()
     val loginId = FBAuth.getUid()
     val memberList = ArrayList<MemberVO>()
+    var postUid = ArrayList<String>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         getMyPostPostData()
 
         val view = inflater.inflate(R.layout.fragment_my_post_post, container, false)
@@ -52,7 +52,9 @@ class MyPostPostFragment : Fragment() {
         }
 
 
-        adapter = MyPostPostAdapter(requireContext(), postList, memberList)
+
+
+        adapter = MyPostPostAdapter(requireContext(), postList, memberList, postUid)
 
         rvMyPostPost.adapter = adapter
         rvMyPostPost.layoutManager = GridLayoutManager(requireContext(), 1)
@@ -68,6 +70,7 @@ class MyPostPostFragment : Fragment() {
                     if (item != null && item.uid == loginId) {
                         postList.add(item)
                     }
+                    postUid.add(model.key.toString())
                 }
                 adapter.notifyDataSetChanged()
             }
