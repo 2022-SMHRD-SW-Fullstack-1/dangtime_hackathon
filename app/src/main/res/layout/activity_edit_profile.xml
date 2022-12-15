@@ -57,7 +57,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="80dp"
         android:background="@android:color/transparent"
-        android:src="@drawable/dogprofile"
+        android:src="@drawable/loading"
         app:civ_border_color="#000000"
         app:civ_border_overlay="true"
         app:civ_border_width="1dp"

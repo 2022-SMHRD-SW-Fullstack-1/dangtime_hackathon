@@ -28,7 +28,8 @@ import java.io.ByteArrayOutputStream
 
 class BoardWriteMateActivity : AppCompatActivity() {
 
-    lateinit var imgLoad : ImageView
+    lateinit var imgLoad: ImageView
+    var imgUpload = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,14 +48,14 @@ class BoardWriteMateActivity : AppCompatActivity() {
         var userUid = FBAuth.getUid()
 
 
-
         val pfListener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {//
-                val dogName =    snapshot.child(userUid).child("dogName").value.toString()
-                Log.d("강아지",userUid)
-                Log.d("강아지",dogName)
+                val dogName = snapshot.child(userUid).child("dogName").value.toString()
+                Log.d("강아지", userUid)
+                Log.d("강아지", dogName)
                 tvTo.setText("$dogName 에게")
             }
+
             override fun onCancelled(error: DatabaseError) {
             }
         }
@@ -66,13 +67,16 @@ class BoardWriteMateActivity : AppCompatActivity() {
 
         imgLoad.setOnClickListener {
 
+            imgUpload = true
 
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
 
             launcher.launch(intent)
+
         }
 
         tvMateLoad.setOnClickListener {
+            imgUpload = true
 
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
 
@@ -83,32 +87,18 @@ class BoardWriteMateActivity : AppCompatActivity() {
         btnUpload.setOnClickListener {
 
             val content = etContent.text.toString()
-
-            // board
-            // - key(게시물의 고유한 uid : push())
-            //      -boardVO(title, content, 사용자uid, time)
-
-
-            //FBdatabase.getBoardRef().push().setValue(BoardVO("1","1","1","1"))
-
-            // auth
             val uid = FBAuth.getUid()
             val time = FBAuth.getTime()
-
-            // setValue가 되기전에 미리 BoardVO가 저장될 key값(uid_)을 만들자
-
-            //먼저 uid를 만들고  key저장
             var key = FBdatabase.getPostRef().push().key.toString()
-
-            // 카테고리 저장
             val category = intent.getStringExtra("category")
 
             // boardRef의 uid 밑에 data 저장
             FBdatabase.getPostRef().child(key)
                 .setValue(BoardVO(0, "$content", 0, "$time", "$uid", category!!))
-            imgUpload(key)
+            if (imgUpload) imgUpload(key)
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
     }
