@@ -40,6 +40,10 @@ class RegisterActivity : AppCompatActivity() {
         // Firebase.auth : 로그인, 회원가입, 인증 시스템에 대한 모든 기능이 담겨있다!
 
 
+        imgRegisterBack.setOnClickListener {
+            finish()
+        }
+
         btnRegisterNext.setOnClickListener {
 
             var isJoin = true
@@ -96,11 +100,6 @@ class RegisterActivity : AppCompatActivity() {
             }
 
 
-            imgRegisterBack.setOnClickListener {
-//            val intent = Intent(this@RegisterActivity, SearchLocationActivity::class.jav0a)
-//            startActivity(intent)
-            finish()
-        }
 
     }
     }

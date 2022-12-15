@@ -6,15 +6,32 @@
     android:layout_height="match_parent"
     tools:context=".auth.DogInfoActivity">
 
-    <ImageView
+<!--    <ImageView-->
+<!--        android:id="@+id/imgRegistration"-->
+<!--        android:layout_width="150dp"-->
+<!--        android:layout_height="150dp"-->
+<!--        android:layout_marginTop="32dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/tvRegisterAdd"-->
+<!--        app:srcCompat="@drawable/addimage" />-->
+
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imgRegistration"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnRegister"
+        android:layout_gravity="center"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/main"
+        app:civ_border_color="#000000"
+        app:civ_border_overlay="true"
+        app:civ_border_width="2dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etRegisterDogNick"
-        app:srcCompat="@drawable/addimage" />
+        app:layout_constraintTop_toBottomOf="@+id/tvRegisterAdd" />
 
     <TextView
         android:id="@+id/textView25"
@@ -44,7 +61,7 @@
         android:text="반려견 이름"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/tvRegisterAdd"
-        app:layout_constraintTop_toBottomOf="@+id/tvRegisterAdd" />
+        app:layout_constraintTop_toBottomOf="@+id/imgRegistration" />
 
     <EditText
         android:id="@+id/etRegisterDogName"
