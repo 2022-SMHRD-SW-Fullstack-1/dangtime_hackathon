@@ -116,8 +116,7 @@ class ProfileActivity : AppCompatActivity() {
 
         tvPfReplyCnt.setOnClickListener{
             val intent = Intent(this@ProfileActivity, HomeActivity::class.java)
-            intent.putExtra("request1", "100")
-            startActivity(intent)
+            startActivityForResult(intent, 200)
             finish()
         }
 
@@ -125,6 +124,8 @@ class ProfileActivity : AppCompatActivity() {
 
 
     }
+
+
     fun getImageData(uid: String) {
         val storageReference = Firebase.storage.reference.child("/userImages/$uid/photo")
         storageReference.downloadUrl.addOnCompleteListener { task ->

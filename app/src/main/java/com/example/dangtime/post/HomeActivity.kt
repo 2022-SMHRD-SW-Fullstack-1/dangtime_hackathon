@@ -38,6 +38,8 @@ class HomeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home)
 
 
+
+
         imgHomeProfile = findViewById<ImageView>(R.id.imgHomeProfile)
         val imgHomeChat = findViewById<ImageView>(R.id.imgHomeChat)
         val bnv = findViewById<BottomNavigationView>(R.id.bnv)
@@ -68,6 +70,9 @@ class HomeActivity : AppCompatActivity() {
 
         val request1 = intent.getStringExtra("request1")
         val request2 = intent.getStringExtra("request2")
+
+
+
 
         if (request1 == "100") {
             bnv.selectedItemId = R.id.bnvMainTab3
@@ -118,6 +123,8 @@ class HomeActivity : AppCompatActivity() {
 
 
     }
+
+
 
     //    Home Fragment 관리
     fun changeHomeFragment(index: Int) {

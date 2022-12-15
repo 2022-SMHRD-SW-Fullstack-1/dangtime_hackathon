@@ -45,6 +45,14 @@ class EditProfileActivity : AppCompatActivity() {
 
         getImageData(uid)
 
+        imgPfEdit.setOnClickListener {
+            val intent = Intent(
+                Intent.ACTION_PICK,
+                MediaStore.Images.Media.INTERNAL_CONTENT_URI
+            )
+            launcher.launch(intent)
+        }
+
         imgPfEditBack.setOnClickListener {
             finish()
         }
