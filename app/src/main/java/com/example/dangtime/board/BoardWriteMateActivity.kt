@@ -6,16 +6,22 @@ import android.graphics.drawable.BitmapDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
+import com.bumptech.glide.Glide
 import com.example.dangtime.R
+import com.example.dangtime.auth.MemberVO
 import com.example.dangtime.fragment.home.HomeAllFragment
 import com.example.dangtime.post.HomeActivity
 import com.example.dangtime.util.FBAuth
 import com.example.dangtime.util.FBdatabase
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import java.io.ByteArrayOutputStream
@@ -37,13 +43,27 @@ class BoardWriteMateActivity : AppCompatActivity() {
 
         val btnUpload = findViewById<Button>(R.id.btnWriteMateUpload)
         val userNick = intent.getStringExtra("userNick")
-        tvTo.setText("$userNick 에게")
+        var userUid = FBAuth.getUid()
+
+
+
+        val pfListener = object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {//
+                val dogName =    snapshot.child(userUid).child("dogName").value.toString()
+                Log.d("강아지",userUid)
+                Log.d("강아지",dogName)
+                tvTo.setText("$dogName 에게")
+            }
+            override fun onCancelled(error: DatabaseError) {
+            }
+        }
+        FBdatabase.getMemberRef().addValueEventListener(pfListener)
 
         imgMtBack.setOnClickListener {
             finish()
         }
 
-        imgLoad.setOnClickListener{
+        imgLoad.setOnClickListener {
 
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
 
@@ -51,7 +71,7 @@ class BoardWriteMateActivity : AppCompatActivity() {
         }
 
         // 모든 값(title content time...image)을 Firebase에 저장시켜줘야함
-        btnUpload.setOnClickListener{
+        btnUpload.setOnClickListener {
 
             val content = etContent.text.toString()
 
@@ -71,16 +91,20 @@ class BoardWriteMateActivity : AppCompatActivity() {
             //먼저 uid를 만들고  key저장
             var key = FBdatabase.getPostRef().push().key.toString()
 
+            // 카테고리 저장
+            val category = intent.getStringExtra("category")
+
             // boardRef의 uid 밑에 data 저장
-            FBdatabase.getPostRef().child(key).setValue(BoardVO(0,"$content",0, "$time","$uid"))
+            FBdatabase.getPostRef().child(key)
+                .setValue(BoardVO(0, "$content", 0, "$time", "$uid", category!!))
             imgUpload(key)
-            val intent = Intent(this,HomeActivity::class.java)
+            val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
         }
 
     }
 
-    fun imgUpload(key : String){
+    fun imgUpload(key: String) {
         // realtime(boardVO)로 저장되는 값 과 storage에 저장되는 값이 매칭될 수 없음
         // 그래서 storage의 이미지 이름을 게시물uid.png 식으로  저장해논다
         //  push()가 uid만듬
@@ -109,23 +133,20 @@ class BoardWriteMateActivity : AppCompatActivity() {
         }
 
 
-
-
-
-
     }
 
     // intent를 실행했을때 결과값을 받아올 수있는 launcher 만들기
-    val launcher =registerForActivityResult(ActivityResultContracts //it에는 result코드와data가 들어있음
-        .StartActivityForResult()){
+    val launcher = registerForActivityResult(
+        ActivityResultContracts //it에는 result코드와data가 들어있음
+            .StartActivityForResult()
+    ) {
 
 
         // result 코드가 OK이라면
-        if (it.resultCode == RESULT_OK){
+        if (it.resultCode == RESULT_OK) {
             // it이 받아온 data의data에 저장되어있는 이미지 꺼내오기
             imgLoad.setImageURI(it.data?.data)
         }
-
 
 
     }

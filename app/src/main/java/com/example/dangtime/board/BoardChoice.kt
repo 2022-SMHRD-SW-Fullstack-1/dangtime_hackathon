@@ -44,12 +44,14 @@ class BoardChoice : AppCompatActivity() {
             //userInfoRef.child(auth.currentUser!!.uid).child(userNick).addValueEventListener(postListener)
 
             val intent = Intent(this,BoardWriteMateActivity::class.java)
+            intent.putExtra("category", "mate")
       //      intent.putExtra("userNick",userNick)
             startActivity(intent)
         }
 
         btnWriteStory.setOnClickListener {
             val intent = Intent(this , BoardWriteStoryActivity::class.java)
+            intent.putExtra("category", "story")
 
             startActivity(intent)
         }
