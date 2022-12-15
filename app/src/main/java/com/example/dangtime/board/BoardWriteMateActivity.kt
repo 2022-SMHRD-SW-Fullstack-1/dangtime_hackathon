@@ -71,7 +71,7 @@ class BoardWriteMateActivity : AppCompatActivity() {
             var key = FBdatabase.getPostRef().push().key.toString()
 
             // boardRef의 uid 밑에 data 저장
-            FBdatabase.getPostRef().child(key).setValue(BoardVO(0,"$content",0, "$time","$uid"))
+            FBdatabase.getPostRef().child(uid).child(key).setValue(BoardVO(0,"$content",0, "$time","$uid"))
             imgUpload(key)
             val intent = Intent(this,HomeActivity::class.java)
             startActivity(intent)
