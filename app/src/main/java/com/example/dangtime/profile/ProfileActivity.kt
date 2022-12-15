@@ -60,7 +60,7 @@ class ProfileActivity : AppCompatActivity() {
         val email = user?.email.toString()
         tvProfileEmail.text = email
 
-        getImageData(uid)
+
 
         val pfListener = object : ValueEventListener{
 
@@ -92,6 +92,7 @@ class ProfileActivity : AppCompatActivity() {
             intent.putExtra("dogNick",dogNick)
             intent.putExtra("address",address)
             startActivity(intent)
+            finish()
         }
 
         btnProfileLogout.setOnClickListener {
@@ -119,6 +120,8 @@ class ProfileActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+
+        getImageData(uid)
 
 
     }
