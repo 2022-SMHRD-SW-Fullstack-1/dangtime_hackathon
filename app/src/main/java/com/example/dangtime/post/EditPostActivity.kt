@@ -19,7 +19,6 @@ class EditPostActivity : AppCompatActivity() {
         val imgPostEditBack = findViewById<ImageView>(R.id.imgPostEditBack)
         val imgMyPostProfilePic = findViewById<ImageView>(R.id.imgMyPostProfilePic)
         val imgStrBack = findViewById<ImageView>(R.id.imgStrBack)
-
         val tvMyPostName = findViewById<TextView>(R.id.tvMyPostName)
         val btnHomeAllEditPicture = findViewById<Button>(R.id.btnHomeAllEditPicture)
         val btnHomeAllDelPicture = findViewById<Button>(R.id.btnHomeAllDelPicture)
@@ -37,6 +36,8 @@ class EditPostActivity : AppCompatActivity() {
         imgPostEditBack.setOnClickListener {
             finish()
         }
+
+
 
     }
 }
