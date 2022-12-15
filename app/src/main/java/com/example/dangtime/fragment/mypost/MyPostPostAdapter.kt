@@ -73,10 +73,9 @@ class MyPostPostAdapter(
                     .into(holder.imgMyPostProfilePic)
             }
         }
-        val location = memberList[0].address.split(" ").asReversed()
 
         holder.tvMyPostName.text = "${memberList[0].dogNick} ${memberList[0].dogName}"
-        holder.tvMyPostLocation.text = location[0].substring(1, location[0].length - 1)
+        holder.tvMyPostLocation.text = memberList[0].address
         holder.tvMyPostContent.text = postList[position].content
         holder.tvMyPostTime.text = postList[position].time
         holder.tvMyPostHeartCount.text = postList[position].like.toString()
@@ -84,6 +83,26 @@ class MyPostPostAdapter(
 
         holder.tvMyPostContent.setOnClickListener {
             val intent = Intent(context, PostDetailActivity::class.java)
+
+//            var keyData = ArrayList<HomePostVO>()
+//            var data = ArrayList<ListVO>()
+////            포스트 리스트
+//                FBdatabase.getPostRef().get().addOnCompleteListener{
+//                    for (model in it.result.children) {
+//                        keyData.add(model.getValue(HomePostVO::class.java)!!)
+//
+//                    }
+//                    Log.d("키키 데이터", keyData.toString())
+//                }
+////
+////            멤버 리스트
+//            FBdatabase.getMemberRef().get().a
+////            이미지 uid
+//            intent.putExtra("writerInfo", data[position].toString())
+//            intent.putExtra("postInfo", keyData[position].toString())
+//            intent.putExtra("postUid", postUid[position].toString())
+
+
             context.startActivity(intent)
         }
 

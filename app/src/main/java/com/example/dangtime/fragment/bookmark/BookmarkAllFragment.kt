@@ -30,7 +30,11 @@ class BookmarkAllFragment : Fragment() {
     val auth = Firebase.auth
     val likeList = ArrayList<String>()
     val loginId = FBAuth.getUid()
-   var memberList = ArrayList<MemberVO>()
+    var memberList = ArrayList<String>()
+    val memberRef = FBdatabase.getMemberRef()
+    val likeMemberList = ArrayList<MemberVO>()
+    var postImageList = ArrayList<String>()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,15 +44,9 @@ class BookmarkAllFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_bookmark_all, container, false)
         val rvBookAll = view.findViewById<RecyclerView>(R.id.rvBookAll)
 
-
-        FBdatabase.getMemberRef().get().addOnSuccessListener {
-            val memberData = it.child(FBAuth.getUid()).getValue(MemberVO::class.java)
-                memberList.add(memberData!!)
-        }
-
         getLikePostData()
 
-        adapter = BookmarkAllAdapter(requireContext(), postList, memberList)
+        adapter = BookmarkAllAdapter(requireContext(), postList, likeMemberList, postImageList)
 
         rvBookAll.adapter = adapter
         rvBookAll.layoutManager = GridLayoutManager(requireContext(), 1)
@@ -58,7 +56,7 @@ class BookmarkAllFragment : Fragment() {
 
     fun getLikePostData() {
 
-        likeRef.addValueEventListener(object : ValueEventListener{
+        likeRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
 
                 for (model in snapshot.child(loginId).children) {
@@ -79,6 +77,32 @@ class BookmarkAllFragment : Fragment() {
                     val item = model.getValue(HomePostVO::class.java)
                     if (item != null && likeList.contains(model.key)) {
                         postList.add(item)
+                        postImageList.add(model.key!!)
+                    }
+                }
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+
+        memberRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                for (model in snapshot.children) {
+                    val item = model.getValue(MemberVO::class.java)
+                    if (item != null) {
+                        memberList.add(model.key.toString())
+                    }
+
+                }
+
+                for (model in postList) {
+                    if (memberList.contains(model.uid)) {
+                        likeMemberList.add(snapshot.child(model.uid).getValue(MemberVO::class.java)!!)
                     }
                 }
                 adapter.notifyDataSetChanged()
