@@ -42,7 +42,6 @@ class PostDetailActivity : AppCompatActivity() {
         val tvPostDetailTown = findViewById<TextView>(R.id.tvDetailTown)
         val tvPostDetailHeartCount = findViewById<TextView>(R.id.tvPostDetailHeartCount)
         tvPostDetailComentCount = findViewById<TextView>(R.id.tvDetailComentCount)
-        val tvPostDetailViewCount = findViewById<TextView>(R.id.tvPostDetailViewCount)
         val rvPostDetail = findViewById<RecyclerView>(R.id.rvPostDetail)
 
         val imgPostDetailUpload = findViewById<ImageView>(R.id.imgPostDetailUpload)
@@ -66,11 +65,6 @@ class PostDetailActivity : AppCompatActivity() {
         getCommentData()
 
 
-
-
-
-
-
         // =commentCnt
 
         //어댑터 생성
@@ -84,10 +78,6 @@ class PostDetailActivity : AppCompatActivity() {
         imgPostDetailSend.setOnClickListener {
             val uid = FBAuth.getUid()
             val time = FBAuth.getTime()
-
-
-
-
 
             // setValue가 되기전에 미리 BoardVO가 저장될 key값(uid_)을 만들자
 
@@ -142,9 +132,9 @@ class PostDetailActivity : AppCompatActivity() {
 
         val pfListener2 = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-
-                tvPostDetailName.text =
-                    (snapshot.child("$userUid").child("dogName").value.toString())
+                val dogNick = snapshot.child("$userUid").child("dogNick").value.toString()
+                val dogName = snapshot.child("$userUid").child("dogName").value.toString()
+                tvPostDetailName.text = "$dogNick $dogName"
             }
 
             override fun onCancelled(error: DatabaseError) {

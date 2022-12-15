@@ -93,7 +93,10 @@ class HomeAllAdapter(
 //                Log.d("이거다1", uid)
 //                Log.d("이거다2", snapshot.child("$uid").child("dogNick").value.toString())
 
-                holder.tvHomeAllName.text = snapshot.child("$uid").child("dogNick").value.toString()
+
+                val dogNick = snapshot.child("$uid").child("dogNick").value.toString()
+                val dogName = snapshot.child("$uid").child("dogName").value.toString()
+                holder.tvHomeAllName.text = "$dogNick $dogName"
                 holder.tvTown.text = snapshot.child("$uid").child("address").value.toString()
 
 
