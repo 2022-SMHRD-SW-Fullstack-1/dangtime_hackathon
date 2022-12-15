@@ -2,9 +2,11 @@ package com.example.dangtime.fragment.bookmark
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -29,6 +31,7 @@ class BookmarkAllAdapter(
         val tvPostTime: TextView
         val tvPostLike: TextView
         val tvPostComment: TextView
+        val imgPostUpload : ImageView
 
         init {
             imgPost = itemView.findViewById(R.id.imgPost)
@@ -38,6 +41,7 @@ class BookmarkAllAdapter(
             tvPostTime = itemView.findViewById(R.id.tvPostTime)
             tvPostLike = itemView.findViewById(R.id.tvPostLike)
             tvPostComment = itemView.findViewById(R.id.tvPostComment)
+            imgPostUpload = itemView.findViewById(R.id.imgPostUpload)
         }
     }
 
@@ -67,6 +71,19 @@ class BookmarkAllAdapter(
         holder.tvPostLike.text = postList[position].like.toString()
         holder.tvPostComment.text = postList[position].commentCount.toString()
 
+        var imgUid = postList[position].toString()
+
+        val storageReferencePost = Firebase.storage.reference.child("/postUploadImages/$imgUid/photo")
+        storageReferencePost.downloadUrl.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                Glide.with(context)
+                    .load(task.result)
+                    .into(holder.imgPostUpload)
+                Log.d("사진게시판","성공")
+            }else {
+                Log.d("사진게시판","실패")
+            }
+        }
 
     }
 
