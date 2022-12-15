@@ -103,17 +103,20 @@ class HomeAllAdapter(
                     "${holder.memberList.dogNick} ${holder.memberList.dogName}"
                 holder.tvTown.text = holder.memberList.address
 
-                //이미지 업로두
-                val storageReference = Firebase.storage.reference.child("/userImages/$uid/photo")
-                storageReference.downloadUrl.addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        Glide.with(context)
-                            .load(task.result)
-                            .circleCrop()
-                            .into(holder.imgHomeAllProfile)
-                        Log.d("사진", "성공")
-                    } else {
-                        Log.d("사진", "실패")
+
+                //이미지 업로드
+
+                    val storageReference = Firebase.storage.reference.child("/userImages/$uid/photo")
+                    storageReference.downloadUrl.addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            Glide.with(context)
+                                .load(task.result)
+                                .circleCrop()
+                                .into(holder.imgHomeAllProfile)
+                            Log.d("사진","성공")
+                        }else {
+                            Log.d("사진","실패")
+                        }
                     }
                 }
 
@@ -188,7 +191,7 @@ class HomeAllAdapter(
 
             intent.putExtra("postInfo", keyData[position].toString())
             intent.putExtra("writerInfo", data[position].toString())
-            intent.putExtra("postUid", postUid[position].toString())
+            intent.putExtra("postUid", postUid[position])
 
             context.startActivity(intent)
 
