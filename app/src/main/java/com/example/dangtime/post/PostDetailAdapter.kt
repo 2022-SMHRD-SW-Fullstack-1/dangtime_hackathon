@@ -90,7 +90,6 @@ class PostDetailAdapter(
                     if (task.isSuccessful) {
                         Glide.with(context)
                             .load(task.result)
-                            .circleCrop()
                             .into(holder.imgRvPostDetail)
                         Log.d("사진","성공")
                     }else {

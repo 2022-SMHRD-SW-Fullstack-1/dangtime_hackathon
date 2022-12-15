@@ -39,6 +39,11 @@ class EditPostActivity : AppCompatActivity() {
             Log.d("보드멤버",memberList.toString())
         }
 
+
+        imgPostEditBack.setOnClickListener {
+            finish()
+        }
+
         btnHomeAllDelPicture.setOnClickListener{
 
 //            Firebase.storage.reference.child("/postUploadImages/$uid").delete()
@@ -46,16 +51,6 @@ class EditPostActivity : AppCompatActivity() {
 //            val intent = Intent(this,HomeActivity::class.java)
 //            startActivity(intent)
         }
-
-
-
-
-
-
-
-
-
-
 
 
 
