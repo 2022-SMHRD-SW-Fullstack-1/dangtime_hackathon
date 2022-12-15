@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.dangtime.R
@@ -23,6 +24,7 @@ import com.example.dangtime.util.FBdatabase
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import de.hdodenhof.circleimageview.CircleImageView
+import kotlin.math.log
 
 class MyPostPostAdapter(
     val context: Context, val postList: ArrayList<HomePostVO>,
@@ -65,6 +67,7 @@ class MyPostPostAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        Log.d("포스트유아이디1번",  postUid[position])
 
         val storageReference =
             Firebase.storage.reference.child("/userImages/${memberList[0].uid}/photo")
@@ -90,13 +93,18 @@ class MyPostPostAdapter(
             intent.putExtra("writerInfo", memberList[position].toString())
             intent.putExtra("postUid", postUid[position])
 
+            Log.d("유아이디 가짜", postUid[position])
 
             context.startActivity(intent)
         }
 
         holder.btnMyPostEdit.setOnClickListener {
+
             val intent = Intent(context, EditPostActivity::class.java)
-            intent.putExtra("postUid",postUid[position])
+            Log.d("유아이디 진짜", postUid[position])
+            intent.putExtra("postList", postList[position])
+            intent.putExtra("postEditUid",postUid[position])
+            intent.putExtra("content",postList[position].content)
             context.startActivity(intent)
         }
     }

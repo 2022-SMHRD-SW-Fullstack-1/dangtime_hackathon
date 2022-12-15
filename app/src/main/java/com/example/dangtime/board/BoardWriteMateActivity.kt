@@ -74,24 +74,9 @@ class BoardWriteMateActivity : AppCompatActivity() {
         btnUpload.setOnClickListener {
 
             val content = etContent.text.toString()
-
-            // board
-            // - key(게시물의 고유한 uid : push())
-            //      -boardVO(title, content, 사용자uid, time)
-
-
-            //FBdatabase.getBoardRef().push().setValue(BoardVO("1","1","1","1"))
-
-            // auth
             val uid = FBAuth.getUid()
             val time = FBAuth.getTime()
-
-            // setValue가 되기전에 미리 BoardVO가 저장될 key값(uid_)을 만들자
-
-            //먼저 uid를 만들고  key저장
             var key = FBdatabase.getPostRef().push().key.toString()
-
-            // 카테고리 저장
             val category = intent.getStringExtra("category")
 
             // boardRef의 uid 밑에 data 저장
