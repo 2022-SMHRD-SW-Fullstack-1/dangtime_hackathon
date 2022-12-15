@@ -32,7 +32,7 @@ class ProfileActivity : AppCompatActivity() {
     lateinit var dogNick: String
     lateinit var dogName: String
     lateinit var address: String
-    lateinit var imgPf: ImageView
+    lateinit var imgPf : ImageView
 
     lateinit var tvPfPostCnt: TextView
     val postList = ArrayList<HomePostVO>()
@@ -56,11 +56,11 @@ class ProfileActivity : AppCompatActivity() {
         val btnProfileEdit = findViewById<Button>(R.id.btnProfileEdit)
         val btnProfileLogout = findViewById<Button>(R.id.btnProfileLogout)
         val btnProfileDelete = findViewById<Button>(R.id.btnProfileDelete)
+        val tvPfPostCnt = findViewById<TextView>(R.id.tvPfPostCnt)
         val tvPfReplyCnt = findViewById<TextView>(R.id.tvPfReplyCnt)
         val tvPfLocation = findViewById<TextView>(R.id.tvPfLocation)
-
-        tvPfPostCnt = findViewById(R.id.tvPfPostCnt)
         imgPf = findViewById(R.id.imgPf)
+
 
 
         val email = user?.email.toString()
@@ -69,7 +69,7 @@ class ProfileActivity : AppCompatActivity() {
         getImageData(uid)
         getMyPostPostData()
 
-        val pfListener = object : ValueEventListener {
+        val pfListener = object : ValueEventListener{
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 dogName = snapshot.child("$uid").child("dogName").value.toString()
@@ -81,7 +81,6 @@ class ProfileActivity : AppCompatActivity() {
                 tvPfLocation.text = "$address 댕댕이"
 
             }
-
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
@@ -96,9 +95,9 @@ class ProfileActivity : AppCompatActivity() {
 
         btnProfileEdit.setOnClickListener {
             val intent = Intent(this@ProfileActivity, EditProfileActivity::class.java)
-            intent.putExtra("dogName", dogName)
-            intent.putExtra("dogNick", dogNick)
-            intent.putExtra("address", address)
+            intent.putExtra("dogName",dogName)
+            intent.putExtra("dogNick",dogNick)
+            intent.putExtra("address",address)
             startActivity(intent)
             finish()
         }
@@ -122,9 +121,10 @@ class ProfileActivity : AppCompatActivity() {
             finish()
         }
 
-        tvPfReplyCnt.setOnClickListener {
+        tvPfReplyCnt.setOnClickListener{
             val intent = Intent(this@ProfileActivity, HomeActivity::class.java)
-            startActivityForResult(intent, 200)
+            intent.putExtra("request1", "100")
+            startActivity(intent)
             finish()
         }
 
@@ -138,9 +138,9 @@ class ProfileActivity : AppCompatActivity() {
                     .load(task.result)
                     .circleCrop()
                     .into(imgPf)
-                Log.d("사진", "성공")
-            } else {
-                Log.d("사진", "실패")
+                Log.d("사진","성공")
+            }else {
+                Log.d("사진","실패")
             }
         }
     }
