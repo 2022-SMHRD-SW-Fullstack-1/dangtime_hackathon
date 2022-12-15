@@ -65,8 +65,9 @@ class MyPostPostFragment : Fragment() {
                     val item = model.getValue(HomePostVO::class.java)
                     if (item != null && item.uid == loginId) {
                         postList.add(item)
+                        postUid.add(model.key.toString())
                     }
-                    postUid.add(model.key.toString())
+
                 }
                 adapter.notifyDataSetChanged()
             }
