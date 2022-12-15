@@ -40,6 +40,7 @@ class BoardWriteMateActivity : AppCompatActivity() {
         val etContent = findViewById<EditText>(R.id.etWriteStoryContent)
         val tvTo = findViewById<TextView>(R.id.tvWriteMateTitleTo)
         val imgMtBack = findViewById<ImageView>(R.id.imgMtBack)
+        val tvMateLoad = findViewById<TextView>(R.id.tvMateLoad)
 
         val btnUpload = findViewById<Button>(R.id.btnWriteMateUpload)
         val userNick = intent.getStringExtra("userNick")
@@ -64,6 +65,14 @@ class BoardWriteMateActivity : AppCompatActivity() {
         }
 
         imgLoad.setOnClickListener {
+
+
+            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
+
+            launcher.launch(intent)
+        }
+
+        tvMateLoad.setOnClickListener {
 
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
 
