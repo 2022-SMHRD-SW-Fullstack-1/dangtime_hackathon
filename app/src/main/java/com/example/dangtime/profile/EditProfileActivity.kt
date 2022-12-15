@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.activity.result.contract.ActivityResultContracts
+import com.bumptech.glide.Glide
 import com.example.dangtime.R
 import com.example.dangtime.auth.MemberVO
 import com.example.dangtime.util.FBAuth
@@ -31,21 +32,30 @@ class EditProfileActivity : AppCompatActivity() {
         auth = Firebase.auth
 
         val imgPfEditBack = findViewById<ImageView>(R.id.imgPfEditBack)
-        imgPfEdit = findViewById<ImageView>(R.id.imgPfEdit)
+        imgPfEdit = findViewById(R.id.imgPfEdit)
         val btnPfEditUpload = findViewById<Button>(R.id.btnPfEditUpload)
         val etPfEditName = findViewById<EditText>(R.id.etPostDetail)
         val etPfEditNick = findViewById<EditText>(R.id.etPfEditNick)
         val btnPfEdit = findViewById<Button>(R.id.btnPfEdit)
 
-
         etPfEditName.hint = intent.getStringExtra("dogName")
         etPfEditNick.hint = intent.getStringExtra("dogNick")
 
+        getImageData(uid)
 
         imgPfEditBack.setOnClickListener {
+            val intent = Intent(this@EditProfileActivity, ProfileActivity::class.java)
+            startActivity(intent)
             finish()
         }
 
+        imgPfEdit.setOnClickListener {
+            val intent = Intent(
+                Intent.ACTION_PICK,
+                MediaStore.Images.Media.INTERNAL_CONTENT_URI
+            )
+            launcher.launch(intent)
+        }
         btnPfEditUpload.setOnClickListener {
             val intent = Intent(
                 Intent.ACTION_PICK,
@@ -72,12 +82,10 @@ class EditProfileActivity : AppCompatActivity() {
             FBdatabase.getMemberRef().child(uid)
                 .setValue(MemberVO(uid, address!!, dogName!!, dogNick!!))
 
-            imgUpload()
-
+            val intent = Intent(this@EditProfileActivity, ProfileActivity::class.java)
+            startActivity(intent)
             finish()
         }
-
-
     }
 
     fun imgUpload() {
@@ -99,6 +107,17 @@ class EditProfileActivity : AppCompatActivity() {
             // ...
         }
     }
+    fun getImageData(uid: String) {
+        val storageReference = Firebase.storage.reference.child("/userImages/$uid/photo")
+        storageReference.downloadUrl.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                Glide.with(this)
+                    .load(task.result)
+                    .into(imgPfEdit)
+            }else {
+            }
+        }
+    }
 
     val launcher = registerForActivityResult(
         ActivityResultContracts
@@ -106,6 +125,7 @@ class EditProfileActivity : AppCompatActivity() {
     ) {
         if (it.resultCode == RESULT_OK) {
             imgPfEdit.setImageURI(it.data?.data)
+            imgUpload()
         }
     }
 }
