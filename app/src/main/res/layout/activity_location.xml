@@ -36,7 +36,7 @@
         app:layout_constraintGuide_begin="66dp" />
 
     <TextView
-        android:id="@+id/tvDetailComentCount2"
+        android:id="@+id/tvPostDetailComentCount2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -76,7 +76,7 @@
         app:layout_constraintBottom_toTopOf="@+id/btnLocationSearch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDetailComentCount2"
+        app:layout_constraintTop_toBottomOf="@+id/tvPostDetailComentCount2"
         app:srcCompat="@drawable/location" />
 
     <Button

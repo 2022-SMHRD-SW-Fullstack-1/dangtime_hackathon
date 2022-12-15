@@ -9,47 +9,37 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dangtime.R
+import com.example.dangtime.util.FBdatabase
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 
-class PostDetailAdapter(val context: Context , val postDetailList : ArrayList<PostDetailVO>) : RecyclerView.Adapter<PostDetailAdapter.ViewHolder>() {
+class PostDetailAdapter(
+    val context: Context,
+    val commentList: ArrayList<PostCommentVO>,
+    val commentUid: ArrayList<String>,
+    val postUid: String,
+
+) :
+    RecyclerView.Adapter<PostDetailAdapter.ViewHolder>() {
+    var userUid : String =""
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
 
+        var tvRvPostDetailTime: TextView
+        var tvRvPostDetailContent: TextView
+        var imgRvPostDetail: ImageView
+        var tvRvPostDetailName : TextView
 
 
-
-inner class ViewHolder(itemView: View) :RecyclerView.ViewHolder(itemView){
-    var tvName : TextView
-    var tvHr : TextView
-    var tvView : TextView
-    var tvContent : TextView
-    var tvTown : TextView
-    var tvCc : TextView
-    var tvHeartCount : TextView
-    var imgDetail : ImageView
-    var imgBack : ImageView
-//    var imgEdit : ImageView
-    var imgHeart : ImageView
-    var imgSend : ImageView
-    var etText : EditText
-    var tvCc2 : TextView
-init {
-
-     tvName = itemView.findViewById<TextView>(R.id.tvDetailName)
-     tvHr = itemView.findViewById<TextView>(R.id.tvDetailHr)
-     tvView = itemView.findViewById<TextView>(R.id.tvDetailView)
-     tvContent = itemView.findViewById<TextView>(R.id.tv)
-     tvTown = itemView.findViewById<TextView>(R.id.tvDetailTown)
-     tvCc =itemView.findViewById<TextView>(R.id.tvDetailComentCount)
-     tvHeartCount = itemView.findViewById<TextView>(R.id.tvDetailHeartCount)
-     imgDetail = itemView.findViewById<ImageView>(R.id.imgDetail)
-     imgBack = itemView.findViewById<ImageView>(R.id.imgDetailBack)
-//     imgEdit = itemView.findViewById<ImageView>(R.id.imgDetailEdit)
-     imgHeart = itemView.findViewById<ImageView>(R.id.imgDetailHeart)
-     imgSend = itemView.findViewById<ImageView>(R.id.imgDetailSend)
-     etText = itemView.findViewById<EditText>(R.id.etPfEditName)
-     tvCc2 = itemView.findViewById<TextView>(R.id.tvDetailComentCount2)
-
-}
+        init {
+            tvRvPostDetailTime = itemView.findViewById(R.id.tvRvPostDetailTime)
+            tvRvPostDetailContent = itemView.findViewById(R.id.tvRvPostDetailContent)
+            imgRvPostDetail = itemView.findViewById(R.id.imgRvPostDetail)
+            tvRvPostDetailName = itemView.findViewById(R.id.tvRvPostDetailName)
+        }
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(context)
@@ -61,10 +51,48 @@ init {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
+
+        var comUid = commentUid[position].toString()
+
+        val pfListener = object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                holder.tvRvPostDetailContent.text =
+                    snapshot.child("$postUid").child(comUid).child("conmment").value.toString()
+                holder.tvRvPostDetailTime.text =
+                    snapshot.child("$postUid").child(comUid).child("time").value.toString()
+
+               // 멤버 uid 가져오기
+              userUid = snapshot.child("$postUid").child(comUid).child("uid").value.toString()
+
+
+            }
+            override fun onCancelled(error: DatabaseError) {
+            }
+        }
+        FBdatabase.getCommentRef().addValueEventListener(pfListener)
+
+        val pfListener2 = object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+
+                holder.tvRvPostDetailName.text =
+                    (snapshot.child("$userUid").child("dogName").value.toString())
+
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+        }
+        FBdatabase.getMemberRef().addValueEventListener(pfListener2)
+
+
+
     }
 
     override fun getItemCount(): Int {
 
-        return postDetailList.size
+        return commentList.size
     }
 }

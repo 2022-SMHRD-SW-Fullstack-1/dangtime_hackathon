@@ -1,7 +1,6 @@
 package com.example.dangtime.profile
 
 import android.content.Intent
-import android.net.wifi.hotspot2.pps.Credential
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -10,7 +9,6 @@ import com.example.dangtime.R
 import com.example.dangtime.auth.LoginActivity
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -27,7 +25,7 @@ class DeleteProfileActivity : AppCompatActivity() {
         setContentView(R.layout.activity_delete_profile)
 
         val imgPfDltBack = findViewById<ImageView>(R.id.imgPfDltBack)
-        val tvPfDltEmail = findViewById<TextView>(R.id.tvPfDltEmail)
+        val tvPfDltEmail = findViewById<TextView>(R.id.tvPostDetailContent)
         etPfDltPw = findViewById<EditText>(R.id.etPfDltPw)
         etPfDltCheck = findViewById<EditText>(R.id.etPfDltCheck)
         val btnPfDelete = findViewById<Button>(R.id.btnPfDelete)

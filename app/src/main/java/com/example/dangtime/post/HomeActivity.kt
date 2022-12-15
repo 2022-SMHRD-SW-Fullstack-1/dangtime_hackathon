@@ -1,6 +1,7 @@
 package com.example.dangtime.post
 
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -31,6 +32,7 @@ import com.google.firebase.storage.ktx.storage
 
 class HomeActivity : AppCompatActivity() {
     lateinit var imgHomeProfile : ImageView
+    @SuppressLint("SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
