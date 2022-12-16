@@ -41,6 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:context=".auth.MapActivity" />
+
         </LinearLayout>
 
         <Button
@@ -49,6 +50,9 @@
             android:layout_height="0dp"
             android:background="@drawable/button"
             android:text="확인"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -67,6 +71,16 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_begin="66dp" />
+
+        <TextView
+            android:id="@+id/tvMapLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="TextView"
+            app:layout_constraintBottom_toBottomOf="@+id/imgLocationBack2"
+            app:layout_constraintStart_toEndOf="@+id/imgLocationBack2"
+            app:layout_constraintTop_toTopOf="@+id/imgLocationBack2" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>
