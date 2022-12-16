@@ -56,9 +56,9 @@ class PostDetailActivity : AppCompatActivity() {
         val imgPostDetailHeart = findViewById<ImageView>(R.id.imgPostDetailHeart)
         imgPostDetailPuppy = findViewById<ImageView>(R.id.imgPostDetailPuppy)
         val imgPostDetailSend = findViewById<ImageView>(R.id.imgPostDetailSend)
+        val imgPostDetailEdit = findViewById<ImageView>(R.id.imgPostDetailEdit)
 
-
-        etPostDetail = findViewById<EditText>(R.id.etPostDetail)
+        val etPostDetail = findViewById<EditText>(R.id.etPostDetail)
 
 
 
@@ -80,11 +80,10 @@ class PostDetailActivity : AppCompatActivity() {
         rvPostDetail.layoutManager = GridLayoutManager(this, 1)
 
 
+
          imgPostDetailSend.setOnClickListener {
             writeComment()
         }
-
-
 
 
         //뒤로가기 버튼
@@ -125,6 +124,20 @@ class PostDetailActivity : AppCompatActivity() {
                 val dogNick = snapshot.child("$userUid").child("dogNick").value.toString()
                 val dogName = snapshot.child("$userUid").child("dogName").value.toString()
                 tvPostDetailName.text = "$dogNick $dogName"
+
+                //imgPostDetailPuppy
+                val storageReference = Firebase.storage.reference.child("/userImages/$userUid/photo")
+                storageReference.downloadUrl.addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Glide.with(this@PostDetailActivity)
+                            .load(task.result)
+                            .circleCrop()
+                            .into(imgPostDetailPuppy)
+                        Log.d("사진", "성공")
+                    } else {
+                        Log.d("사진", "실패")
+                    }
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -133,21 +146,6 @@ class PostDetailActivity : AppCompatActivity() {
         FBdatabase.getMemberRef().addValueEventListener(pfListener2)
 
 
-    }
-
-    fun getImageData(userUid: String) {
-        val storageReference = Firebase.storage.reference.child("/userImages/$userUid/photo")
-        storageReference.downloadUrl.addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                Glide.with(this)
-                    .load(task.result)
-                    .circleCrop()
-                    .into(imgPostDetailPuppy)
-                Log.d("사진","성공")
-            }else {
-                Log.d("사진","실패")
-            }
-        }
     }
 
 

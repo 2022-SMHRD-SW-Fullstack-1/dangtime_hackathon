@@ -46,7 +46,7 @@ class EditPostActivity : AppCompatActivity() {
 
         val postUid = intent.getStringExtra("postEditUid").toString()
         val content = intent.getStringExtra("content").toString()
-        var deleteImg : Boolean = false
+
         var changeImg : Boolean = false
 
         val memRef = FBdatabase.getMemberRef()
@@ -94,9 +94,8 @@ class EditPostActivity : AppCompatActivity() {
         //수정완료 버튼 누를시
         btnHomeAllEditSend.setOnClickListener {
 
-            if (deleteImg == true){
-                Firebase.storage.reference.child("/postUploadImages/$postUid").delete()
-            }
+
+                     Log.d("삭제할래?",changeImg.toString())
             if (changeImg == true){
                 imgUpload(postUid)
             }
@@ -119,7 +118,7 @@ class EditPostActivity : AppCompatActivity() {
         //사진변경 버튼 룰렀을 때
         btnHomeAllEditPicture.setOnClickListener {
             changeImg = true
-            deleteImg = true
+
             val intent = Intent(
                 Intent.ACTION_PICK,
                 MediaStore.Images.Media.INTERNAL_CONTENT_URI
@@ -131,8 +130,10 @@ class EditPostActivity : AppCompatActivity() {
 
         // 사진 삭제
         btnHomeAllDelPicture.setOnClickListener {
-            deleteImg = true
+
             imgStrBack.setImageResource(R.drawable.addimage)
+            Firebase.storage.reference.child("/postUploadImages/$postUid/photo").delete()
+
         }
     }
 
