@@ -166,9 +166,9 @@ class PostDetailActivity : AppCompatActivity() {
 
                 }
 
-                FBdatabase.getPostRef().child("$postUid").child("commentCount")
-                    .setValue(commentUid.size)
-//
+//                FBdatabase.getPostRef().child("$postUid").child("commentCount")
+//                    .setValue(commentUid.size)
+////
                 adapter.notifyDataSetChanged()
             }
 
@@ -189,8 +189,7 @@ class PostDetailActivity : AppCompatActivity() {
         FBdatabase.getCommentRef().child("$postUid").child(key)
             .setValue(PostCommentVO("$comment", "", "$time", "$uid"))
 
-        FBdatabase.getPostRef().child("$postUid").child("commentCount")
-            .setValue(commentUid.size + 1)
+        FBdatabase.getPostRef().child(postUid).updateChildren(mapOf("commentCount" to commentUid.size + 1))
 
         etPostDetail.text = null
 
