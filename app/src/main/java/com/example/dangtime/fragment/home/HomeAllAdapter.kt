@@ -20,6 +20,7 @@ import com.example.dangtime.post.PostDetailAdapter
 import com.example.dangtime.util.FBAuth
 import com.example.dangtime.util.FBAuth.Companion.auth
 import com.example.dangtime.util.FBdatabase
+import com.example.dangtime.util.Util
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -147,8 +148,38 @@ class HomeAllAdapter(
 
         val pfListener2 = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                var time = keyData[position].time
+                val timeY = time?.substring(0, 4)
+                val timeM = time?.substring(5, 7)
+                val timeD = time?.substring(8, 10)
+                val timeH = time?.substring(11, 13)
+                val timem = time?.substring(14, 16)
+
+                val now = Util.getTime()
+                val nowY = now.substring(0, 4)
+                val nowM = now.substring(5, 7)
+                val nowD = now.substring(8, 10)
+
+                if (nowY.equals(timeY)) {
+                    if (nowM.equals(timeM)) {
+                        if (nowD.equals(timeD)) {
+                            time = "${timeH}:${timem}"
+                        } else {
+                            if ((nowD.toInt() - timeD!!.toInt()) > 1){
+                                time = "${timeM}월 ${timeD}일"
+                            }else{
+                                time = "어제"
+                            }
+                        }
+                    } else {
+                        time = "${timeM}월 ${timeD}일"
+                    }
+                } else {
+                    time = "${timeY}.${timeM}.${timeD}"
+                }
+
                 holder.tvContent.text = keyData[position].content
-                holder.tvTime.text = keyData[position].time
+                holder.tvTime.text = time
 //                holder.imgComment.setImageResource(R.drawable.message)
                 holder.tvCommentCount.text = "0"
                 holder.tvHeratCount.text = keyData[position].like.toString()

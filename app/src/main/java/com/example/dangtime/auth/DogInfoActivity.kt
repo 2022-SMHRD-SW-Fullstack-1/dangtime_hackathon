@@ -38,6 +38,7 @@ class DogInfoActivity : AppCompatActivity() {
     val REQUEST_TAKE_PHOTO = 10
     val REQUEST_PERMISSION = 11
     lateinit var file: File
+    lateinit var trimLocation: String
 
     //이미지 등록
     private val getContent =
@@ -63,7 +64,21 @@ class DogInfoActivity : AppCompatActivity() {
 
         val address = intent.getStringExtra("address")
         val splitLocation = address!!.split(" ").asReversed()
-        val trimLocation = splitLocation[0].substring(1, splitLocation[0].length - 1)
+
+        if (splitLocation.contains("(") && splitLocation.contains(")")) {
+            trimLocation = splitLocation[0].substring(
+                1,
+                splitLocation[0].length - 1
+            )
+        } else {
+            trimLocation = splitLocation[0].substring(
+                0,
+                splitLocation[0].length - 1
+            )
+        }
+
+        Log.d("맵 스플릿", trimLocation)
+
         tvRegisterAdd.setText(address)
 
         imgRegistration = findViewById(R.id.imgRegistration)
