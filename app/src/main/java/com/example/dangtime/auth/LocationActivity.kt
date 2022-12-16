@@ -70,7 +70,7 @@ class LocationActivity : AppCompatActivity() {
                             val splitedAddr = addr.getAddressLine(0).split(" ")
                             address = splitedAddr as ArrayList<String>
                         }
-                        Toast.makeText(this, "$address", Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(this, "$address", Toast.LENGTH_SHORT).show()
                         lat = location.latitude
                         long = location.longitude
 
@@ -79,6 +79,7 @@ class LocationActivity : AppCompatActivity() {
                         intent.putExtra("long", long.toString())
 //                        주소 동단위로 자르기
                         intent.putExtra("addr", address.toString())
+                        intent.putExtra("address", address)
                         startActivity(intent)
                     }
                 }
