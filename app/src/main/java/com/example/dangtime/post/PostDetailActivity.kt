@@ -50,7 +50,7 @@ class PostDetailActivity : AppCompatActivity() {
         val imgPostDetailHeart = findViewById<ImageView>(R.id.imgPostDetailHeart)
         val imgPostDetailPuppy = findViewById<ImageView>(R.id.imgPostDetailPuppy)
         val imgPostDetailSend = findViewById<ImageView>(R.id.imgPostDetailSend)
-        val imgPostDetailEdit = findViewById<ImageView>(R.id.imgPostDetailEdit)
+
 
         val etPostDetail = findViewById<EditText>(R.id.etPostDetail)
 
@@ -80,7 +80,6 @@ class PostDetailActivity : AppCompatActivity() {
             val time = FBAuth.getTime()
 
 
-
             //먼저 uid를 만들고  key저장
             var key = FBdatabase.getCommentRef().push().key.toString()
             var comment = etPostDetail.text.toString()
@@ -92,6 +91,8 @@ class PostDetailActivity : AppCompatActivity() {
 
             FBdatabase.getPostRef().child("$postUid").child("commentCount")
                 .setValue(commentUid.size+1)
+
+
 
 
         }
