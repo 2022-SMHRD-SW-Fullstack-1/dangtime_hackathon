@@ -39,6 +39,7 @@ class DogInfoActivity : AppCompatActivity() {
     val REQUEST_PERMISSION = 11
     lateinit var file: File
     lateinit var trimLocation: String
+    var profileCheck = false
 
     //이미지 등록
     private val getContent =
@@ -82,7 +83,7 @@ class DogInfoActivity : AppCompatActivity() {
         tvRegisterAdd.setText(address)
 
         imgRegistration = findViewById(R.id.imgRegistration)
-        var profileCheck = false
+
 
 //        사진추가
         val photoLl = findViewById<LinearLayout>(R.id.photoLl)
@@ -149,13 +150,13 @@ class DogInfoActivity : AppCompatActivity() {
                                     userProfile.toString(),
                                     uid
                                 )
-                                Log.d("dogino4", friend.toString())
                                 FBdatabase.getUserInfo().child(uid).setValue(friend)
                             }
                     }
                 var key = FBdatabase.getMemberRef().child(uid).key.toString()
                 FBdatabase.getMemberRef().child(key)
                     .setValue(MemberVO(uid, trimLocation!!, dogName!!, dogNick!!))
+//                    .setValue(MemberVO(uid, trimLocation!!, dogName!!, dogNick!!))
 
                 startActivity(intent)
             }
