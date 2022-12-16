@@ -108,9 +108,9 @@ class ChatViewActivity : AppCompatActivity() {
                         .push().setValue(comment)
                     etChatContent.text = null
                 }
-                checkChatRoom()
             }
         }
+        checkChatRoom()
     }
 
     private fun checkChatRoom() {
