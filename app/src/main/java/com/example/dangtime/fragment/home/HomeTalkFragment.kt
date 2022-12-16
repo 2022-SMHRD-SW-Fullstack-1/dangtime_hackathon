@@ -63,7 +63,7 @@ class HomeTalkFragment : Fragment() {
                 keyData.clear()
                 for (model in snapshot.children) {
                     val postData = model.getValue(HomePostVO::class.java)
-                    if (postData != null && postData.category == "talk") {
+                    if (postData != null && postData.category == "story") {
 
                         keyData.add(postData)
 

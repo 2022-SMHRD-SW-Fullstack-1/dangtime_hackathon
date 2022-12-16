@@ -71,7 +71,7 @@ class BookmarkTalkFragment : Fragment() {
 
                 for (model in snapshot.children) {
                     val item = model.getValue(HomePostVO::class.java)
-                    if (item != null && likeList.contains(model.key) && item.category == "talk") {
+                    if (item != null && likeList.contains(model.key) && item.category == "story") {
                         postList.add(item)
                         postImageList.add(model.key!!)
                     }
