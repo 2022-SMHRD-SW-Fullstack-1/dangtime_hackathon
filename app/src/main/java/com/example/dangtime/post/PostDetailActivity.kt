@@ -65,11 +65,6 @@ class PostDetailActivity : AppCompatActivity() {
         getCommentData()
 
 
-
-
-
-
-
         // =commentCnt
 
         //어댑터 생성
@@ -85,7 +80,6 @@ class PostDetailActivity : AppCompatActivity() {
             val time = FBAuth.getTime()
 
 
-            // setValue가 되기전에 미리 BoardVO가 저장될 key값(uid_)을 만들자
 
             //먼저 uid를 만들고  key저장
             var key = FBdatabase.getCommentRef().push().key.toString()
@@ -141,6 +135,20 @@ class PostDetailActivity : AppCompatActivity() {
                 val dogNick = snapshot.child("$userUid").child("dogNick").value.toString()
                 val dogName = snapshot.child("$userUid").child("dogName").value.toString()
                 tvPostDetailName.text = "$dogNick $dogName"
+
+                //imgPostDetailPuppy
+                val storageReference = Firebase.storage.reference.child("/userImages/$userUid/photo")
+                storageReference.downloadUrl.addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Glide.with(this@PostDetailActivity)
+                            .load(task.result)
+                            .circleCrop()
+                            .into(imgPostDetailPuppy)
+                        Log.d("사진", "성공")
+                    } else {
+                        Log.d("사진", "실패")
+                    }
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {

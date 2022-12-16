@@ -26,6 +26,8 @@ import java.io.ByteArrayOutputStream
 
 class BoardWriteStoryActivity : AppCompatActivity() {
     lateinit var imgLoad : ImageView
+    var imgUpload = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_board_write_story)
@@ -54,6 +56,7 @@ class BoardWriteStoryActivity : AppCompatActivity() {
         }
 
         imgLoad.setOnClickListener{
+            imgUpload = true
 
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
 
@@ -86,9 +89,11 @@ class BoardWriteStoryActivity : AppCompatActivity() {
 
             // boardRef의 uid 밑에 data 저장
             FBdatabase.getPostRef().child(key).setValue(BoardVO(0,"$content",0, "$time","$uid", category!!))
-            imgUpload(key)
+            if (imgUpload) imgUpload(key)
+
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
 

@@ -1,12 +1,15 @@
 package com.example.dangtime.fragment.mypost
 
+
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.dangtime.R
@@ -14,14 +17,16 @@ import com.example.dangtime.auth.MemberVO
 import com.example.dangtime.fragment.home.HomePostVO
 import com.example.dangtime.fragment.post.PostDetailActivity
 import com.example.dangtime.post.EditPostActivity
+import com.example.dangtime.post.HomeActivity
+import com.example.dangtime.util.FBdatabase
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import de.hdodenhof.circleimageview.CircleImageView
 
 class MyPostPostAdapter(
     val context: Context, val postList: ArrayList<HomePostVO>,
-    val memberList: ArrayList<MemberVO>,
-    postUid: ArrayList<String>,
+    val memberList:  ArrayList<MemberVO>,
+    val postUid : ArrayList<String>
 ) : RecyclerView.Adapter<MyPostPostAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -34,6 +39,7 @@ class MyPostPostAdapter(
         val tvMyPostCommentCount: TextView
         val btnMyPostEdit: Button
         val btnMyPostDel: Button
+        val imgMyPostHeart : ImageView
 
 
         init {
@@ -47,6 +53,7 @@ class MyPostPostAdapter(
             tvMyPostCommentCount = itemView.findViewById(R.id.tvMyPostCommentCount)
             btnMyPostEdit = itemView.findViewById(R.id.btnMyPostEdit)
             btnMyPostDel = itemView.findViewById(R.id.btnMyPostDel)
+            imgMyPostHeart = itemView.findViewById(R.id.imgMyPostHeart)
         }
     }
 
@@ -78,13 +85,29 @@ class MyPostPostAdapter(
 
         holder.tvMyPostContent.setOnClickListener {
             val intent = Intent(context, PostDetailActivity::class.java)
+
+            intent.putExtra("postInfo", postList[position].toString())
+            intent.putExtra("writerInfo", memberList[position].toString())
+            intent.putExtra("postUid", postUid[position])
+
             context.startActivity(intent)
         }
 
         holder.btnMyPostEdit.setOnClickListener {
             val intent = Intent(context, EditPostActivity::class.java)
+            intent.putExtra("postList", postList[position])
+            intent.putExtra("postEditUid",postUid[position])
+            intent.putExtra("content",postList[position].content)
             context.startActivity(intent)
         }
+
+        holder.btnMyPostDel.setOnClickListener {
+            FBdatabase.getPostRef().child(postUid[position]).removeValue()
+            Toast.makeText(context, "게시물이 삭제되었습니다", Toast.LENGTH_SHORT).show()
+//            val intent = Intent(context, HomeActivity::class.java)
+//            context.startActivity(intent)
+        }
+
     }
 
     override fun getItemCount(): Int {
