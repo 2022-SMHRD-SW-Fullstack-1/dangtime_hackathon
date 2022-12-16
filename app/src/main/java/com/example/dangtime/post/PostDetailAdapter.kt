@@ -23,6 +23,7 @@ class PostDetailAdapter(
     val commentList: ArrayList<PostCommentVO>,
     val commentUid: ArrayList<String>,
     val postUid: String
+
 ) :
     RecyclerView.Adapter<PostDetailAdapter.ViewHolder>() {
     var userUid : String =""
@@ -79,10 +80,11 @@ class PostDetailAdapter(
 
         val pfListener2 = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                val dogName = snapshot.child("$userUid").child("dogName").value.toString()
+                val dogNick = snapshot.child("$userUid").child("dogNick").value.toString()
 
+                holder.tvRvPostDetailName.text = "$dogNick $dogName"
 
-                holder.tvRvPostDetailName.text =
-                    (snapshot.child("$userUid").child("dogName").value.toString())
 
 
                 val storageReference = Firebase.storage.reference.child("/userImages/$userUid/photo")
@@ -90,6 +92,7 @@ class PostDetailAdapter(
                     if (task.isSuccessful) {
                         Glide.with(context)
                             .load(task.result)
+                            .circleCrop()
                             .into(holder.imgRvPostDetail)
                         Log.d("사진","성공")
                     }else {

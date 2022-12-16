@@ -42,6 +42,17 @@
         app:layout_constraintTop_toBottomOf="@+id/tvPostDetailContent" />
 
 
+    <TextView
+        android:id="@+id/tvPostDetailTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="5시간전"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvDetailTown"
+        app:layout_constraintStart_toEndOf="@+id/tvDetailTown"
+        app:layout_constraintTop_toTopOf="@+id/tvDetailTown" />
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imgPostDetailPuppy"
         android:layout_width="50dp"
@@ -50,7 +61,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:background="@android:color/transparent"
-        android:src="@drawable/dogprofile"
+        android:src="@drawable/loading"
         app:civ_border_color="#000000"
         app:civ_border_overlay="true"
         app:civ_border_width="1dp"
@@ -97,47 +108,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvPostDetailContent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvPostDetail"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline7"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="593dp" />
-
-    <EditText
-        android:id="@+id/etPostDetail"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="8dp"
-        android:background="@color/white"
-        android:ems="10"
-        android:hint="댓글을 작성해 주세요."
-        android:inputType="textPersonName"
-        android:paddingLeft="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imgPostDetailSend"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline14" />
-
-    <TextView
-        android:id="@+id/tvPostDetailTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="5시간전"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tvDetailTown"
-        app:layout_constraintStart_toEndOf="@+id/tvDetailTown"
-        app:layout_constraintTop_toTopOf="@+id/tvDetailTown" />
+        app:layout_constraintGuide_end="66dp" />
 
     <ImageView
         android:id="@+id/imgPostDetailBack"
@@ -166,23 +142,6 @@
         app:srcCompat="@drawable/reply" />
 
     <ImageView
-        android:id="@+id/imgPostDetailSend"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/etPostDetail"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/etPostDetail"
-        app:srcCompat="@drawable/up" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.9" />
-
-    <ImageView
         android:id="@+id/imgPostDetailUpload"
         android:layout_width="0dp"
         android:layout_height="172dp"
@@ -193,4 +152,48 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgPostDetailPuppy"
         app:srcCompat="@drawable/chat_bubble" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvPostDetail"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline7">
+
+        <EditText
+            android:id="@+id/etPostDetail"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:layout_weight="10"
+            android:background="@color/white"
+            android:ems="10"
+            android:hint="댓글을 작성해 주세요."
+            android:imeOptions="actionDone"
+            android:inputType="textPersonName"
+            android:paddingLeft="8dp"
+            android:singleLine="true" />
+
+        <ImageView
+            android:id="@+id/imgPostDetailSend"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@color/white"
+            app:srcCompat="@drawable/up" />
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

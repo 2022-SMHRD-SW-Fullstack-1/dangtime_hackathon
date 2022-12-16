@@ -1,9 +1,14 @@
 package com.example.dangtime.fragment.post
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.KeyEvent
+import android.view.View
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
@@ -29,7 +34,8 @@ class PostDetailActivity : AppCompatActivity() {
     lateinit var adapter : PostDetailAdapter
     lateinit var postUid : String
     lateinit var tvPostDetailComentCount : TextView
-
+    lateinit var imgPostDetailPuppy : ImageView
+    lateinit var etPostDetail : EditText
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,11 +54,10 @@ class PostDetailActivity : AppCompatActivity() {
 
         val imgPostDetailBack = findViewById<ImageView>(R.id.imgPostDetailBack)
         val imgPostDetailHeart = findViewById<ImageView>(R.id.imgPostDetailHeart)
-        val imgPostDetailPuppy = findViewById<ImageView>(R.id.imgPostDetailPuppy)
+        imgPostDetailPuppy = findViewById<ImageView>(R.id.imgPostDetailPuppy)
         val imgPostDetailSend = findViewById<ImageView>(R.id.imgPostDetailSend)
 
-
-        val etPostDetail = findViewById<EditText>(R.id.etPostDetail)
+        etPostDetail = findViewById<EditText>(R.id.etPostDetail)
 
 
 
@@ -61,7 +66,7 @@ class PostDetailActivity : AppCompatActivity() {
         var writerInfo = intent.getStringExtra("writerInfo")
         postUid = intent.getStringExtra("postUid").toString()
 
-
+//        getImageData(userUid)
         getCommentData()
 
 
@@ -74,27 +79,9 @@ class PostDetailActivity : AppCompatActivity() {
         rvPostDetail.layoutManager = GridLayoutManager(this, 1)
 
 
-        //댓글작성 버튼 등록
-        imgPostDetailSend.setOnClickListener {
-            val uid = FBAuth.getUid()
-            val time = FBAuth.getTime()
 
-
-            //먼저 uid를 만들고  key저장
-            var key = FBdatabase.getCommentRef().push().key.toString()
-            var comment = etPostDetail.text.toString()
-
-            // boardRef의 uid 밑에 data 저장
-            //var conmment : String = "" ,var count : Int = 0 , var time : String = "", var uid : String = ""
-            FBdatabase.getCommentRef().child("$postUid").child(key)
-                .setValue(PostCommentVO("$comment", "", "$time", "$uid"))
-
-            FBdatabase.getPostRef().child("$postUid").child("commentCount")
-                .setValue(commentUid.size+1)
-
-
-
-
+         imgPostDetailSend.setOnClickListener {
+            writeComment()
         }
 
 
@@ -189,6 +176,27 @@ class PostDetailActivity : AppCompatActivity() {
             }
         }
         FBdatabase.getCommentRef().addValueEventListener(postlistener3)
+    }
+
+    fun writeComment() {
+        val uid = FBAuth.getUid()
+        val time = FBAuth.getTime()
+
+        //먼저 uid를 만들고  key저장
+        var key = FBdatabase.getCommentRef().push().key.toString()
+        var comment = etPostDetail.text.toString()
+
+        FBdatabase.getCommentRef().child("$postUid").child(key)
+            .setValue(PostCommentVO("$comment", "", "$time", "$uid"))
+
+        FBdatabase.getPostRef().child("$postUid").child("commentCount")
+            .setValue(commentUid.size + 1)
+
+        etPostDetail.text = null
+
+        val inputMethodManager =
+            getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(etPostDetail.windowToken, 0)
     }
 
 }
