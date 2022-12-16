@@ -19,6 +19,7 @@ import com.example.dangtime.fragment.post.PostDetailActivity
 import com.example.dangtime.post.EditPostActivity
 import com.example.dangtime.post.HomeActivity
 import com.example.dangtime.util.FBdatabase
+import com.example.dangtime.util.Util
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import de.hdodenhof.circleimageview.CircleImageView
@@ -76,10 +77,41 @@ class MyPostPostAdapter(
             }
         }
 
+        var time = postList[position].time
+        val timeY = time?.substring(0, 4)
+        val timeM = time?.substring(5, 7)
+        val timeD = time?.substring(8, 10)
+        val timeH = time?.substring(11, 13)
+        val timem = time?.substring(14, 16)
+
+        val now = Util.getTime()
+        val nowY = now.substring(0, 4)
+        val nowM = now.substring(5, 7)
+        val nowD = now.substring(8, 10)
+
+        if (nowY.equals(timeY)) {
+            if (nowM.equals(timeM)) {
+                if (nowD.equals(timeD)) {
+                    time = "${timeH}:${timem}"
+                } else {
+                    if ((nowD.toInt() - timeD!!.toInt()) > 1){
+                        time = "${timeM}월 ${timeD}일"
+                    }else{
+                        time = "어제"
+                    }
+                }
+            } else {
+                time = "${timeM}월 ${timeD}일"
+            }
+        } else {
+            time = "${timeY}.${timeM}.${timeD}"
+        }
+
+
         holder.tvMyPostName.text = "${memberList[0].dogNick} ${memberList[0].dogName}"
         holder.tvMyPostLocation.text = memberList[0].address
         holder.tvMyPostContent.text = postList[position].content
-        holder.tvMyPostTime.text = postList[position].time
+        holder.tvMyPostTime.text = time
         holder.tvMyPostHeartCount.text = postList[position].like.toString()
         holder.tvMyPostCommentCount.text = postList[position].commentCount.toString()
 

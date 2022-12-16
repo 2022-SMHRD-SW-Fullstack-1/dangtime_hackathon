@@ -78,7 +78,7 @@ class LocationActivity : AppCompatActivity() {
                         intent.putExtra("lat", lat.toString())
                         intent.putExtra("long", long.toString())
 //                        주소 동단위로 자르기
-                        intent.putExtra("addr", address[address.size - 2].toString())
+                        intent.putExtra("addr", address.toString())
                         startActivity(intent)
                     }
                 }
@@ -86,6 +86,7 @@ class LocationActivity : AppCompatActivity() {
             Toast.makeText(this, "위치권한이 없습니다..", Toast.LENGTH_SHORT).show()
         }
     }
+
 
     @SuppressLint("MissingSuperCall")
     override fun onRequestPermissionsResult(

@@ -46,6 +46,10 @@ class BookmarkAllFragment : Fragment() {
 
         getLikePostData()
 
+        postList.reverse()
+        likeMemberList.reverse()
+        postImageList.reverse()
+
         adapter = BookmarkAllAdapter(requireContext(), postList, likeMemberList, postImageList)
 
         rvBookAll.adapter = adapter
