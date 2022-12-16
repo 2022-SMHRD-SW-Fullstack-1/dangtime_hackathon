@@ -37,6 +37,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             val addr = intent.getStringExtra("addr").toString()
             val intent = Intent(this, RegisterActivity::class.java)
             intent.putExtra("address", addr)
+            intent.putExtra("trimAddress", "auto")
             startActivity(intent)
             finish()
         }

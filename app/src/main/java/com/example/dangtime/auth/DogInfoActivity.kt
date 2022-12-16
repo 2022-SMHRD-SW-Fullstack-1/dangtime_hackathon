@@ -66,19 +66,14 @@ class DogInfoActivity : AppCompatActivity() {
         val address = intent.getStringExtra("address")
         val splitLocation = address!!.split(" ").asReversed()
 
-        if (splitLocation.contains("(") && splitLocation.contains(")")) {
+        if (intent.getStringExtra("trimAddress") == "auto") {
+            trimLocation = splitLocation[1].substring(0, splitLocation[1].length - 1)
+        } else {
             trimLocation = splitLocation[0].substring(
                 1,
                 splitLocation[0].length - 1
             )
-        } else {
-            trimLocation = splitLocation[0].substring(
-                0,
-                splitLocation[0].length - 1
-            )
         }
-
-        Log.d("맵 스플릿", trimLocation)
 
         tvRegisterAdd.setText(address)
 
