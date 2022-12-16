@@ -66,9 +66,9 @@ class HomeTalkFragment : Fragment() {
                     if (postData != null && postData.category == "story") {
 
                         keyData.add(postData)
+                    postKeyUid.add(model.key.toString())
 
                     }
-                    postKeyUid.add(model.key.toString())
                 }
                 //adapter 새로고침 하기
                 Log.d("데이터4", data.toString())

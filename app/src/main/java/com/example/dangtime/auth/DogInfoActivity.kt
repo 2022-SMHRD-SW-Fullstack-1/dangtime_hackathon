@@ -38,6 +38,7 @@ class DogInfoActivity : AppCompatActivity() {
     val REQUEST_TAKE_PHOTO = 10
     val REQUEST_PERMISSION = 11
     lateinit var file: File
+    lateinit var trimLocation: String
     var profileCheck = false
 
     //이미지 등록
@@ -63,9 +64,23 @@ class DogInfoActivity : AppCompatActivity() {
         val tvRegisterAdd = findViewById<TextView>(R.id.tvRegisterAdd)
 
         val address = intent.getStringExtra("address")
-//        val splitLocation = address!!.split(" ").asReversed()
-//        val trimLocation = splitLocation[0].substring(1, splitLocation[0].length - 1)
-//        tvRegisterAdd.setText(address)
+        val splitLocation = address!!.split(" ").asReversed()
+
+        if (splitLocation.contains("(") && splitLocation.contains(")")) {
+            trimLocation = splitLocation[0].substring(
+                1,
+                splitLocation[0].length - 1
+            )
+        } else {
+            trimLocation = splitLocation[0].substring(
+                0,
+                splitLocation[0].length - 1
+            )
+        }
+
+        Log.d("맵 스플릿", trimLocation)
+
+        tvRegisterAdd.setText(address)
 
         imgRegistration = findViewById(R.id.imgRegistration)
 
@@ -138,10 +153,9 @@ class DogInfoActivity : AppCompatActivity() {
                                 FBdatabase.getUserInfo().child(uid).setValue(friend)
                             }
                     }
-                Log.d("체크", uid)
                 var key = FBdatabase.getMemberRef().child(uid).key.toString()
                 FBdatabase.getMemberRef().child(key)
-                    .setValue(MemberVO(uid, address!!, dogName!!, dogNick!!))
+                    .setValue(MemberVO(uid, trimLocation!!, dogName!!, dogNick!!))
 //                    .setValue(MemberVO(uid, trimLocation!!, dogName!!, dogNick!!))
 
                 startActivity(intent)
@@ -251,7 +265,6 @@ class DogInfoActivity : AppCompatActivity() {
         mediaScanIntent.setData(contentUri);
         sendBroadcast(mediaScanIntent);
         imgRegistration.setImageURI(imageUri);
-        profileCheck = true
         Toast.makeText(this, "사진이 앨범에 저장되었습니다.", Toast.LENGTH_SHORT).show();
     }
 
