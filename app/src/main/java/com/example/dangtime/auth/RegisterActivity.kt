@@ -32,6 +32,7 @@ class RegisterActivity : AppCompatActivity() {
         val imgRegisterBack = findViewById<ImageView>(R.id.imgRegisterBack)
 
         val address = intent.getStringExtra("address")
+        val trimAddress = intent.getStringExtra("trimAddress")
 //        Log.d("address", address!!)
         tvRegisterAd.setText(address)
 
@@ -88,6 +89,7 @@ class RegisterActivity : AppCompatActivity() {
                             val intent = Intent(this@RegisterActivity, DogInfoActivity::class.java)
                             intent.putExtra("address", address)
                             intent.putExtra("email", email)
+                            intent.putExtra("trimAddress", trimAddress)
                             startActivity(intent)
                             finish()
                         } else {
