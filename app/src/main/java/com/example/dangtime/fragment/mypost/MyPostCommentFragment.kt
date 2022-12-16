@@ -1,8 +1,6 @@
 package com.example.dangtime.fragment.mypost
 
-import android.app.Activity
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +9,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dangtime.R
 import com.example.dangtime.auth.MemberVO
-import com.example.dangtime.fragment.home.HomePostVO
 import com.example.dangtime.post.PostCommentVO
 import com.example.dangtime.util.FBAuth
 import com.example.dangtime.util.FBdatabase
@@ -24,7 +21,6 @@ import com.google.firebase.ktx.Firebase
 
 class MyPostCommentFragment : Fragment() {
 
-    val postList = ArrayList<HomePostVO>()
     lateinit var adapter: MyPostCommentAdapter
 
     val postRef = FBdatabase.getPostRef()
@@ -39,9 +35,6 @@ class MyPostCommentFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_my_post_comment, container, false)
         val rvMyPostComment = view.findViewById<RecyclerView>(R.id.rvMyPostComment)
 
-val fragment = parentFragment
-
-
         getMyPostCommentData()
 
         adapter = MyPostCommentAdapter(requireContext(), commentList, myId)
@@ -55,18 +48,17 @@ val fragment = parentFragment
 
     fun getMyPostCommentData() {
 
-        FBdatabase.getMemberRef().child(FBAuth.getUid()).addValueEventListener(object : ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                myId.add(snapshot.getValue(MemberVO::class.java)!!)
+        FBdatabase.getMemberRef().child(FBAuth.getUid())
+            .addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    myId.add(snapshot.getValue(MemberVO::class.java)!!)
+                }
 
-                Log.d("마이", "실행")
-            }
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
 
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-
-        })
+            })
 
         FBdatabase.getCommentRef().addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {

@@ -85,12 +85,11 @@ class ChatViewActivity : AppCompatActivity() {
         }
 
         imgChatSend.setOnClickListener {
-            if (etChatContent.text != null) {
+            if (etChatContent.text.toString() != "") {
                 val chatModel = ChatModel()
                 chatModel.users.put(uid.toString(), true)
                 chatModel.users.put(destinationUid!!, true)
 
-                Log.d("클릭 시 dest", "${chatModel.users}")
                 val comment = ChatModel.Comment(uid, etChatContent.text.toString(), Util.getTime())
                 if (chatRoomUid == null) {
                     imgChatSend.isEnabled = false
@@ -101,18 +100,16 @@ class ChatViewActivity : AppCompatActivity() {
                         Handler().postDelayed({
                             FBdatabase.getChatRoom().child(chatRoomUid.toString())
                                 .child("comments").push().setValue(comment)
-                            etChatContent.text = null
                         }, 1000L)
-                        Log.d("chatUidNull dest", "$destinationUid")
+                        etChatContent.text = null
                     }
                 } else {
                     FBdatabase.getChatRoom().child(chatRoomUid.toString()).child("comments")
                         .push().setValue(comment)
                     etChatContent.text = null
-                    Log.d("chatUidNotNull dest", "$destinationUid")
                 }
+                checkChatRoom()
             }
-            checkChatRoom()
         }
     }
 
