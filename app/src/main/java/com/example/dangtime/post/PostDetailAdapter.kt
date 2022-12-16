@@ -37,11 +37,13 @@ class PostDetailAdapter(
 
 
 
+
         init {
             tvRvPostDetailTime = itemView.findViewById(R.id.tvRvPostDetailTime)
             tvRvPostDetailContent = itemView.findViewById(R.id.tvRvPostDetailContent)
             imgRvPostDetail = itemView.findViewById(R.id.imgRvPostDetail)
             tvRvPostDetailName = itemView.findViewById(R.id.tvRvPostDetailName)
+
      }
     }
 

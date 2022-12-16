@@ -123,7 +123,7 @@ class PostDetailActivity : AppCompatActivity() {
                 val dogNick = snapshot.child("$userUid").child("dogNick").value.toString()
                 val dogName = snapshot.child("$userUid").child("dogName").value.toString()
                 tvPostDetailName.text = "$dogNick $dogName"
-
+                tvPostDetailTown.text = snapshot.child("$userUid").child("address").value.toString()
                 //imgPostDetailPuppy
                 val storageReference = Firebase.storage.reference.child("/userImages/$userUid/photo")
                 storageReference.downloadUrl.addOnCompleteListener { task ->
