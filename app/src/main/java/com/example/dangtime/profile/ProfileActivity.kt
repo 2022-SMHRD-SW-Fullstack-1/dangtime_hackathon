@@ -8,14 +8,17 @@ import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.example.dangtime.R
 import com.example.dangtime.auth.LoginActivity
+import com.example.dangtime.auth.MemberVO
 import com.example.dangtime.fragment.home.HomeAllFragment
 import com.example.dangtime.fragment.home.HomePostVO
 import com.example.dangtime.fragment.mypost.MyPostFragment
 import com.example.dangtime.fragment.mypost.MyPostPostFragment
 import com.example.dangtime.post.HomeActivity
+import com.example.dangtime.post.PostCommentVO
 import com.example.dangtime.util.FBAuth
 import com.example.dangtime.util.FBdatabase
 import com.google.firebase.auth.FirebaseAuth
@@ -32,13 +35,16 @@ class ProfileActivity : AppCompatActivity() {
     lateinit var dogNick: String
     lateinit var dogName: String
     lateinit var address: String
-    lateinit var imgPf : ImageView
+    lateinit var imgPf: ImageView
 
     lateinit var tvPfPostCnt: TextView
+    lateinit var tvPfReplyCnt: TextView
     val postList = ArrayList<HomePostVO>()
     val postRef = FBdatabase.getPostRef()
     val loginId = FBAuth.getUid()
 
+    val myId = ArrayList<MemberVO>()
+    val commentList = ArrayList<PostCommentVO>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,11 +62,10 @@ class ProfileActivity : AppCompatActivity() {
         val btnProfileEdit = findViewById<Button>(R.id.btnProfileEdit)
         val btnProfileLogout = findViewById<Button>(R.id.btnProfileLogout)
         val btnProfileDelete = findViewById<Button>(R.id.btnProfileDelete)
-        tvPfPostCnt = findViewById<TextView>(R.id.tvPfPostCnt)
-        val tvPfReplyCnt = findViewById<TextView>(R.id.tvPfReplyCnt)
+        tvPfPostCnt = findViewById(R.id.tvPfPostCnt)
+        tvPfReplyCnt = findViewById(R.id.tvPfReplyCnt)
         val tvPfLocation = findViewById<TextView>(R.id.tvPfLocation)
         imgPf = findViewById(R.id.imgPf)
-
 
 
         val email = user?.email.toString()
@@ -68,8 +73,9 @@ class ProfileActivity : AppCompatActivity() {
 
         getImageData(uid)
         getMyPostPostData()
+        getMyPostCommentData()
 
-        val pfListener = object : ValueEventListener{
+        val pfListener = object : ValueEventListener {
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 dogName = snapshot.child("$uid").child("dogName").value.toString()
@@ -81,6 +87,7 @@ class ProfileActivity : AppCompatActivity() {
                 tvPfLocation.text = "$address 댕댕이"
 
             }
+
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
@@ -96,18 +103,20 @@ class ProfileActivity : AppCompatActivity() {
 
         btnProfileEdit.setOnClickListener {
             val intent = Intent(this@ProfileActivity, EditProfileActivity::class.java)
-            intent.putExtra("dogName",dogName)
-            intent.putExtra("dogNick",dogNick)
-            intent.putExtra("address",address)
+            intent.putExtra("dogName", dogName)
+            intent.putExtra("dogNick", dogNick)
+            intent.putExtra("address", address)
             startActivity(intent)
             finish()
         }
 
         btnProfileLogout.setOnClickListener {
             auth.signOut()
+            Toast.makeText(this,"로그아웃되었습니다",Toast.LENGTH_SHORT).show()
             val intent = Intent(this@ProfileActivity, LoginActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
+            finish()
         }
 
         btnProfileDelete.setOnClickListener {
@@ -122,7 +131,7 @@ class ProfileActivity : AppCompatActivity() {
             finish()
         }
 
-        tvPfReplyCnt.setOnClickListener{
+        tvPfReplyCnt.setOnClickListener {
             val intent = Intent(this@ProfileActivity, HomeActivity::class.java)
             intent.putExtra("request1", "100")
             startActivity(intent)
@@ -131,6 +140,7 @@ class ProfileActivity : AppCompatActivity() {
 
 
     }
+
     fun getImageData(uid: String) {
         val storageReference = Firebase.storage.reference.child("/userImages/$uid/photo")
         storageReference.downloadUrl.addOnCompleteListener { task ->
@@ -139,9 +149,9 @@ class ProfileActivity : AppCompatActivity() {
                     .load(task.result)
                     .circleCrop()
                     .into(imgPf)
-                Log.d("사진","성공")
-            }else {
-                Log.d("사진","실패")
+                Log.d("사진", "성공")
+            } else {
+                Log.d("사진", "실패")
             }
         }
     }
@@ -164,4 +174,35 @@ class ProfileActivity : AppCompatActivity() {
         }
         postRef.addValueEventListener(postListener)
     }
+
+    fun getMyPostCommentData() {
+        FBdatabase.getMemberRef().child(FBAuth.getUid())
+            .addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    myId.add(snapshot.getValue(MemberVO::class.java)!!)
+                }
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+            })
+        FBdatabase.getCommentRef().addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (post in snapshot.children) {
+                    for (comment in post.children) {
+                        val myComment = comment.getValue(PostCommentVO::class.java)
+                        if (myComment != null && myComment.uid == myId[0].uid) {
+                            commentList.add(myComment)
+                            tvPfReplyCnt.text = commentList.size.toString()
+                        }
+                    }
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+
+    }
+
 }

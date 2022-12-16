@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.TextView
 import com.example.dangtime.R
 
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -32,6 +33,9 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         mapFragment.getMapAsync(this)
 
         val btnAutoLocation = findViewById<Button>(R.id.btnAutoLocation)
+        val tvMapLocation = findViewById<TextView>(R.id.tvMapLocation)
+
+        tvMapLocation.setText(intent.getStringExtra("addr").toString())
 
         btnAutoLocation.setOnClickListener {
             val addr = intent.getStringExtra("addr").toString()

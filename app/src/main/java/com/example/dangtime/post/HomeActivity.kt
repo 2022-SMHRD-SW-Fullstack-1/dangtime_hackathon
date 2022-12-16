@@ -37,10 +37,7 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-
-
-
-        imgHomeProfile = findViewById<ImageView>(R.id.imgHomeProfile)
+        imgHomeProfile = findViewById(R.id.imgHomeProfile)
         val imgHomeChat = findViewById<ImageView>(R.id.imgHomeChat)
         val bnv = findViewById<BottomNavigationView>(R.id.bnv)
         val tvHomeTitle = findViewById<TextView>(R.id.tvHomeTitle)
@@ -48,7 +45,22 @@ class HomeActivity : AppCompatActivity() {
         val imgHomeWrite = findViewById<ImageView>(R.id.imgHomeWrite)
         val uid = FBAuth.getUid()
 
-        getImageData(uid)
+
+        val storageReference = Firebase.storage.reference.child("/userImages/$uid/photo")
+            storageReference.downloadUrl.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Glide.with(this)
+                        .load(task.result)
+                        .circleCrop()
+                        .into(imgHomeProfile)
+                    Log.d("사진","성공")
+                }else {
+                    Log.d("사진","실패")
+                }
+            }
+
+
+
         imgHomeWrite.setOnClickListener{
 
             val intent = Intent(this , BoardChoice::class.java)
@@ -193,18 +205,5 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    fun getImageData(uid: String) {
-        val storageReference = Firebase.storage.reference.child("/userImages/$uid/photo")
-        storageReference.downloadUrl.addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                Glide.with(this)
-                    .load(task.result)
-                    .circleCrop()
-                    .into(imgHomeProfile)
-                Log.d("사진","성공")
-            }else {
-                Log.d("사진","실패")
-            }
-        }
-    }
+
 }

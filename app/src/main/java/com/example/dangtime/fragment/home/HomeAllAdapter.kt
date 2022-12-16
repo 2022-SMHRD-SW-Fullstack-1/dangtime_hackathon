@@ -148,6 +148,7 @@ class HomeAllAdapter(
 
         val pfListener2 = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                Log.d("포스트 리스트데이터", keyData.toString())
                 var time = keyData[position].time
                 val timeY = time?.substring(0, 4)
                 val timeM = time?.substring(5, 7)

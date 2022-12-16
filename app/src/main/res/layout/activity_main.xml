@@ -55,13 +55,13 @@
 
     <ImageView
         android:id="@+id/imgDetail"
-        android:layout_width="700dp"
-        android:layout_height="400dp"
+        android:layout_width="600dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/btnMain"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvProfileName"
         app:layout_constraintVertical_bias="0.725"
-        app:srcCompat="@drawable/main" />
+        app:srcCompat="@drawable/main_img" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
