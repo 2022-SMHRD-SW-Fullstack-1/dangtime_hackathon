@@ -85,33 +85,35 @@ class ChatViewActivity : AppCompatActivity() {
         }
 
         imgChatSend.setOnClickListener {
-            val chatModel = ChatModel()
-            chatModel.users.put(uid.toString(), true)
-            chatModel.users.put(destinationUid!!, true)
+            if (etChatContent.text != null) {
+                val chatModel = ChatModel()
+                chatModel.users.put(uid.toString(), true)
+                chatModel.users.put(destinationUid!!, true)
 
-            Log.d("클릭 시 dest", "${chatModel.users}")
-            val comment = ChatModel.Comment(uid, etChatContent.text.toString(), Util.getTime())
-            if (chatRoomUid == null) {
-                imgChatSend.isEnabled = false
-                FBdatabase.getChatRoom().push().setValue(chatModel).addOnSuccessListener {
-                    //채팅방 생성
-                    checkChatRoom()
-                    //메세지 보내기
-                    Handler().postDelayed({
-                        FBdatabase.getChatRoom().child(chatRoomUid.toString())
-                            .child("comments").push().setValue(comment)
-                        etChatContent.text = null
-                    }, 1000L)
-                    Log.d("chatUidNull dest", "$destinationUid")
+                Log.d("클릭 시 dest", "${chatModel.users}")
+                val comment = ChatModel.Comment(uid, etChatContent.text.toString(), Util.getTime())
+                if (chatRoomUid == null) {
+                    imgChatSend.isEnabled = false
+                    FBdatabase.getChatRoom().push().setValue(chatModel).addOnSuccessListener {
+                        //채팅방 생성
+                        checkChatRoom()
+                        //메세지 보내기
+                        Handler().postDelayed({
+                            FBdatabase.getChatRoom().child(chatRoomUid.toString())
+                                .child("comments").push().setValue(comment)
+                            etChatContent.text = null
+                        }, 1000L)
+                        Log.d("chatUidNull dest", "$destinationUid")
+                    }
+                } else {
+                    FBdatabase.getChatRoom().child(chatRoomUid.toString()).child("comments")
+                        .push().setValue(comment)
+                    etChatContent.text = null
+                    Log.d("chatUidNotNull dest", "$destinationUid")
                 }
-            } else {
-                FBdatabase.getChatRoom().child(chatRoomUid.toString()).child("comments")
-                    .push().setValue(comment)
-                etChatContent.text = null
-                Log.d("chatUidNotNull dest", "$destinationUid")
             }
+            checkChatRoom()
         }
-        checkChatRoom()
     }
 
     private fun checkChatRoom() {
@@ -200,9 +202,9 @@ class ChatViewActivity : AppCompatActivity() {
                     if (nowD.equals(timeD)) {
                         time = "${timeH}:${timem}"
                     } else {
-                        if ((nowD.toInt() - timeD!!.toInt()) > 1){
+                        if ((nowD.toInt() - timeD!!.toInt()) > 1) {
                             time = "${timeM}월 ${timeD}일"
-                        }else{
+                        } else {
                             time = "어제"
                         }
                     }
