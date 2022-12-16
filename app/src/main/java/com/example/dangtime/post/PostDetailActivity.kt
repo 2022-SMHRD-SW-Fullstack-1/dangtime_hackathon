@@ -42,7 +42,6 @@ class PostDetailActivity : AppCompatActivity() {
         val tvPostDetailTown = findViewById<TextView>(R.id.tvDetailTown)
         val tvPostDetailHeartCount = findViewById<TextView>(R.id.tvPostDetailHeartCount)
         tvPostDetailComentCount = findViewById<TextView>(R.id.tvDetailComentCount)
-        val tvPostDetailViewCount = findViewById<TextView>(R.id.tvPostDetailViewCount)
         val rvPostDetail = findViewById<RecyclerView>(R.id.rvPostDetail)
 
         val imgPostDetailUpload = findViewById<ImageView>(R.id.imgPostDetailUpload)
@@ -63,15 +62,8 @@ class PostDetailActivity : AppCompatActivity() {
         postUid = intent.getStringExtra("postUid").toString()
 
 
+
         getCommentData()
-
-
-
-
-
-
-
-        // =commentCnt
 
         //어댑터 생성
 
@@ -87,16 +79,11 @@ class PostDetailActivity : AppCompatActivity() {
 
 
 
-
-
-            // setValue가 되기전에 미리 BoardVO가 저장될 key값(uid_)을 만들자
-
             //먼저 uid를 만들고  key저장
             var key = FBdatabase.getCommentRef().push().key.toString()
             var comment = etPostDetail.text.toString()
 
-            // boardRef의 uid 밑에 data 저장
-            //var conmment : String = "" ,var count : Int = 0 , var time : String = "", var uid : String = ""
+
             FBdatabase.getCommentRef().child("$postUid").child(key)
                 .setValue(PostCommentVO("$comment", "", "$time", "$uid"))
 
@@ -142,9 +129,23 @@ class PostDetailActivity : AppCompatActivity() {
 
         val pfListener2 = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                val dogNick = snapshot.child("$userUid").child("dogNick").value.toString()
+                val dogName = snapshot.child("$userUid").child("dogName").value.toString()
+                tvPostDetailName.text = "$dogNick $dogName"
 
-                tvPostDetailName.text =
-                    (snapshot.child("$userUid").child("dogName").value.toString())
+                //imgPostDetailPuppy
+                val storageReference = Firebase.storage.reference.child("/userImages/$userUid/photo")
+                storageReference.downloadUrl.addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Glide.with(this@PostDetailActivity)
+                            .load(task.result)
+                            .circleCrop()
+                            .into(imgPostDetailPuppy)
+                        Log.d("사진", "성공")
+                    } else {
+                        Log.d("사진", "실패")
+                    }
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {

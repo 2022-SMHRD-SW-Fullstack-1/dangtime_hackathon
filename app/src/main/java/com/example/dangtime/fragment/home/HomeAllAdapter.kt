@@ -1,5 +1,6 @@
 package com.example.dangtime.fragment.home
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.util.Log
@@ -78,9 +79,10 @@ class HomeAllAdapter(
         return ViewHolder(view)
     }
 
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        var imgUid = postUid[position].toString()
+        var imgUid = postUid[position]
         var uid = keyData[position].uid
 
         FBdatabase.getMemberRef().get().addOnSuccessListener {
@@ -103,7 +105,9 @@ class HomeAllAdapter(
                     "${holder.memberList.dogNick} ${holder.memberList.dogName}"
                 holder.tvTown.text = holder.memberList.address
 
-                //이미지 업로두
+
+                //이미지 업로드
+
                 val storageReference = Firebase.storage.reference.child("/userImages/$uid/photo")
                 storageReference.downloadUrl.addOnCompleteListener { task ->
                     if (task.isSuccessful) {
@@ -127,6 +131,7 @@ class HomeAllAdapter(
                             .into(holder.imgPostUpload)
                         Log.d("사진게시판", "성공")
                     } else {
+                        holder.imgPostUpload.visibility = View.GONE
                         Log.d("사진게시판", "실패")
                     }
                 }
@@ -201,6 +206,4 @@ class HomeAllAdapter(
     override fun getItemCount(): Int {
         return keyData.size
     }
-
-
 }

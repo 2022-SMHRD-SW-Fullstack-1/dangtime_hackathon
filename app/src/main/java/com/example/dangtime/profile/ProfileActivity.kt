@@ -90,6 +90,7 @@ class ProfileActivity : AppCompatActivity() {
 
 
         imgProfileBack.setOnClickListener {
+            val intent = Intent(this@ProfileActivity, HomeActivity::class.java)
             finish()
         }
 

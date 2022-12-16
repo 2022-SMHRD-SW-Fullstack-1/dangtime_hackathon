@@ -28,7 +28,7 @@ import java.io.ByteArrayOutputStream
 
 class EditPostActivity : AppCompatActivity() {
     lateinit var imgStrBack: ImageView
-
+    lateinit var imgMyPostProfilePic : ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +36,7 @@ class EditPostActivity : AppCompatActivity() {
 
 
         val imgPostEditBack = findViewById<ImageView>(R.id.imgPostEditBack)
-        val imgMyPostProfilePic = findViewById<ImageView>(R.id.imgMyPostProfilePic)
+        imgMyPostProfilePic = findViewById(R.id.imgMyPostProfilePic)
         val tvMyPostName = findViewById<TextView>(R.id.tvMyPostName)
         val btnHomeAllEditPicture = findViewById<Button>(R.id.btnHomeAllEditPicture)
         val btnHomeAllDelPicture = findViewById<Button>(R.id.btnHomeAllDelPicture)
@@ -46,13 +46,28 @@ class EditPostActivity : AppCompatActivity() {
 
         val postUid = intent.getStringExtra("postEditUid").toString()
         val content = intent.getStringExtra("content").toString()
-        var deleteImg : Boolean = false
+
         var changeImg : Boolean = false
 
+        val memRef = FBdatabase.getMemberRef()
+        val uid = FBAuth.getUid()
 
-        Log.d("수정 유아이디",postUid)
+        getImageData(uid)
 
+        val pfListener = object : ValueEventListener{
 
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val dogName = snapshot.child("$uid").child("dogName").value.toString()
+                val dogNick = snapshot.child("$uid").child("dogNick").value.toString()
+                val pfName = "$dogNick $dogName"
+                tvMyPostName.text = pfName
+            }
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        }
+        memRef.addValueEventListener(pfListener)
 
 
         //내가 작성했던 내용과 이미지 셋팅
@@ -79,9 +94,8 @@ class EditPostActivity : AppCompatActivity() {
         //수정완료 버튼 누를시
         btnHomeAllEditSend.setOnClickListener {
 
-            if (deleteImg == true){
-                Firebase.storage.reference.child("/postUploadImages/$postUid").delete()
-            }
+
+                     Log.d("삭제할래?",changeImg.toString())
             if (changeImg == true){
                 imgUpload(postUid)
             }
@@ -104,7 +118,7 @@ class EditPostActivity : AppCompatActivity() {
         //사진변경 버튼 룰렀을 때
         btnHomeAllEditPicture.setOnClickListener {
             changeImg = true
-            deleteImg = true
+
             val intent = Intent(
                 Intent.ACTION_PICK,
                 MediaStore.Images.Media.INTERNAL_CONTENT_URI
@@ -116,8 +130,10 @@ class EditPostActivity : AppCompatActivity() {
 
         // 사진 삭제
         btnHomeAllDelPicture.setOnClickListener {
-            deleteImg = true
+
             imgStrBack.setImageResource(R.drawable.addimage)
+            Firebase.storage.reference.child("/postUploadImages/$postUid/photo").delete()
+
         }
     }
 
@@ -145,6 +161,21 @@ class EditPostActivity : AppCompatActivity() {
         }.addOnSuccessListener { taskSnapshot ->
             // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
             // ...
+        }
+    }
+
+    fun getImageData(uid: String) {
+        val storageReference = Firebase.storage.reference.child("/userImages/$uid/photo")
+        storageReference.downloadUrl.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                Glide.with(this)
+                    .load(task.result)
+                    .circleCrop()
+                    .into(imgMyPostProfilePic)
+                Log.d("사진","성공")
+            }else {
+                Log.d("사진","실패")
+            }
         }
     }
 

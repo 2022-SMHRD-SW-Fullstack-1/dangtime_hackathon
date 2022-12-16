@@ -10,6 +10,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import com.example.dangtime.LoginSplashActivity
 import com.example.dangtime.MainActivity
 import com.example.dangtime.R
 import com.example.dangtime.post.HomeActivity
@@ -60,7 +61,7 @@ class LoginActivity : AppCompatActivity() {
                     auth.signInWithEmailAndPassword(email, pw).addOnCompleteListener(this) { task ->
 
                         if (task.isSuccessful) {
-                            Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
+//                            Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
 
                             val editor = sharedPreferences.edit()
                             editor.putString("loginId", email)
@@ -73,7 +74,7 @@ class LoginActivity : AppCompatActivity() {
                             editorSp.putString("loginPw", pw)
                             editorSp.commit()
 
-                            val intent = Intent(this, HomeActivity::class.java)
+                            val intent = Intent(this, LoginSplashActivity::class.java)
                             startActivity(intent)
                             finish()
 
