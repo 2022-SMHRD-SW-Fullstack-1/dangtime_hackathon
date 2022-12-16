@@ -34,7 +34,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         val btnAutoLocation = findViewById<Button>(R.id.btnAutoLocation)
 
         btnAutoLocation.setOnClickListener {
-            val addr = intent.getStringExtra("address").toString()
+            val addr = intent.getStringExtra("addr").toString()
             val intent = Intent(this, RegisterActivity::class.java)
             intent.putExtra("address", addr)
             intent.putExtra("trimAddress", "auto")
