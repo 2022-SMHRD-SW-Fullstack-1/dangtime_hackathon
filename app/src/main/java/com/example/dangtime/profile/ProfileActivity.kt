@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.bumptech.glide.Glide
+import com.example.dangtime.MainActivity
 import com.example.dangtime.R
 import com.example.dangtime.auth.LoginActivity
 import com.example.dangtime.auth.MemberVO
@@ -113,7 +114,7 @@ class ProfileActivity : AppCompatActivity() {
         btnProfileLogout.setOnClickListener {
             auth.signOut()
             Toast.makeText(this,"로그아웃되었습니다",Toast.LENGTH_SHORT).show()
-            val intent = Intent(this@ProfileActivity, LoginActivity::class.java)
+            val intent = Intent(this@ProfileActivity, MainActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
             finish()

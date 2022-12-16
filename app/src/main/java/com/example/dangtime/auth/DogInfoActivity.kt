@@ -112,6 +112,7 @@ class DogInfoActivity : AppCompatActivity() {
         btnCamera.setOnClickListener {
             captureCamera()
 
+            profileCheck = true
             photo = false
             photoLl.visibility = View.GONE
         }
@@ -120,7 +121,7 @@ class DogInfoActivity : AppCompatActivity() {
 
         btnRegister.setOnClickListener {
             val email = intent.getStringExtra("email")!!
-            val intent = Intent(this@DogInfoActivity, HomeActivity::class.java)
+            val intent = Intent(this@DogInfoActivity, LoginActivity::class.java)
 
             val dogName = etRegisterDogName.text.toString()
             val dogNick = etRegisterDogNick.text.toString()

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.*
+import com.example.dangtime.MainActivity
 import com.example.dangtime.R
 import com.example.dangtime.auth.LoginActivity
 import com.google.firebase.auth.EmailAuthProvider
@@ -64,7 +65,7 @@ class DeleteProfileActivity : AppCompatActivity() {
                         .addOnCompleteListener { task ->
                             if (task.isSuccessful) {
                                 Toast.makeText(this, "탈퇴되었습니다", Toast.LENGTH_SHORT).show()
-                                val intent = Intent(this@DeleteProfileActivity, LoginActivity::class.java)
+                                val intent = Intent(this@DeleteProfileActivity, MainActivity::class.java)
                                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                 startActivity(intent)
                             }
