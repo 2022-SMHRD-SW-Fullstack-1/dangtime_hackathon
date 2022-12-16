@@ -66,7 +66,6 @@ class ChatFragment2 : Fragment() {
 
         init {
             uid = Firebase.auth.currentUser?.uid.toString()
-            println(uid)
 
             FBdatabase.getChatRoom().orderByChild("users/$uid").equalTo(true)
                 .addListenerForSingleValueEvent(object :
@@ -79,6 +78,7 @@ class ChatFragment2 : Fragment() {
                         for (data in snapshot.children) {
                             chatModel.add(data.getValue<ChatModel>()!!)
                         }
+                        chatModel.reverse()
                         notifyDataSetChanged()
                     }
                 })
@@ -146,9 +146,9 @@ class ChatFragment2 : Fragment() {
                     if (nowD.equals(timeD)) {
                         time = "${timeH}:${timem}"
                     } else {
-                        if ((nowD.toInt() - timeD!!.toInt()) > 1){
+                        if ((nowD.toInt() - timeD!!.toInt()) > 1) {
                             time = "${timeM}월 ${timeD}일"
-                        }else{
+                        } else {
                             time = "어제"
                         }
                     }
