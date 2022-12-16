@@ -39,7 +39,6 @@ class MyPostCommentFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_my_post_comment, container, false)
         val rvMyPostComment = view.findViewById<RecyclerView>(R.id.rvMyPostComment)
 
-val fragment = parentFragment
 
 
         getMyPostCommentData()

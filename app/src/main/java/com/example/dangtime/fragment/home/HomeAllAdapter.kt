@@ -231,6 +231,16 @@ class HomeAllAdapter(
 
         }
 
+        holder.imgPostUpload.setOnClickListener {
+            val intent = Intent(context, PostDetailActivity::class.java)
+
+            intent.putExtra("postInfo", keyData[position].toString())
+            intent.putExtra("writerInfo", data[position].toString())
+            intent.putExtra("postUid", postUid[position])
+
+            context.startActivity(intent)
+        }
+
 
     }
 
