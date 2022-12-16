@@ -56,9 +56,8 @@ class PostDetailActivity : AppCompatActivity() {
         val imgPostDetailHeart = findViewById<ImageView>(R.id.imgPostDetailHeart)
         imgPostDetailPuppy = findViewById<ImageView>(R.id.imgPostDetailPuppy)
         val imgPostDetailSend = findViewById<ImageView>(R.id.imgPostDetailSend)
-        val imgPostDetailEdit = findViewById<ImageView>(R.id.imgPostDetailEdit)
 
-        val etPostDetail = findViewById<EditText>(R.id.etPostDetail)
+        etPostDetail = findViewById<EditText>(R.id.etPostDetail)
 
 
 
